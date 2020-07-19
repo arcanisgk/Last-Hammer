@@ -11,16 +11,15 @@ Last Hamer is a pre-built platform for creating applications, as if you were wor
 
 Note: It also has support for the Execution of Crons Jobs; but requires access to the System Cron Task Manager
 
-Admin Panel ready to develepers in php
+## What you need to know when starting development:
 
-## PSR-0, PSR-1, PSR-2 and PSR3
+Mainly used PHP in its latest version 7.4
+HTML5 and a custom version of Bootstrap will also be used simply to enrich the color palette (Bootstrap 4.5).
+Also CSS3 is used and in the Extensions area you will find the additional libraries and their versions.
 
--   Namespaces and classes must have the following structure () \*
--   Each namespace must have a superior namespace ("Vendor name").
--   Each namespace can have as many sub-namespaces as desired.
--   Names of namespaces or classes must be separated by an underscore (\_).
--   All files must have the extension .php.
--   The names of the namespaces or classes must be sorted alphabetically.
+## PSR version:
+
+Last-Hammer does not use a specific version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.
 
 #### (The architecture proposed will not use namespace, lol)
 
