@@ -38,5 +38,5 @@ The Last Hammer project is open-source software licensed under the MIT license.
 ## Installation:
 
 ```
-git clone https://github.com/arcanisgk/last-hammer
+https://github.com/arcanisgk/Last-Hammer.git
 ```
