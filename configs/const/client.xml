@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<data>
+    <company>
+        <cname>Last Hammer</cname>
+        <cid>none</cid>
+        <caddress>Panama</caddress>
+        <cphone>+507 ###########</cphone>
+        <cemail>test@test.com</cemail>
+        <curlmain>www.testtesttest.com</curlmain>
+        <curlstore></curlstore>
+    </company>
+    <contact>
+        <contname>Tecnología</contname>
+        <contlastname>y Desarrollo</contlastname>
+        <contmail>test@test.com</contmail>
+        <contphone>+507 ###########</contphone>
+    </contact>
+    <software>
+        <sysname>Last Hammer</sysname>
+        <license>#############################</license>
+        <token>#############################</token>
+        <version>1.0</version>
+        <build>2020.06</build>
+        <zone>America/Panama</zone>
+        <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
+        <lang>es_LA</lang>
+        <appandroid>#############################</appandroid>
+        <appios>#############################</appios>
+    </software>
+</data>

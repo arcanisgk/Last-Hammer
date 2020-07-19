@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<data>
+    <setup>
+        <protocol>HTTP</protocol>
+        <session_expiration>true</session_expiration>
+        <session_inactivity>true</session_inactivity>
+        <cookies_httponly>true</cookies_httponly>
+        <session_byhour>8</session_byhour>
+        <user_acc_restore>true</user_acc_restore>
+        <user_acc_restore_by>email,cid,username</user_acc_restore_by>
+        <user_acc_change_pass>true</user_acc_change_pass>
+        <user_acc_registry>true</user_acc_registry>
+        <user_acc_registry_by_mod>true</user_acc_registry_by_mod>
+    </setup>
+</data>

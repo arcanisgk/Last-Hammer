@@ -23,23 +23,14 @@ Last-Hammer does not use a specific version of PSR or code style, we can really 
 
 #### (The architecture proposed)
 
--   Files should only use UTF-8 encoding without BOM.
--   Functions should only return a single value (it can be an array).
--   Space names and classes must follow the rules of the PSR-0.
--   Class names must be written using the StudlyCaps technique.
--   The constants must be defined in UPPERCASE and using underscore (\_) as separator.
--   Methods and functions should be written using the camelCase technique.
--   The idea must be with a tabulator set to 4 spaces (tabs or spaces).
--   The constants true, false and null must be written in lowercase.
--   You should no longer use the reserved word var to declare a property, you must use public, private, static or protected.
--   There must be a space after each control structure (if, for, foreach, while, switch, try ... catch, etc.).
+-   to be defined
 
 ## Contributing:
 
 Thank you for considering contributing to the Last Hammer project! The contribution guide can be found in the Last Hammer documentation.
 
 Security Vulnerabilities
-If you discover a security vulnerability within Last Hammer, please send an e-mail to Walter Nuñez via icarosnet@gmail.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within Last Hammer, please open and ISSUES TICKET.
 
 License
 The Last Hammer project is open-source software licensed under the MIT license.
