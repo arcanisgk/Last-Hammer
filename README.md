@@ -21,7 +21,7 @@ Also CSS3 is used and in the Extensions area you will find the additional librar
 
 Last-Hammer does not use a specific version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.
 
-#### (The architecture proposed will not use namespace, lol)
+#### (The architecture proposed)
 
 -   Files should only use UTF-8 encoding without BOM.
 -   Functions should only return a single value (it can be an array).
