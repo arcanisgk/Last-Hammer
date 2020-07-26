@@ -175,11 +175,11 @@ Set your software configuration:
 </data>
 ```
 
-## Third step: Setup Client Configuration
+## Step Four: Setup Client Configuration
 
 go to and Edit: `/configs/const/client.xml`
 
-Set your software configuration:
+Set your Client configuration:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
