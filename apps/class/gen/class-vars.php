@@ -3,7 +3,7 @@ class ClassVarsManager
 {
     private static $instance = null;
 
-    public static function AgetInstance()
+    public static function _getInstance()
     {
 
         if (!self::$instance instanceof self) {
@@ -23,7 +23,7 @@ class ClassVarsManager
         CoreApp::$oclass = null;
         CoreApp::$ovars  = null;
         foreach (get_class_vars(__CLASS__) as $clsVar) {
-            unset($this->$clsVar);
+            unset($clsVar);
         }
         die;
     }

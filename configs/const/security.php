@@ -50,27 +50,3 @@ if (!defined('USER_ACC_CHANGE_PASS')) {
 if (!defined('USER_ACC_REGISTRY')) {
     define('USER_ACC_REGISTRY', CONF_DATA['SETUP']['USER_ACC_REGISTRY']);
 }
-if (!defined('REQUEST_TYPE')) {
-    define('REQUEST_TYPE', (isset($_SERVER["CONTENT_TYPE"])) ? trim($_SERVER["CONTENT_TYPE"]) : '');
-}
-if (isset($_SERVER['REQUEST_METHOD'])) {
-    $data = trim(file_get_contents("php://input"));
-    if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
-        $requesttouse = 'POST';
-    } elseif (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') == 0) {
-        $requesttouse = 'GET';
-    }
-    if (!defined('REQUEST_METHOD') && 'POST' == $requesttouse && (!empty($data) || !empty($_POST))) {
-        define('REQUEST_METHOD', $requesttouse);
-    } elseif (!defined('REQUEST_METHOD') && 'GET' == $requesttouse && (!empty($data) || !empty($_GET))) {
-        define('REQUEST_METHOD', $requesttouse);
-    } else {
-        if (!defined('REQUEST_METHOD')) {
-            define('REQUEST_METHOD', null);
-        }
-    }
-} else {
-    if (!defined('REQUEST_METHOD')) {
-        define('REQUEST_METHOD', null);
-    }
-}

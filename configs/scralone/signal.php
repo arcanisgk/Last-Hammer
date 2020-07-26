@@ -1,4 +1,2 @@
 <?php
-$signal=true;
-echo $signal;
-?>
+echo true;

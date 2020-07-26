@@ -3,25 +3,27 @@ class ClassManager
 {
     private static $instance = null;
 
-    public static function AgetInstance()
+    public function LoadClass()
     {
+        $classPaths = [
+            'GEN' => PATHS['CLASSGEN'],
+            'MVC' => PATHS['CLASSMVC']
+        ];
+        $this->requireClassFile(PATHS['CLASSEXT'].'vendor/autoload.php');
+        $this->ClassLoader($classPaths);
+    }
 
+    public static function _getInstance()
+    {
         if (!self::$instance instanceof self) {
             self::$instance = new self;
         }
         return self::$instance;
     }
 
-    public function LoadClass()
-    {
-        //$this->requireClassFile(PATHS['CLASSEXT'].'vendor/autoload.php');
-        $classPaths = ['GEN' => PATHS['CLASSGEN'], 'MVC' => PATHS['CLASSMVC']];
-        $this->ClassLoader($classPaths);
-    }
-
     private function CheckFileIntegrity($file)
     {
-        $dl    = ['st' => false, 'smg' => ''];
+        $dl    = ['st' => false, 'msg' => ''];
         $smg1  = '';
         $fileR = file($file);
         $c     = 1;
@@ -34,7 +36,7 @@ class ClassManager
                 break;
             }
         }
-        $dl['smg'] = $smg1;
+        $dl['msg'] = $smg1;
         return $dl;
     }
 
@@ -62,7 +64,7 @@ class ClassManager
                             preg_replace('#\Class#', '', $new_name_class)
                         );
                         $new_name_class .= 'Manager';
-                        $class_store[$instance_class] = $new_name_class::AgetInstance();
+                        $class_store[$instance_class] = $new_name_class::_getInstance();
                     } else {
                         echo
                             'PHP files cannot have line breaks at the beginning '.

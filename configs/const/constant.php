@@ -33,18 +33,23 @@ try {
 }
 $paths = [
     'SOFTWARE'  => FILEROOT.'/build/setup/',
+
     'CLASSEXT'  => FILEROOT.'/apps/class/ext/',
     'CLASSMVC'  => FILEROOT.'/apps/class/mvc/',
     'CLASSGEN'  => FILEROOT.'/apps/class/gen/',
-    'ABSDATA'   => FILEROOT.'/apps/abs/data/',
-    'ABSLIST'   => FILEROOT.'/apps/abs/list/',
-    'ABSDOCS'   => FILEROOT.'/apps/abs/docs/',
-    'CLASSCORE' => FILEROOT.'/apps/core/',
+    'CLASSCORE' => FILEROOT.'/apps/class/static/',
+
+    'ABSDATA'   => FILEROOT.'/apps/core/abs/data/',
+    'ABSLIST'   => FILEROOT.'/apps/core/abs/elem/',
+    'ABSDOCS'   => FILEROOT.'/apps/core/abs/docs/',
+
+    'WORKSPACE' => FILEROOT.'/apps/core/',
+
     'TPLSTATIC' => FILEROOT.'/html/static/',
     'TPLDASH'   => FILEROOT.'/html/dash/',
-    'TPLLOGIN'  => FILEROOT.'/html/login/',
     'TPLSITE'   => FILEROOT.'/html/site/',
     'TPLSTORE'  => FILEROOT.'/html/store/',
+
     'PRINT'     => FILEROOT.'/print/',
     'LOGS'      => FILEROOT.'/logs/',
     'FILES'     => FILEROOT.'/files/',
@@ -61,10 +66,10 @@ if (!defined('LOG_TYPES')) {
     ]);
 }
 if (!defined('DEFAULT_SYSTEM_NAME')) {
-    define('DEFAULT_SYSTEM_NAME', 'LAST-HAMMER');
+    define('DEFAULT_SYSTEM_NAME', CLIENT_DATA['SOFTWARE']['SYSNAMEC']);
 }
 if (!defined('SYSTEM_OWNER')) {
-    define('SYSTEM_OWNER', 'LAST-HAMMER');
+    define('SYSTEM_OWNER', CLIENT_DATA['SOFTWARE']['SYSOWNER']);
 }
 if (!defined('SYSTEM_VERSION')) {
     define('SYSTEM_VERSION', CLIENT_DATA['SOFTWARE']['VERSION'].'.'.CLIENT_DATA['SOFTWARE']['BUILD']);

@@ -8,9 +8,8 @@ class CoreApp
 
     private static $instance = null;
 
-    public static function AgetInstance()
+    public static function _getInstance()
     {
-
         if (!self::$instance instanceof self) {
             self::$instance = new self;
         }
@@ -19,10 +18,17 @@ class CoreApp
 
     public function goCoreApp()
     {
-        ClassManager::AgetInstance()->LoadClass();
-        # ? Call to function Example
-        CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, false, CoreApp::$oclass, get_defined_constants(true)['user']);
+        $this->popClass();
+        self::$oclass['GEN']['APP']->runInit();
+        self::$oclass['MVC']['CONTROLLER']->runController();
+        self::$oclass['GEN']['APP']->runClose();
+    }
+
+    private function popClass()
+    {
+        require_once FILEROOT.'/apps/class-manager.php';
+        ClassManager::_getInstance()->LoadClass();
     }
 }
 ob_start();
-CoreApp::AgetInstance()->goCoreApp();
+CoreApp::_getInstance()->goCoreApp();

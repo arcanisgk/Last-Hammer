@@ -16,6 +16,7 @@ if (php_sapi_name() == 'cli') {
     $ver  = 'web';
     $path = $_SERVER['DOCUMENT_ROOT'];
 }
+
 if (!defined('VERSYSTEM')) {
     define('VERSYSTEM', $ver);
 }
@@ -38,10 +39,9 @@ function ArrayChangeKeyCaseRecursive($clien_data)
         return $data;
     }, array_change_key_case($clien_data, CASE_UPPER));
 }
-
-$client_xml = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'/client.xml'));
+$client_xml = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'client.xml'));
 $clien_data = json_decode(json_encode($client_xml), true);
-$conf_xml   = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'/conf.xml'));
+$conf_xml   = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'conf.xml'));
 $conf_data  = json_decode(json_encode($conf_xml), true);
 if (!defined('ENVIRONMENT')) {
     define('ENVIRONMENT', 0);
@@ -76,6 +76,7 @@ if (!defined('CONF_DATA')) {
 date_default_timezone_set(CLIENT_DATA['SOFTWARE']['ZONE']);
 require_once FILEROOT.CONST_PATH.'security.php';
 require_once FILEROOT.CONST_PATH.'constant.php';
+
 if (isset($_SERVER['REQUEST_METHOD'])) {
     $data = trim(file_get_contents('php://input'));
     if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
@@ -83,23 +84,28 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
     } elseif (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') == 0) {
         $to_set = 'GET';
     }
-    if (!defined('RQMETHOD') && 'POST' == $to_set && (!empty($data) || !empty($_POST))) {
-        define('RQMETHOD', $to_set);
-    } elseif (!defined('RQMETHOD') && 'GET' == $to_set && (!empty($data) || !empty($_GET))) {
-        define('RQMETHOD', $to_set);
+    if (!defined('REQUEST_METHOD') && 'POST' == $to_set && (!empty($data) || !empty($_POST))) {
+        define('REQUEST_METHOD', $to_set);
+    } elseif (!defined('REQUEST_METHOD') && 'GET' == $to_set && (!empty($data) || !empty($_GET))) {
+        define('REQUEST_METHOD', $to_set);
     } else {
-        if (!defined('RQMETHOD')) {
-            define('RQMETHOD', null);
+        if (!defined('REQUEST_METHOD')) {
+            define('REQUEST_METHOD', null);
         }
     }
 } else {
-    if (!defined('RQMETHOD')) {
-        define('RQMETHOD', null);
+    if (!defined('REQUEST_METHOD')) {
+        define('REQUEST_METHOD', null);
     }
 }
+/*
 if (!defined('RQCONTTYPE')) {
     define('RQCONTTYPE', isset($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : '');
 }
+if (!defined('REQUEST_TYPE')) {
+    define('REQUEST_TYPE', (isset($_SERVER["CONTENT_TYPE"])) ? trim($_SERVER["CONTENT_TYPE"]) : '');
+}
+*/
 if (!defined('MSGINTERFACE')) {
     define('MSGTOUNIX', 'The system is linked to interface data, some delay may occur at start or end.');
 }
@@ -109,4 +115,3 @@ if (!defined('APPANDROID')) {
 if (!defined('APPIOS')) {
     define('APPIOS', CLIENT_DATA['SOFTWARE']['APPIOS']);
 }
-require_once FILEROOT.'/apps/class-manager.php';
