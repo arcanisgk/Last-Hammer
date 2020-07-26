@@ -1,4 +1,7 @@
 <?php
+
+# ! Warning do not change DBDEFAULT_NAME, DBSOFT_NAME, DBSOFT_SUBSYSTEM
+
 CoreApp::$ovars['SYS']['CONF'] = [
     'SOFTWARE' => [
         'SOFT_VERSION'     => '1.0',
