@@ -26,7 +26,7 @@
         <build>2020.06</build>
         <zone>America/Panama</zone>
         <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
-        <lang>es_LA</lang>
+        <lang>en_US</lang>
         <appandroid>#############################</appandroid>
         <appios>#############################</appios>
     </software>
