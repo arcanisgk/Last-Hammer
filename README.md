@@ -47,15 +47,18 @@ Or download and unzip
 https://github.com/arcanisgk/Last-Hammer/archive/master.zip
 ```
 
-##First step: Setup .htaccess
+## First step: Setup .htaccess
 
 set correct path to error handler:
 
+```
     #php_value auto_prepend_file "/var/www/html/configs/error/error.php"
     php_value auto_prepend_file "C:/xampp/htdocs/configs/error/error.php"
+```
 
 And Remove Error not supported from the list:
 
+```
     ErrorDocument 100 /configs/error/errorstatus.php
     ErrorDocument 101 /configs/error/errorstatus.php
     ErrorDocument 102 /configs/error/errorstatus.php
@@ -114,13 +117,15 @@ And Remove Error not supported from the list:
     ErrorDocument 508 /configs/error/errorstatus.php
     ErrorDocument 510 /configs/error/errorstatus.php
     ErrorDocument 511 /configs/error/errorstatus.php
+```
 
-##Second step: Setup DB Connection
+## Second step: Setup DB Connection
 
 go to and Edit: `/build/setup/config-inc.php`
 
 Set your credential for DB Connection:
 
+```
     <?php
         # ! Warning do not change DBDEFAULT_NAME, DBSOFT_NAME, DBSOFT_SUBSYSTEM
         CoreApp::$ovars['SYS']['CONF'] = [
@@ -141,13 +146,15 @@ Set your credential for DB Connection:
                 'USADMIN_PASS'     => 'admin'
             ]
         ];
+        ```
 
-        ##Third step: Setup Software Configuration
+## Third step: Setup Software Configuration
 
-        goto && Edit:`/configs/const/conf.xml`;
+goto  && Edit:` / configs / const  / conf.xml`;
 
-        Setyoursoftwareconfiguration:
+Setyoursoftwareconfiguration:
 
+```;
     <  ? xmlversion = "1.0"encoding = "utf-8"?>
     <!DOCTYPE xml>
     <data>
@@ -164,13 +171,15 @@ Set your credential for DB Connection:
             <user_acc_registry_by_mod>true</user_acc_registry_by_mod>
         </setup>
     </data>
+```
 
-##Third step: Setup Client Configuration
+## Third step: Setup Client Configuration
 
 go to and Edit: `/configs/const/client.xml`
 
 Set your software configuration:
 
+```
     <?xml version="1.0" encoding="utf-8"?>
     <!DOCTYPE xml>
     <data>
@@ -204,5 +213,5 @@ Set your software configuration:
             <appios>#############################</appios>
         </software>
     </data>
-
+```
 
