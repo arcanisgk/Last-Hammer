@@ -125,52 +125,54 @@ go to and Edit: `/build/setup/config-inc.php`
 
 Set your credential for DB Connection:
 
+```php
+<?php
+
+# ! Warning do not change DBDEFAULT_NAME, DBSOFT_NAME, DBSOFT_SUBSYSTEM
+
+CoreApp::$ovars['SYS']['CONF'] = [
+    'SOFTWARE' => [
+        'SOFT_VERSION'     => '1.0',
+        'HOST_LICENSE'     => '',
+        'HOST_KEY'         => '',
+        'DBDEFAULT_HOST'   => '127.0.0.1',
+        'DBDEFAULT_PORT'   => '3306',
+        'DBDEFAULT_NAME'   => 'lasthammer',
+        'DBDEFAULT_USER'   => 'root',
+        'DBDEFAULT_PASS'   => '123456',
+        'DBSOFT_NAME'      => 'last_hammer',
+        'DBSOFT_SUBSYSTEM' => 'lh_subsystem',
+        'DBSOFT_USER'      => 'root',
+        'DBSOFT_PASS'      => '123456',
+        'USADMIN_NAME'     => 'admin',
+        'USADMIN_PASS'     => 'admin'
+    ]
+];
 ```
-    <?php
-        # ! Warning do not change DBDEFAULT_NAME, DBSOFT_NAME, DBSOFT_SUBSYSTEM
-        CoreApp::$ovars['SYS']['CONF'] = [
-            'SOFTWARE' => [
-                'SOFT_VERSION'     => '1.0',
-                'HOST_LICENSE'     => '',
-                'HOST_KEY'         => '',
-                'DBDEFAULT_HOST'   => '127.0.0.1',
-                'DBDEFAULT_PORT'   => '3306',
-                'DBDEFAULT_NAME'   => 'lasthammer',
-                'DBDEFAULT_USER'   => 'root',
-                'DBDEFAULT_PASS'   => '123456',
-                'DBSOFT_NAME'      => 'last_hammer',
-                'DBSOFT_SUBSYSTEM' => 'lh_subsystem',
-                'DBSOFT_USER'      => 'root',
-                'DBSOFT_PASS'      => '123456',
-                'USADMIN_NAME'     => 'admin',
-                'USADMIN_PASS'     => 'admin'
-            ]
-        ];
-        ```
 
 ## Third step: Setup Software Configuration
 
-goto  && Edit:` / configs / const  / conf.xml`;
+go to and Edit: `/configs/const /conf.xml`
 
-Setyoursoftwareconfiguration:
+Set your software configuration:
 
-```;
-    <  ? xmlversion = "1.0"encoding = "utf-8"?>
-    <!DOCTYPE xml>
-    <data>
-        <setup>
-            <protocol>HTTP</protocol>
-            <session_expiration>true</session_expiration>
-            <session_inactivity>true</session_inactivity>
-            <cookies_httponly>true</cookies_httponly>
-            <session_byhour>8</session_byhour>
-            <user_acc_restore>true</user_acc_restore>
-            <user_acc_restore_by>email,cid,username</user_acc_restore_by>
-            <user_acc_change_pass>true</user_acc_change_pass>
-            <user_acc_registry>true</user_acc_registry>
-            <user_acc_registry_by_mod>true</user_acc_registry_by_mod>
-        </setup>
-    </data>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<data>
+    <setup>
+        <protocol>HTTP</protocol>
+        <session_expiration>true</session_expiration>
+        <session_inactivity>true</session_inactivity>
+        <cookies_httponly>true</cookies_httponly>
+        <session_byhour>8</session_byhour>
+        <user_acc_restore>true</user_acc_restore>
+        <user_acc_restore_by>email,cid,username</user_acc_restore_by>
+        <user_acc_change_pass>true</user_acc_change_pass>
+        <user_acc_registry>true</user_acc_registry>
+        <user_acc_registry_by_mod>true</user_acc_registry_by_mod>
+    </setup>
+</data>
 ```
 
 ## Third step: Setup Client Configuration
@@ -179,39 +181,39 @@ go to and Edit: `/configs/const/client.xml`
 
 Set your software configuration:
 
-```
-    <?xml version="1.0" encoding="utf-8"?>
-    <!DOCTYPE xml>
-    <data>
-        <company>
-            <cname>Icaros Net S.A.</cname>
-            <cid>RUC: 6-711-334 DIV: 40</cid>
-            <caddress>Panama</caddress>
-            <cphone>+507 6314-6497</cphone>
-            <cemail>w.nunez.09@outlook.com</cemail>
-            <curlmain>localhost</curlmain>
-            <curlstore></curlstore>
-        </company>
-        <contact>
-            <contname>Tecnología</contname>
-            <contlastname>y Desarrollo</contlastname>
-            <contmail>w.nunez.09@outlook.com</contmail>
-            <contphone>+507 6314-6497</contphone>
-        </contact>
-        <software>
-            <sysname>Last Hammer Open Source ERP</sysname>
-            <sysnamec>Last-Hammer-Open-Source-ERP</sysnamec>
-            <sysowner>Last Hammer</sysowner>
-            <license>#############################</license>
-            <token>#############################</token>
-            <version>1.0</version>
-            <build>2020.06</build>
-            <zone>America/Panama</zone>
-            <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
-            <lang>es_LA</lang>
-            <appandroid>#############################</appandroid>
-            <appios>#############################</appios>
-        </software>
-    </data>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<data>
+    <company>
+        <cname>Icaros Net S.A.</cname>
+        <cid>RUC: 6-711-334 DIV: 40</cid>
+        <caddress>Panama</caddress>
+        <cphone>+507 6314-6497</cphone>
+        <cemail>w.nunez.09@outlook.com</cemail>
+        <curlmain>localhost</curlmain>
+        <curlstore></curlstore>
+    </company>
+    <contact>
+        <contname>Tecnología</contname>
+        <contlastname>y Desarrollo</contlastname>
+        <contmail>w.nunez.09@outlook.com</contmail>
+        <contphone>+507 6314-6497</contphone>
+    </contact>
+    <software>
+        <sysname>Last Hammer Open Source ERP</sysname>
+        <sysnamec>Last-Hammer-Open-Source-ERP</sysnamec>
+        <sysowner>Last Hammer</sysowner>
+        <license>#############################</license>
+        <token>#############################</token>
+        <version>1.0</version>
+        <build>2020.06</build>
+        <zone>America/Panama</zone>
+        <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
+        <lang>es_LA</lang>
+        <appandroid>#############################</appandroid>
+        <appios>#############################</appios>
+    </software>
+</data>
 ```
 
