@@ -1,10 +1,13 @@
 {
     "require-dev": {
-        "mpdf/mpdf": "^8.0",
-        "phpmailer/phpmailer": "^6.1",
+        "mpdf/mpdf": "8.0.4",
+        "phpmailer/phpmailer": "6.1.7",
         "league/oauth2-client": "^2.4"
     },
     "require": {
+        "mpdf/mpdf": "8.0.4",
+        "phpmailer/phpmailer": "6.1.7",
+        "league/oauth2-client": "^2.4",
         "mobiledetect/mobiledetectlib": "^2.8"
     }
 }
