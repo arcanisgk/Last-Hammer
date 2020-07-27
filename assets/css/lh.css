@@ -1,3 +1,54 @@
 .form-control {
     padding: 0.375rem 0.375rem !important;
 }
+
+/* Customize BS */
+
+.inmodal .modal-title {
+    padding: 15px 15px;
+    text-align: center;
+    display: block;
+    font-size: 26px;
+}
+
+/* Customize */
+
+.blink-xs {
+    font-size: 0.75rem !important;
+    animation: blinker 2s linear infinite !important;
+}
+
+.blink {
+    animation: blinker 2s linear infinite !important;
+}
+
+.blink-md {
+    font-size: 1.5rem !important;
+    animation: blinker 2s linear infinite !important;
+}
+.blink-lg {
+    font-size: 2rem !important;
+    animation: blinker 2s linear infinite !important;
+}
+.blink-xl {
+    font-size: 4rem !important;
+    animation: blinker 2s linear infinite !important;
+}
+
+/* effects */
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes hammer {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}

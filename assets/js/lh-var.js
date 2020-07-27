@@ -20,6 +20,7 @@ function initSystemVar() {
     return new Promise(function(resolve, reject) {
         window.SYS = {
             'error': false,
+            'user_interaction': false,
             'voice_ia': {},
             'ser_conn': {
                 'serv_chk': true,
@@ -29,8 +30,12 @@ function initSystemVar() {
             },
             'lang': document.documentElement.lang.split('-')[0],
             'dic': [],
+            'options': {
+                'refresh': true,
+            }
         };
-        //window.initSystemAudio();
+        window.getUserInteraction();
+        window.initSystemAudio();
         window.initGenericDic().then(function(result) {
             resolve(true);
         });
@@ -81,12 +86,33 @@ function initSystemAudio() {
         window.SYS.voice_ia[filename] = src;
 
     });
+
     Object.entries(window.SYS.voice_ia).forEach(([key, value]) => {
         var sound =
-            '<audio id ="' + key + '" class="sound-player" preload="auto" autoplay="autoplay" style="display:none;" webkit-playsinline="true" playsinline="true">' +
+            '<audio id ="' + key + '" class="sound-player" preload="auto" style="display:none;">' +
             '<source src="' + value + '" />' +
-            '<embed src="' + value + '" hidden="true" autostart="true" loop="false"/>' +
+            '<embed src="' + value + '" hidden="true" loop="false"/>' +
             '</audio>';
         document.getElementById('audio').insertAdjacentHTML('beforeend', sound);
+        document.getElementById(key).load();
     });
+}
+
+function getUserInteraction() {
+    document.body.addEventListener('scroll', (e) => {
+        window.handleInteraction(e);
+    });
+    document.body.addEventListener('keydown', (e) => {
+        window.handleInteraction(e);
+    });
+    document.body.addEventListener('click', (e) => {
+        window.handleInteraction(e);
+    });
+    document.body.addEventListener('touchstart', (e) => {
+        window.handleInteraction(e);
+    });
+}
+
+function handleInteraction(e) {
+    window.SYS.user_interaction = true;
 }

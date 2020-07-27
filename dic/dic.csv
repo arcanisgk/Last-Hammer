@@ -5,7 +5,9 @@ Author;Departamento de Tecnología.;Departamento de Tecnología.;Departamento de
 close;Cerrar;Close;Fermer;Fechar
 send;Enviar;Send;Envoyer;Enviar
 report;Reportar;Report;rapport;Relatório
-Approve;Aprobar;Approve;Approuver;Aprovar
+Agree;Aprobar;Approve;Approuver;Aprovar
 Save;Guardar;save;sauvegarder;Salve
 Delete;Borrar;Clear;Clair;Claro
 Search;Buscar;Search;Chercher;Procurar
+SearchInput;Escribe aquí tu busqueda.;Write here your search.;Écrivez ici votre recherche.;Escreva aqui sua pesquisa.
+Refresh;El Sistema debe Refrescar la pantalla al momento de Cerrar este mensaje.;The System should Refresh the screen at the time of closing this message.;Le système doit actualiser l'écran au moment de la fermeture de ce message.;The System should Refresh the screen at the time of closing this message.

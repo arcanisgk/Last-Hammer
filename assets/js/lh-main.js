@@ -1,22 +1,22 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", (e) => {
+    document.getElementById("email").focus();
     window.initLoading();
-    window.initSystemVar().then(function(result) {
+    window.initSystemVar().then((result) => {
         window.getServerStatus();
-
-
-
-        var conf = window.initModal();
-        cerror = 'Prueba modal';
-        conf['type'] = 2;
-        conf['size'] = 'lg';
-        conf['title'] = 'Conexión al Servidor.';
-        conf['cont'] = cerror;
-        conf['ref'] = true;
-        conf['remError'] = true;
-        window.genModal(conf);
-
-
-
+        /* test of modal */
+        $(document).on('click.m', "#p-login", (e) => {
+            var cerror = '<br><span align="center" class="blink text-danger"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br><b>The connection to the Server has been lost: </b> <br> <br> The System will not allow you to work until the connection with the Server is reestablished. <br> <br> You can verify your NETWORK connection. <br> <br> We recommend: <br> 1. If you have changed your network, close this alert. <br> 2. If the Alert Continues to Exit, Close the System Completely and log in back. <br> 3. If this Alert persists, contact Technical Support to Verify your Network and Equipment. <br> 4. If you have any problem in the System, refresh the screen to reload environment.<br><br><span align="center" class="blink text-danger"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br>';
+            var conf = window.initModal();
+            conf['type'] = 7;
+            conf['size'] = 'lg';
+            conf['title'] = 'Server Connection.';
+            conf['cont'] = cerror;
+            conf['ref'] = true;
+            conf['sound'] = true;
+            conf['sound_id'] = 'correct';
+            conf['remError'] = true;
+            window.genModal(conf);
+        });
     });
     //window.AutoShow();
 
@@ -65,51 +65,44 @@ function AutoShow() {
 }
 
 function getServerStatus() {
-    setInterval(function() {
-        setTimeout(function() {}, window.SYS.ser_conn['serv_time_b']);
-        $.ajax({
-            type: "POST",
-            url: "configs/scralone/signal.php",
-            error: function(xhr, status, error) {
-
-                console.log('error');
-
-
-                if (window.SYS.ser_conn['serv_chk'] === true) {
-                    window.SYS.ser_conn['serv_chk'] = false;
-                    window.SYS.ser_conn['serv_sta'] = true;
-
-
-
-                    var cerror = '<br><span align="center" class="blink"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br><b>Se ha perdido la conexión al Servidor:</b><br><br> El Sistema no le permitirá trabajar hasta restablecer la conexión con el Servidor. <br><br>Usted puede verificar su conexión de RED.<br><br>Le recomendamos:<br> 1. Si ha Cambiado de Red Que Cierre esta Alerta.<br>2. Si Continua Saliendo la Alerta Cierre el Sistema Completamente y vuelva a entrar. <br>3. De Persistir esta Alerta Contacte con Soporte Técnico, para que Verifique su Red y Equipo.<br>4. Si presenta algún inconveniente en el Sistema, refresque la pantalla para cargar nuevamente las variables.<br><br><span align="center" class="blink_me"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br>';
-                    var conf = window.InitModal();
-
-                    console.log(conf);
-
-
-                    /*
-                    conf['type'] = 0;
-                    conf['size'] = 'lg';
-                    conf['title'] = 'Conexión al Servidor.';
-                    conf['cont'] = cerror;
-                    conf['ref'] = true;
-                    conf['remError'] = true;
-                    window.ModalGen(conf);
-                    */
-
-
-
-                }
-
-
-
-            },
-            success: function(response) {
-                window.SYS.ser_conn['serv_chk'] = true;
-                if (window.SYS.ser_conn['serv_chk'] == true && window.SYS.ser_conn['serv_sta'] == true) {
-                    window.hideAllModal();
-                }
-            },
+    setInterval((e) => {
+        setTimeout((e) => {}, window.SYS.ser_conn['serv_time_b']);
+        fetch('configs/scralone/signal.php', {
+            method: 'GET'
+        }).then((response) => {
+            if (response.ok) {
+                response.text().then((datos) => {
+                    window.removeConnectivityModalError();
+                });
+            } else {
+                window.getConnectivityModalError();
+            }
+        }).catch((error) => {
+            window.getConnectivityModalError();
         });
     }, window.SYS.ser_conn['serv_time_a']);
+}
+
+function getConnectivityModalError() {
+    if (window.SYS.ser_conn['serv_chk'] === true || $(".modal.show").length == 0) {
+        window.SYS.ser_conn['serv_chk'] = false;
+        window.SYS.ser_conn['serv_sta'] = true;
+        var cerror = '<br><span align="center" class="blink text-danger"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br><b>The connection to the Server has been lost: </b> <br> <br> The System will not allow you to work until the connection with the Server is reestablished. <br> <br> You can verify your NETWORK connection. <br> <br> We recommend: <br> 1. If you have changed your network, close this alert. <br> 2. If the Alert Continues to Exit, Close the System Completely and log in back. <br> 3. If this Alert persists, contact Technical Support to Verify your Network and Equipment. <br> 4. If you have any problem in the System, refresh the screen to reload environment.<br><br><span align="center" class="blink text-danger"><b> ERROR ERROR ERROR ERROR ERROR</b> </span><br>';
+        var conf = window.initModal();
+        conf['type'] = 2;
+        conf['size'] = 'lg';
+        conf['title'] = 'Server Connection.';
+        conf['cont'] = cerror;
+        conf['ref'] = true;
+        conf['sound'] = true;
+        conf['remError'] = true;
+        window.genModal(conf);
+    }
+}
+
+function removeConnectivityModalError() {
+    window.SYS.ser_conn['serv_chk'] = true;
+    if (window.SYS.ser_conn['serv_chk'] == true && window.SYS.ser_conn['serv_sta'] == true) {
+        window.hideAllModal();
+    }
 }
