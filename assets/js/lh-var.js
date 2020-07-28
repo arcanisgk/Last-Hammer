@@ -36,7 +36,8 @@ function initSystemVar() {
                     'wait': 4000,
                     'refresh': 5000,
                 },
-            }
+            },
+            'input_edited': [],
         };
         window.getUserInteraction();
         window.initSystemAudio();
