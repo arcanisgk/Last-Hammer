@@ -25,7 +25,6 @@ class ClassControllerManager
         $iscron     = CoreApp::$ovars['SYS']['SERVICE']['CRON'];
         $iswser     = CoreApp::$ovars['SYS']['SERVICE']['WEBSER'];
         $mvc['LANG']->routeLang();
-
         ($stuser ? ($isdata ? ('GET' == $isdatatype ? $template = 3 : $process = 1) : $template = 1) :
             ($isdata && 'POST' == $isdatatype ? ($iscron ? list($process, $output) = [1, null] :
                 ($iswser ? list($process, $output) = [1, 2] : $process = 1)) :
@@ -40,7 +39,7 @@ class ClassControllerManager
         (null === $process) ?: $mvc['PROCESS']->runProcess();          //Model
         (null === $template) ?: $mvc['TEMPLATE']->getView($template);  //View
         (null === $output) ?: $mvc['OUTPUTDATA']->showOutput($output); //Output
-        
+
         # ! ::::::::WARNING:::::::: Do not touch this section ::::::::WARNING::::::::
     }
 }

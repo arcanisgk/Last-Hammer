@@ -17,7 +17,7 @@ Object.defineProperty(window.CONST, "CONST", {
 });
 
 function initSystemVar() {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         window.SYS = {
             'error': false,
             'user_interaction': false,
@@ -32,20 +32,25 @@ function initSystemVar() {
             'dic': [],
             'options': {
                 'refresh': true,
+                'timer': {
+                    'wait': 4000,
+                    'refresh': 5000,
+                },
             }
         };
         window.getUserInteraction();
         window.initSystemAudio();
-        window.initGenericDic().then(function(result) {
+        window.initGenericDic().then((result) => {
+            console.log('%cLoaded Global Variable  ------> Started.', window.CONST.c_green);
             resolve(true);
         });
     });
 }
 
 function initGenericDic() {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
         var dic = $.get('/dic/dic.csv');
-        $.when(dic).done(function(dato) {
+        $.when(dic).done((dato) => {
             var dic = dato;
             var lines = dic.split("\n");
             var headers = lines[0].split(";");
@@ -57,7 +62,7 @@ function initGenericDic() {
                 var words = lines[c1].split(";");
                 var index = words[0];
                 obj[index] = {};
-                headers.forEach(function(k, i) {
+                headers.forEach((k, i) => {
                     if (i > 0) {
                         obj[index][k] = words[i];
                     }
@@ -79,12 +84,11 @@ function initSystemAudio() {
         "login_error.mp3",
         "out_form.mp3"
     ];
-    playlist.forEach(function(src) {
+    playlist.forEach((src) => {
         src = path + src;
         var fileNameIndex = src.lastIndexOf("/") + 1;
         var filename = src.substr(fileNameIndex).replace(/\.[^/.]+$/, "");
         window.SYS.voice_ia[filename] = src;
-
     });
 
     Object.entries(window.SYS.voice_ia).forEach(([key, value]) => {

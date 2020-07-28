@@ -41,7 +41,7 @@ class ClassLangManager
             $langarray[$arrline[0]] = $arrline[$langIndex];
             ++$lines;
         }
-        CoreApp::$ovars['TRANSLATION'] = $langarray;
+        CoreApp::$ovars['TRANSLATION'] = array_merge(CoreApp::$ovars['TRANSLATION'], $langarray);
     }
 
     public function routeLang()

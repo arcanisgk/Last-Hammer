@@ -1,3 +1,12 @@
+function ManagerFunction() {
+    return new Promise((resolve, reject) => {
+        window.paceHelper();
+        console.log('%cLoaded Functions Handler -----> Started.', window.CONST.c_green);
+        resolve(true);
+    })
+}
+
+
 function genIdModal(name, id) {
     var MName = '';
     var next = 0;
@@ -50,7 +59,6 @@ function genModal(conf) {
         return window.deployModal(conf);
     }
 }
-
 
 function deployModal(conf) {
     var index = conf['index'];
@@ -318,5 +326,36 @@ function winRefresh() {
         window.location.reload(true);
     } else {
         console.log('%cThe system tried a window refresh, but it is disabled in "lh-var.js"', 'color: red');
+    }
+}
+
+function paceHelper() {
+    var timer = window.SYS.options.timer.wait;
+    var elem = document.getElementById('charging-frame');
+    Pace.on("done", () => {
+        setTimeout(() => {
+            window.toggleElement(elem, 'hide');
+        }, timer);
+    });
+    if (document.readyState === 'complete') {
+        setTimeout(() => {
+            window.toggleElement(elem, 'hide');
+        }, timer);
+    }
+}
+
+function toggleElement(elem, method = '') {
+    if (method !== '') {
+        if (method == 'hide') {
+            elem.style.display = "none";
+        } else {
+            elem.style.display = "block";
+        }
+    } else {
+        if (elem.style.display === "none") {
+            elem.style.display = "block";
+        } else {
+            elem.style.display = "none";
+        }
     }
 }

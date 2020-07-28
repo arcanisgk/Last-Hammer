@@ -2,6 +2,7 @@
     $date = date('YmdHis');
 ?>
     <div id="audio"></div>
+    <script defer src="assets/js/adds/pace.min.js?<?=$date?>"></script>
     <script defer src="assets/js/adds/jquery.min.js?<?=$date?>"></script>
     <script defer src="assets/js/adds/popper.min.js?<?=$date?>"></script>
     <script defer src="assets/js/adds/bootstrap.js?<?=$date?>"></script>

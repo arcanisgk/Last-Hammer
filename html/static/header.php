@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/css/adds/bootstrap.css?<?=$date?>">
     <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/adds/animate.css?<?=$date?>">
+    <link rel="stylesheet" href="assets/css/adds/pace.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/c-reset.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/error.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/lh.css?<?=$date?>">
