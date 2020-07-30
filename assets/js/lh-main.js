@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 window.ManagerMenu().then((result) => {
                     window.ManagerForm().then((result) => {
                         window.ManagerEvent().then((result) => {
+                            //window.checkClassCSS();
                             window.endLoading();
                         });
                     });
@@ -96,4 +97,38 @@ function removeConnectivityModalError() {
     if (window.SYS.ser_conn['serv_chk'] == true && window.SYS.ser_conn['serv_sta'] == true) {
         window.hideAllModal();
     }
+}
+
+function checkClassCSS() {
+    let doc = document.all;
+    let style = document.styleSheets;
+    var listofClases = []
+    Object.entries(doc).forEach(([key, element]) => {
+        let classes = element.className.split(/\s+/);
+        let new_classes = []
+        classes.forEach((cl) => {
+            if (cl != '') {
+                new_classes = new_classes.concat(['.' + cl]);
+            }
+        });
+        listofClases = listofClases.concat(new_classes);
+    });
+    listofClases = listofClases.filter(v => v != '');
+    listofClases = Array.from(new Set(listofClases));
+    var SelectorClass = []
+    Object.entries(style).forEach(([key, node]) => {
+        let rule = node.cssRules;
+        Object.entries(rule).forEach(([key, cssSelector]) => {
+            SelectorClass = SelectorClass.concat([cssSelector.selectorText]);
+        });
+    });
+    SelectorClass = SelectorClass.filter(v => v != '');
+    SelectorClass = Array.from(new Set(SelectorClass));
+    var missing = [];
+    listofClases.filter(function(x) {
+        if (!SelectorClass.includes(x)) {
+            missing.push(x);
+        }
+    })
+    console.log(missing);
 }

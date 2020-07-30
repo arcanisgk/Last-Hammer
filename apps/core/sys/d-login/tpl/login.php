@@ -2,7 +2,7 @@
     $enable_registry = (CONF_DATA['SETUP']['USER_ACC_REGISTRY'] == 'true' ?: 'style="display: none;"');
 ?>
 <div class="container">
-    <form id="formarea" name="f-sign-in-up" autocomplete="off">
+    <form id="formarea" name="d-sys-login" autocomplete="off">
         <div class="row" style="margin-top: 5%;">
             <!-- For Demo Purpose -->
             <div class="offset-lg-2 col-lg-4 text-center">
@@ -63,8 +63,8 @@
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
-                        <div class="input-group-append">
+                        <input type="password" id="i-signup-password" name="i-signup-password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
+                        <div class="input-group-append" name="show-pass" data-target="#i-signup-password">
                             <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
@@ -77,8 +77,8 @@
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input type="text" name="passwordConfirmation" placeholder="{confpassword}" class="form-control bg-white border-left-0 border-right-0">
-                        <div class="input-group-append">
+                        <input type="password" id="i-signup-password-rep" name="i-signup-password-rep" placeholder="{confpassword}" class="form-control bg-white border-left-0 border-right-0">
+                        <div class="input-group-append" name="show-pass" data-target="#i-signup-password-rep">
                             <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
@@ -120,7 +120,7 @@
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0">
+                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0" required>
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
@@ -129,8 +129,8 @@
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
-                        <div class="input-group-append">
+                        <input type="password" id="i-signin-password" name="i-signin-password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
+                        <div class="input-group-append" name="show-pass" data-target="#i-signin-password">
                             <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
@@ -160,4 +160,3 @@
         </div>
     </form>
 </div>
-

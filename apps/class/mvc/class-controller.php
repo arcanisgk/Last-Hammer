@@ -36,9 +36,9 @@ class ClassControllerManager
         # - all Proccess Run on the same enviroment.
         # - output can set to: 1 HTML format, 2 JSON
 
-        (null === $process) ?: $mvc['PROCESS']->runProcess();          //Model
-        (null === $template) ?: $mvc['TEMPLATE']->getView($template);  //View
-        (null === $output) ?: $mvc['OUTPUTDATA']->showOutput($output); //Output
+        (null === $process) ?: $mvc['PROCESS']->runProcess();                                                                                                                                                     //Model
+        (null === $template) ?: $mvc['TEMPLATE']->getView($template);                                                                                                                                             //View
+        (null === $output) ? CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, true, CoreApp::$ovars, [$stuser, $isdata, $isdatatype, $iscron, $iswser]) : $mvc['OUTPUTDATA']->showOutput($output); //Output
 
         # ! ::::::::WARNING:::::::: Do not touch this section ::::::::WARNING::::::::
     }
