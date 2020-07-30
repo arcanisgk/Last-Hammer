@@ -36,10 +36,16 @@ class ClassLangManager
         }
         $lines     = 0;
         $langarray = [];
-        while (($line = fgetcsv($fileread)) !== false) {
-            $arrline                = explode(';', $line[0]);
-            $langarray[$arrline[0]] = $arrline[$langIndex];
-            ++$lines;
+
+        $data = file_get_contents($dicpath);
+        $rows = explode("\n", $data);
+        $data = [];
+        foreach ($rows as $row) {
+            if ('' !== $row) {
+                $arrline                = explode(';', $row);
+                $langarray[$arrline[0]] = $arrline[$langIndex];
+                ++$lines;
+            }
         }
         CoreApp::$ovars['TRANSLATION'] = array_merge(CoreApp::$ovars['TRANSLATION'], $langarray);
     }

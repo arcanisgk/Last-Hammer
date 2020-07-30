@@ -1,3 +1,9 @@
+/* customise BS and Agent*/
+body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .form-control {
     padding: 0.375rem 0.375rem !important;
 }

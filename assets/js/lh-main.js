@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 window.ManagerMenu().then((result) => {
                     window.ManagerForm().then((result) => {
                         window.ManagerEvent().then((result) => {
-                            window.SisLoaded();
+                            window.endLoading();
                         });
                     });
                 });
@@ -17,11 +17,24 @@ document.addEventListener("DOMContentLoaded", (e) => {
     });
 });
 
+function reloadJs() {
+    return new Promise((resolve, reject) => {
+        window.reloadManagerPlugin().then(function(result) {
+            window.reloadManagerFunction().then(function(result) {
+                window.reloadManagerEvent().then(function(result) {
+                    console.log('%cPlugins, Generic Features and System Events have been Reloaded Again.', window.CONST.c_skgreen);
+                    resolve(true);
+                })
+            });
+        });
+    });
+}
+
 function initLoading() {
     console.log('%cWelcome, if you see this message, it is located in the Browser Commands console.', window.CONST.c_melon);
 }
 
-function SisLoaded() {
+function endLoading() {
     console.log('%cSystem effectively initialized up to this Point.', 'color: ' + window.CONST.c_melon);
 }
 

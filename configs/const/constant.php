@@ -37,7 +37,7 @@ $paths = [
     'CLASSEXT'  => FILEROOT.'/apps/class/ext/',
     'CLASSMVC'  => FILEROOT.'/apps/class/mvc/',
     'CLASSGEN'  => FILEROOT.'/apps/class/gen/',
-    'CLASSCORE' => FILEROOT.'/apps/class/static/',
+    'CLASSCORE' => FILEROOT.'/apps/core/',
 
     'ABSDATA'   => FILEROOT.'/apps/core/abs/data/',
     'ABSLIST'   => FILEROOT.'/apps/core/abs/elem/',

@@ -2,14 +2,14 @@
     $enable_registry = (CONF_DATA['SETUP']['USER_ACC_REGISTRY'] == 'true' ?: 'style="display: none;"');
 ?>
 <div class="container">
-    <form action="#">
+    <form id="formarea" name="f-sign-in-up" autocomplete="off">
         <div class="row" style="margin-top: 5%;">
             <!-- For Demo Purpose -->
             <div class="offset-lg-2 col-lg-4 text-center">
                 <img src="assets/img/logos/logo.png" class="mx-auto" style="width: 200px; margin-top: 5%; margin-bottom: 5%;">
             </div>
             <!-- Registeration Form -->
-            <div class="col-lg-4 collapse signforms" id="signup">
+            <div class="col-lg-4 collapse signforms animated bounceInRight" id="signup">
                 <div class="row">
                      <!-- Already Registered -->
                     <div class="text-center w-100">
@@ -20,52 +20,52 @@
                     <!-- First Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-user text-danger"></i>
                             </span>
                         </div>
-                        <input id="firstName" type="text" name="firstname" placeholder="{firstname}" class="form-control bg-white border-left-0 border-md">
+                        <input type="text" name="firstname" placeholder="{firstname}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Last Name -->
                     <div class="input-group col-lg-6 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-user text-danger"></i>
                             </span>
                         </div>
-                        <input id="lastName" type="text" name="lastname" placeholder="{lastname}" class="form-control bg-white border-left-0 border-md">
+                        <input type="text" name="lastname" placeholder="{lastname}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Email Address -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0 border-md">
+                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0 ">
                     </div>
                     <!-- Phone Number -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-phone-square text-danger"></i>
                             </span>
                         </div>
-                        <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-danger">
+                        <select name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 h-100 font-weight-bold text-danger">
                             <option value="">+507</option>
                         </select>
-                        <input id="phoneNumber" type="tel" name="phone" placeholder="{phone}" class="form-control bg-white border-md border-left-0 pl-3">
+                        <input type="tel" name="phone" placeholder="{phone}" class="form-control bg-white border-left-0 pl-3">
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-md border-right-0">
+                        <input type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-white px-3 border-md border-left-0">
+                            <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
                         </div>
@@ -73,20 +73,20 @@
                     <!-- Password Confirmation -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="{confpassword}" class="form-control bg-white border-left-0 border-md border-right-0">
+                        <input type="text" name="passwordConfirmation" placeholder="{confpassword}" class="form-control bg-white border-left-0 border-right-0">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-white px-3 border-md border-left-0">
+                            <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
                         </div>
                     </div>
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-gold btn-block py-2">
+                        <a href="#" class="btn btn-gold btn-block py-2" name="e-signup">
                             <span class="font-weight-bold">{signupbtn}</span>
                         </a>
                     </div>
@@ -98,14 +98,14 @@
                     </div>
                     <!-- Social Login -->
                     <div class="form-group col-lg-12 mx-auto">
-                        <a href="#" class="btn btn-silver btn-block py-2">
+                        <a href="#" class="btn btn-silver btn-block py-2" name="e-signup-google">
                             <i class="fab fa-google mr-2"></i>
                             <span class="font-weight-bold">{signupgooglebtn}</span>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 collapse signforms show" id="signin">
+            <div class="col-lg-4 collapse signforms show animated bounceInRight" id="signin">
                 <div class="row">
                     <!-- Already Registered -->
                     <div class="text-center w-100">
@@ -116,29 +116,29 @@
                     <!-- Email Address -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input id="email" type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0 border-md">
+                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-white px-3 border-md border-right-0">
+                            <span class="input-group-text bg-white px-3 border-right-0">
                                 <i class="fa fa-lock text-danger"></i>
                             </span>
                         </div>
-                        <input id="password" type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-md border-right-0">
+                        <input type="password" name="password" placeholder="{password}" class="form-control bg-white border-left-0 border-right-0">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-white px-3 border-md border-left-0">
+                            <span class="input-group-text bg-white px-3 border-left-0">
                                 <i class="fas fa-eye text-danger"></i>
                             </span>
                         </div>
                     </div>
                     <!-- Submit Button -->
                     <div class="form-group col-lg-12 mx-auto mb-0">
-                        <a href="#" class="btn btn-gold btn-block py-2" id="p-login">
+                        <a href="#" class="btn btn-gold btn-block py-2" name="e-signin">
                             <span class="font-weight-bold">{signinbtn}</span>
                         </a>
                     </div>
@@ -150,7 +150,7 @@
                     </div>
                     <!-- Social Login -->
                     <div class="form-group col-lg-12 mx-auto">
-                        <a href="#" class="btn btn-silver btn-block py-2">
+                        <a href="#" class="btn btn-silver btn-block py-2" name="e-signin-google">
                             <i class="fab fa-google mr-2"></i>
                             <span class="font-weight-bold">{signingooglebtn}</span>
                         </a>
@@ -160,3 +160,4 @@
         </div>
     </form>
 </div>
+

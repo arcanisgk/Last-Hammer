@@ -4,3 +4,10 @@ function ManagerPlugin() {
         resolve(true);
     })
 }
+
+function reloadManagerPlugin() {
+    return new Promise(function(resolve, reject) {
+        console.log('%cRe-Loaded Plugin Handler --------> Started.', window.CONST.c_green);
+        resolve(true);
+    })
+}

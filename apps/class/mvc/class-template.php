@@ -12,8 +12,8 @@ class ClassTemplateManager
     private $tplfiles = [
         'header'     => PATHS['TPLSTATIC'].'header.php',
         'b_start'    => PATHS['TPLSTATIC'].'b-start.php',
-        'login'      => PATHS['CLASSCORE'].'gen/f-login/template/login.php',
-        'login_dic'  => PATHS['CLASSCORE'].'gen/f-login/dic/dic.csv',
+        'login'      => PATHS['CLASSCORE'].'sys/d-login/tpl/login.php',
+        'login_dic'  => PATHS['CLASSCORE'].'sys/d-login/dic/dic.csv',
         'm_area'     => PATHS['TPLSTATIC'].'m-area.php',
         'js_area'    => PATHS['TPLSTATIC'].'js-area.php',
         'b_close'    => PATHS['TPLSTATIC'].'b-close.php',
