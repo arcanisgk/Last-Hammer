@@ -1,12 +1,12 @@
 window.CONST = {
-    'c_red': 'background: #222; color: red',
-    'c_orange': 'background: #222; color: orange',
-    'c_green': 'background: #222; color: green',
-    'c_skgreen': 'background: #222; color: #bada55',
-    'c_blue': 'background: white; color: blue',
-    'c_yellow': 'background: #222; color: yellow',
-    'c_white': 'background: #222; color: white',
-    'c_melon': 'background: #222; color: #FF5733',
+    'c_red': 'color: red',
+    'c_orange': 'color: orange',
+    'c_green': 'color: green',
+    'c_skgreen': 'color: #bada55',
+    'c_blue': 'color: blue',
+    'c_yellow': 'color: yellow',
+    'c_white': 'color: white',
+    'c_melon': 'color: #FF5733',
 };
 
 Object.defineProperty(window.CONST, "CONST", {

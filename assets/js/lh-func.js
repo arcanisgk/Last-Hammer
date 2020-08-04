@@ -14,6 +14,8 @@ function reloadManagerFunction() {
     })
 }
 
+/* Modal Class */
+
 function genIdModal(name, id) {
     var MName = '';
     var next = 0;
@@ -209,21 +211,21 @@ function deployModal(conf) {
         }
         send_btnTxt = '';
         if (btnf_s == true) {
-            send_btnTxt = '<button type="button" class="btn ' + bg_btn_c + '" name="p-report" data-target="' + id + '" >' + window.SYS.dic.report[window.SYS.lang] + '</button>';
+            send_btnTxt = '<button type="button" class="btn ' + bg_btn_c + '" name="me-report" data-target="' + id + '" >' + window.SYS.dic.report[window.SYS.lang] + '</button>';
         }
         var btnf_crudTXT = '';
         if (typeof btnf_crud !== 'undefined' && Array.isArray(btnf_crud) && btnf_crud.length > 0) {
             if (typeof btnf_crud[0] !== 'undefined' && btnf_crud[0] == 1) {
-                btnf_crudTXT += '<button type="button" class="btn btn-outline-success" name="e-agree">' + window.SYS.dic.Agree[window.SYS.lang] + '</button>';
+                btnf_crudTXT += '<button type="button" class="btn btn-outline-success" name="me-agree">' + window.SYS.dic.Agree[window.SYS.lang] + '</button>';
             }
             if (typeof btnf_crud[1] !== 'undefined' && btnf_crud[1] == 1) {
-                btnf_crudTXT += '<button type="button" class="btn btn-outline-info" name="e-save">' + window.SYS.dic.Save[window.SYS.lang] + '</button>';
+                btnf_crudTXT += '<button type="button" class="btn btn-outline-info" name="me-save">' + window.SYS.dic.Save[window.SYS.lang] + '</button>';
             }
             if (typeof btnf_crud[2] !== 'undefined' && btnf_crud[2] == 1) {
-                btnf_crudTXT += '<button type="button" class="btn btn-outline-danger" name="e-delete">' + window.SYS.dic.Delete[window.SYS.lang] + '</button>';
+                btnf_crudTXT += '<button type="button" class="btn btn-outline-danger" name="me-delete">' + window.SYS.dic.Delete[window.SYS.lang] + '</button>';
             }
             if (typeof btnf_crud[3] !== 'undefined' && btnf_crud[3] == 1) {
-                btnf_crudTXT += '<div class="input-group float-lg-left col"><input type="text" class="form-control" name="input_search" placeholder="' + window.SYS.dic.SearchInput[window.SYS.lang] + '" value=""><span class="input-group-append"><button type="button" class="btn btn-outline-success" name="e-consult"><b>' + window.SYS.dic.Search[window.SYS.lang] + '</b> <i class="fas fa-search"></i></button></span></div>';
+                btnf_crudTXT += '<div class="input-group float-lg-left col"><input type="text" class="form-control" name="input_search_m" placeholder="' + window.SYS.dic.SearchInput[window.SYS.lang] + '" value=""><span class="input-group-append"><button type="button" class="btn btn-outline-success" name="me-consult"><b>' + window.SYS.dic.Search[window.SYS.lang] + '</b> <i class="fas fa-search"></i></button></span></div>';
             }
         }
         if (ref) {
@@ -346,6 +348,8 @@ function waitModal() {
     });
 }
 
+/* Sound Class */
+
 function playSound(ref) {
     if (window.SYS.user_interaction == true) {
         document.getElementById(ref).play();
@@ -360,6 +364,8 @@ function winRefresh() {
         console.log('%cThe system tried a window refresh, but it is disabled in "lh-var.js"', window.CONST.c_red);
     }
 }
+
+/* Sound Class */
 
 function paceHelper() {
     var timer = window.SYS.options.timer.wait;

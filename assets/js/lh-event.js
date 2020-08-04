@@ -67,11 +67,11 @@ function getInputChange() {
 /* Event of CRUD */
 
 function eCRUD() {
-    $('button[name^="e-"],a[name^="e-"]').each(function() {
+    $('button[name^="e-"],button[name^="me-"],a[name^="e-"],a[name^="me-"]').each(function() {
         $(this).off('click.e');
         $(this).unbind('click.e');
     });
-    $(document).on('click.e', 'button[name^="e-"],a[name^="e-"]', function(e) {
+    $(document).on('click.e', 'button[name^="e-"],button[name^="me-"],a[name^="e-"],a[name^="me-"]', function(e) {
         window.stopEvent(e);
         var _this = $(this);
         var _btn_name = $(e.currentTarget).attr('name');
@@ -87,20 +87,40 @@ function eCRUD() {
                 }
                 let btn_arr = _btn_name.split('-');
                 let forn_arr = form_event.split('-');
-                let EPost = {
+                let e_post = {
                     process: _btn_name,
                     form: form_event,
                     event: _this
                 };
                 let if_error = window.checkRequiredField(form_event, _btn_name);
-                console.log(if_error);
-                if (if_error.status) {
+                console.log('Llegue');
+                if (if_error.status == true) {
                     error = window.SYS.dic.ierror1[window.SYS.lang] + '<br>' +
                         window.SYS.dic.ierror2[window.SYS.lang] + ' <b>' + if_error.count + '</b><br>' +
-                        window.SYS.dic.ierror3[window.SYS.lang] + '<b>' + if_error.element + '</b>';
+                        window.SYS.dic.ierror3[window.SYS.lang] + '<br><b>' + if_error.element + '</b>';
                     throw error;
                 } else {
+                    console.log(btn_arr[1]);
 
+
+
+                    /*
+                    switch (btnarr[1]) {
+                        case 'login':
+                            window.signin(e_post);
+                            break;
+                        case 'logout':
+                            window.signout(e_post);
+                            break;
+                        case 'report':
+                            e_post['datatarget'] = '#' + dataTarget + ' > .modal-dialog > .modal-content ';
+                            window.bugrep(e_post);
+                            break;
+                        default:
+                            window.ToAjax(e_post);
+                            break;
+                    }
+                    */
                 }
 
                 setTimeout(() => {
@@ -108,9 +128,9 @@ function eCRUD() {
                 }, 10000);
 
 
-            } catch (e) {
-                console.warn('%c' + e, window.CONST.c_red);
-                window.EventError(e);
+            } catch (error) {
+                console.warn('%c' + error, window.CONST.c_red);
+                window.ModalError(error);
                 /*
                 window.RemDisable($btnEvent);
                 */
@@ -119,8 +139,8 @@ function eCRUD() {
     });
 }
 
-function EventError(e) {
-    let cont = '<div>' + e + '</div>';
+function ModalError(error) {
+    let cont = '<div>' + error + '</div>';
     let conf = window.initModal();
     conf['target'] = 'EventError';
     conf['type'] = 3;

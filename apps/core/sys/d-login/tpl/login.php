@@ -120,7 +120,7 @@
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0" required>
+                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
