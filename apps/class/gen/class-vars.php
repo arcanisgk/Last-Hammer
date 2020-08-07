@@ -28,6 +28,11 @@ class ClassVarsManager
         die;
     }
 
+    public function evalArray2JSON($Var)
+    {
+        return (json_encode($Var)) ? true : false;
+    }
+
     public function expVariable($ouput, $highlight = true, $return = false, $end = false, ...$var)
     {
         try {
@@ -86,10 +91,23 @@ class ClassVarsManager
                     'CRON'   => null,
                     'WEBSER' => null
                 ],
-                'CONF'       => []
+                'CONF'       => [],
+                'FORM'       => null,
+                'PROCESS'    => null,
+                'ERROR'      => [
+                    'TYPE'  => null,
+                    'ARRAY' => []
+                ]
+
             ],
             'USER'        => [
                 'LOGGED' => null
+            ],
+            'EVENT'       => [
+                'SHOW'    => null,
+                'IN'      => null,
+                'REFRESH' => null,
+                'NAV'     => null
             ],
             'DISPLAY'     => [
                 'HTML'      => [
@@ -123,11 +141,15 @@ class ClassVarsManager
         return $result;
     }
 
+    public function scapeQuote2Json($string)
+    {
+        return htmlspecialchars($string);
+    }
+
     public function valJson($var)
     {
         if (!is_array($var)) {
-            return ((json_decode($var) != null) &&
-                (is_object(json_decode($var)) || is_array(json_decode($var)))) ? true : false;
+            return ((json_decode($var) != null) && (is_object(json_decode($var)) || is_array(json_decode($var)))) ? true : false;
         } else {
             return false;
         }
@@ -138,11 +160,7 @@ class ClassVarsManager
         if (in_array($var, ['null', 'NULL', null], true)) {
             return '(Type of NULL)';
         }
-        if (in_array(
-            $var,
-            ['TRUE', 'FALSE', 'true', 'false', true, false],
-            true
-        )) {
+        if (in_array($var, ['TRUE', 'FALSE', 'true', 'false', true, false], true)) {
             return 'boolean';
         }
         if (is_array($var)) {

@@ -98,12 +98,12 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
         define('REQUEST_METHOD', null);
     }
 }
+if (!defined('REQUEST_TYPE')) {
+    define('REQUEST_TYPE', (isset($_SERVER["CONTENT_TYPE"])) ? trim($_SERVER["CONTENT_TYPE"]) : '');
+}
 /*
 if (!defined('RQCONTTYPE')) {
     define('RQCONTTYPE', isset($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : '');
-}
-if (!defined('REQUEST_TYPE')) {
-    define('REQUEST_TYPE', (isset($_SERVER["CONTENT_TYPE"])) ? trim($_SERVER["CONTENT_TYPE"]) : '');
 }
 */
 if (!defined('MSGINTERFACE')) {

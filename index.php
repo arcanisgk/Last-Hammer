@@ -22,6 +22,7 @@ class CoreApp
         self::$oclass['GEN']['APP']->runInit();
         self::$oclass['MVC']['CONTROLLER']->runController();
         self::$oclass['GEN']['APP']->runClose();
+
     }
 
     private function popClass()

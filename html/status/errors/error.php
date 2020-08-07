@@ -1,0 +1,1 @@
+{an_error}<br><b>{form_error}<br><?=$data['form']?><br>{event_error}<br><?=$data['event']?><br>{msg_error} <?=$data['description']?><br><br><?=$data['user_comment']?><br>{line_error} <?=$data['line']?> {of_error}<br>{file_error} <?=$data['file']?></b><br>{report_error}

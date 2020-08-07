@@ -101,12 +101,14 @@ function ExeptionHandler($e)
     flush();
     $errorcron      = false;
     $errorserv      = false;
+    $errorsys       = false;
     $errortype      = 'ExeptionHandler';
     $errorfile      = $e->getFile();
     $errorline      = $e->getLine();
     $errordesc      = $e->getMessage();
     $errorbacktrace = '';
     $tracedata      = array_reverse(debug_backtrace());
+    $data           = 'no data';
     array_pop($tracedata);
     if (!empty($tracedata)) {
         foreach ($tracedata as $item) {
@@ -124,10 +126,13 @@ function ExeptionHandler($e)
             $errorserv = true;
         }
     }
+    $any_header = headers_sent();
     if (true == $errorcron) {
         echo PHP_EOL.PHP_EOL.chr(27).'[1;41m'.'ExeptionHandler: '.chr(27).'[0m'.PHP_EOL.PHP_EOL.chr(27).'[1;41m'.' File: '.$errorfile.chr(27).'[0m'.PHP_EOL.chr(27).'[1;41m'.' Line : '.$errorline.chr(27).'[0m'.PHP_EOL.chr(27).'[1;41m'.' Description:'.chr(27).'[0m'.PHP_EOL.chr(27).'[1;41m'.' '.$errordesc.chr(27).'[0m'.PHP_EOL.PHP_EOL;
     } elseif (true == $errorserv) {
-        header('Content-type: application/json');
+        if (!$any_header) {
+            header('Content-type: application/json');
+        }
         echo json_encode(['error' => ['type' => 'ExeptionHandler', 'file' => $errorfile, 'line' => $errorline, 'description' => $errordesc]]);
     } else {
         require_once $_SERVER['DOCUMENT_ROOT'].'/html/status/php_error.php';

@@ -45,7 +45,7 @@ class ClassHttpManager
         }
         $_vars                              = (REQUEST_METHOD == 'POST') ? $_POST : $_GET;
         $_vars                              = $this->buildVirtualData($_vars);
-        $_vars                              = CoreApp::$oclass['GEN']['VARSMANAGER']->reduArray($_vars);
+        $_vars                              = CoreApp::$oclass['GEN']['VARS']->reduArray($_vars);
         (REQUEST_METHOD == 'POST') ? $_POST = [] : $_GET = [];
         (REQUEST_METHOD == 'POST') ? $_POST = $_vars : $_GET = $_vars;
         if (REQUEST_METHOD == 'POST') {
@@ -61,35 +61,42 @@ class ClassHttpManager
 
     private function buildVirtualData($data)
     {
-        $var_mgr = &CoreApp::$oclass['GEN']['VARSMANAGER'];
+        $var_mgr = &CoreApp::$oclass['GEN']['VARS'];
         if (is_array($data)) {
-            $result = [];
-            foreach ($data as $key1 => $val1) {
-                $valjson = $var_mgr->valJson($val1);
-                if ($valjson) {
-                    $jsonObj       = json_decode($val1, true);
-                    $result[$key1] = $this->buildVirtualData($jsonObj);
-                } elseif (false == $valjson && is_array($val1)) {
-                    foreach ($val1 as $key2 => $val2) {
-                        $result[$key1][$key2] = $this->buildVirtualData($val2);
+            $temp = [];
+            foreach ($data as $key => $value) {
+                $temp[$key] = $this->buildVirtualData($value);
+            }
+            return $var_mgr->reduArray($temp);
+        } elseif ($var_mgr->valJson($data)) {
+            $json_obj = json_decode($data, true);
+            foreach ($json_obj as $key1 => $json_sub_obj) {
+                foreach ($json_sub_obj as $key2 => $value2) {
+                    if (is_array($value2)) {
+                        $temp = [];
+                        foreach ($value2 as $keyof => $valueof) {
+                            $temp[$keyof] = $this->buildVirtualData($valueof);
+                        }
+                        $json_obj[$key1][$key2] = $temp;
+                    } else {
+                        if ('true' === $value2 || true === $value2) {
+                            $json_obj[$key1][$key2] = true;
+                        } elseif ('false' === $value2 || false === $value2) {
+                            $json_obj[$key1][$key2] = false;
+                        } else {
+                            $json_obj[$key1][$key2] = $value2;
+                        }
                     }
-                } else {
-                    if ('true' === $val1) {
-                        $val1 = true;
-                    } elseif ('false' === $val1) {
-                        $val1 = false;
-                    }
-                    $result[$key1] = $val1;
                 }
+                return $var_mgr->reduArray($json_obj);
             }
-            return $result;
         } else {
-            if ($var_mgr->valJson($data)) {
-                $jsonObj = json_decode($data, true);
-                return $this->buildVirtualData($jsonObj);
-            } else {
-                return $data;
+            if ('true' === $data || true === $data) {
+                $data = true;
+            } elseif ('false' === $data || false === $data) {
+                $data = false;
             }
+            return $data;
         }
     }
 }

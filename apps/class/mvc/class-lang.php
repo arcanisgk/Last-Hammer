@@ -36,10 +36,9 @@ class ClassLangManager
         }
         $lines     = 0;
         $langarray = [];
-
-        $data = file_get_contents($dicpath);
-        $rows = explode("\n", $data);
-        $data = [];
+        $data      = file_get_contents($dicpath);
+        $rows      = explode("\n", $data);
+        $data      = [];
         foreach ($rows as $row) {
             if ('' !== $row) {
                 $arrline                = explode(';', $row);

@@ -11,33 +11,10 @@ class ClassOutputdataManager
         return self::$instance;
     }
 
-    /*
-	public function ShowHTML() {
-		$html = [];
-		foreach (CORE::$ObjVar['DISPLAY']['TOBROWSER'] as $key => $value) {
-			$html[] = CORE::$ObjClass['MVC']['LANG']->GetTranslation($value);
-		}
-		$htmlOutput = '';
-		if (CORE::$ObjVar['DISPLAY']['HTML']['OUTJSON'] == true) {
-			header('Content-type: application/json; charset=utf-8');
-			$htmlOutput = json_encode($html, JSON_FORCE_OBJECT);
-		} else {
-			$htmlOutput = implode($html);
-			if (HTML5CHECK) {
-				CORE::$ObjClass['MVC']['HTML5VAL']->valHTML5($htmlOutput);
-			}
-		}
-		$lasterror = error_get_last();
-		$anyHeader = headers_sent();
-		if ($lasterror == null && !$anyHeader) {
-			echo $htmlOutput;
-		} else {
-			CORE::$ObjClass['GEN']['VARS']->VarExport_C($lasterror);
-		}
-	}
-	public function ShowEventOutput() {
-		try {
-			/*
+    public function showEvent()
+    {
+        try {
+            /*
 				//Como mostrar datos por pantalla correctamente al Ejecutar un Evento (no navegacion):
 				//Se requieren las siguientes variables dentro de un Grupo llamado G1:
 				//Indica un valor booleano como control para mostrar por pantalla la salida.
@@ -48,6 +25,7 @@ class ClassOutputdataManager
 				Console: mostrara los datos en la consola de javascript. (solo para desarrollo).
 				Numérico de 0 a 6: Mara ser mostrado en modals; el sistema analizara si el número dinámico del modal no está ocupado.
 				Los numeros usados de 0 a 6 Se emplearan de la siguiente forma:
+
 				0: Error de Sistema
 				1: Error del Usuario (Control del Formulario/Evento, Datos faltantes para completar el evento)
 				2: No Usado el evento se trata de la ejecucion Interna del Cron.
@@ -55,6 +33,7 @@ class ClassOutputdataManager
 				4: Indica que existe un error de comunicacion (FTP o Web Service).
 				5: Salida de Datos por Defecto de Errores no Documentados.
 				6: Ejecucion correcta.
+
 				CORE::$ObjVar['EVENT']['TARGET']
 
 				//Donde Almacenaremos el contenido resultado HTML:
@@ -103,70 +82,60 @@ class ClassOutputdataManager
 				$toClient = array_merge($toClient, $addMore);
 
 				Pasamos entonces al Analisis de Datos de salida por pantalla de un evento (no navegacion).
+			*/
 
-			$show     = (CORE::$ObjVar['EVENT']['SHOW'] !== true) ? false : CORE::$ObjVar['EVENT']['SHOW'];
-			$in       = (CORE::$ObjVar['EVENT']['IN'] === null) ? '' : CORE::$ObjVar['EVENT']['IN'];
-			$data     = (CORE::$ObjVar['DISPLAY']['HTML']['DATA'] == null) ? '' : CORE::$ObjVar['DISPLAY']['HTML']['DATA'];
-			$ref      = (CORE::$ObjVar['EVENT']['REFRESH'] !== true) ? false : CORE::$ObjVar['EVENT']['REFRESH'];
-			$nav      = (CORE::$ObjVar['EVENT']['NAV'] !== true) ? false : CORE::$ObjVar['EVENT']['NAV'];
-			$data     = CORE::$ObjClass['GEN']['VARS']->ScapeQuote2Json($data);
-			$toClient = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
-			$count    = 1;
-			$iModal   = 100;
-			$addMore  = [];
-			//CORE::$ObjClass['GEN']['VARS']->VarExport_C('Llegue');
-			while ($count <= 5) {
-				if (isset(CORE::$ObjVar['EVENT']['G' . $count])) {
-					$data                  = CORE::$ObjVar['EVENT']['G' . $count]['DATA'];
-					$addMore['G' . $count] = ['in' => $iModal, 'data' => $data];
-					$toClient              = array_merge($toClient, $addMore);
-				}
-				$count++;
-				$iModal++;
-			}
-			$isFormated = CORE::$ObjClass['GEN']['VARS']->CheckIfArr2JSON($toClient);
-			$lasterror  = error_get_last();
-			$anyHeader  = headers_sent();
-			if ($isFormated == true && $lasterror == null && !$anyHeader) {
-				$outresult = json_encode($toClient);
-				header('Content-type: application/json');
-				echo $outresult;
-			} else {
-				CORE::$ObjClass['GEN']['VARS']->VarExport_C($lasterror);
-			}
-		} catch (Exception $e) {
-			CORE::$ObjVar['SIS']['ERROR']['ARR'] = $e;
-			CORE::$ObjClass['GEN']['ERROR']->GetError();
-		}
-	}
-	public function ShowFormOutput() {
-		try {
-			//CORE::$ObjClass['GEN']['VARS']->VarExport_C('FIN TEST');
-			$toClient = [
-				'title' => CORE::$ObjVar['DISPLAY']['HTML']['TITLE'],
-				'cont'  => CORE::$ObjVar['DISPLAY']['HTML']['FORMCONT'],
-			];
-			$lasterror  = error_get_last();
-			$isFormated = CORE::$ObjClass['GEN']['VARS']->CheckIfArr2JSON($toClient);
-			$lasterror  = error_get_last();
-			$anyHeader  = headers_sent();
-			if ($isFormated == true && $lasterror == null && !$anyHeader) {
-				$outresult = json_encode($toClient);
-				header('Content-type: application/json');
-				echo $outresult;
-			} else {
-				CORE::$ObjClass['GEN']['VARS']->VarExport_C($lasterror);
-			}
-			exit;
-		} catch (Exception $e) {
-			echo $e->getMessage();
-		}
-	}
-	public function ShowWebServiceData() {
-		header('Content-type:application/json');
-		echo CORE::$ObjVar['WEB']['SERVICE']['DATA'];
-	}
-	*/
+            $show = (true !== CoreApp::$ovars['EVENT']['SHOW'] ? false : CoreApp::$ovars['EVENT']['SHOW']);
+            $in   = (null === CoreApp::$ovars['EVENT']['IN'] ? '0' : CoreApp::$ovars['EVENT']['IN']);
+            $ref  = (true !== CoreApp::$ovars['EVENT']['REFRESH'] ? false : CoreApp::$ovars['EVENT']['REFRESH']);
+            $nav  = (true !== CoreApp::$ovars['EVENT']['NAV'] ? false : CoreApp::$ovars['EVENT']['NAV']);
+            $data = (null == CoreApp::$ovars['DISPLAY']['HTML']['DATA'] ? 'No data to display' : CoreApp::$ovars['DISPLAY']['HTML']['DATA']);
+            $json = (true !== CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON'] ? false : CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']);
+            $data = CoreApp::$oclass['MVC']['LANG']->getTranslation($data);
+            if (!$json) {
+                $data = CoreApp::$oclass['GEN']['VARS']->scapeQuote2Json($data);
+            }
+            $to_client   = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
+            $is_formated = CoreApp::$oclass['GEN']['VARS']->evalArray2JSON($to_client);
+            $last_terror = error_get_last();
+            $any_header  = headers_sent();
+            if (true == $is_formated && null == $last_terror && !$any_header) {
+                $out_result = json_encode($to_client);
+                header('Content-type: application/json');
+                echo $out_result;
+            }
+            /*
+            $data = CORE::$ObjClass['GEN']['VARSMANAGER']->ScapeQuote2Json($data);
+
+            $toClient = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
+            $count    = 1;
+            $iModal   = 100;
+            $addMore  = [];
+
+            while ($count <= 5) {
+                if (isset(CORE::$ObjVar['EVENT']['G'.$count])) {
+                    $data                  = CORE::$ObjVar['EVENT']['G'.$count]['DATA'];
+                    $addMore['G'.$count] = ['in' => $iModal, 'data' => $data];
+                    $toClient              = array_merge($toClient, $addMore);
+                }
+                ++$count;
+                ++$iModal;
+            }
+
+            $isFormated = CORE::$ObjClass['GEN']['VARSMANAGER']->CheckIfArr2JSON($toClient);
+            $lasterror  = error_get_last();
+            $anyHeader  = headers_sent();
+            if (true == $isFormated && null == $lasterror && !$anyHeader) {
+                $outresult = json_encode($toClient);
+                header('Content-type: application/json');
+                echo $outresult;
+            } else {
+                CORE::$ObjClass['GEN']['VARSMANAGER']->VarExport_C($lasterror);
+            }*/
+        } catch (Exception $e) {
+            #CORE::$ObjVar['SIS']['ERROR']['ARR'] = $e;
+            #CORE::$ObjClass['GEN']['ERRORMANAGER']->GetError();
+        }
+    }
 
     public function showOutput($output)
     {

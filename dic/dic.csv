@@ -18,3 +18,4 @@ waitcont;Por favor espera un momento a que el sistema termine de procesar los da
 ierror1;El sistema detecto elementos importantes vacíos, verifique su formulario.;The system detected empty important elements, check your form.;Le système a détecté des éléments importants vides, vérifiez votre formulaire.;O sistema detectou elementos importantes vazios, verifique seu formulário.
 ierror2;Elementos Vacíos:;Empty Items:;Articles vides:;Itens vazios:
 ierror3;Lista de Elementos:;Item List:;Liste des articles:;Item da lista:
+unknown_error;Error Desconocido:;Unknown Error:;Erreur inconnue :;Erro desconhecido:

@@ -36,5 +36,11 @@ class ClassLogsManager
         }
     }
 
-    public function setLogReg() {}
+    public function setLogReg($cont, $log)
+    {
+        //echo var_dump(CoreApp::$oclass);
+        $date = CoreApp::$oclass['GEN']['DATE']->genDate('E');
+        $path = PATHS['LOGS'].$log.'/'.$date.'.log';
+        CoreApp::$oclass['GEN']['FILES']->writeFile($cont, $path);
+    }
 }

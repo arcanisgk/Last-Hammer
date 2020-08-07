@@ -32,9 +32,9 @@ function genIdModal(name, id) {
 }
 
 function initModal() {
-    var c_modals = $('.modal').length;
-    var index = 2050 + (c_modals * 10);
-    var conf = {
+    let c_modals = $('.modal').length;
+    let index = 2050 + (c_modals * 10);
+    let conf = {
         'index': index,
         'size': 'md',
         'type': '',
@@ -67,7 +67,7 @@ function genModal(conf) {
                 return resolve(window.deployModal(conf));
             });
         } else {
-            //resolve(true);
+
             return resolve(window.deployModal(conf));
         }
     });
@@ -241,7 +241,7 @@ function deployModal(conf) {
             '<div class="modal-header ' + bg_header_c + '">' +
             '<h5 class="modal-title ' + txt_header_c + '">' + title + '</h5>' + btnt_cTXT +
             '</div>' +
-            '<div class="modal-body">' + cont + '</div>' +
+            '<div class="modal-body"><form id="formmodal">' + cont + '</form></div>' +
             '<div class="modal-footer ' + bg_footer_c + '" data-html2canvas-ignore="true">' +
             btnf_crudTXT + send_btnTxt + btnf_cTXT +
             '</div>' +
@@ -332,19 +332,36 @@ function hideAllModal() {
 
 function waitModal() {
     return new Promise(function(resolve, reject) {
-        let cont = '<div class="d-flex align-items-center"><p>' + window.SYS.dic.waitcont[window.SYS.lang] + '</p><br><img src="assets/img/logos/loader.gif"></div>';
-        let conf = window.initModal();
-        conf['target'] = 'waitmodal';
-        conf['type'] = 8;
-        conf['size'] = 'xs';
-        conf['btnt_c'] = false;
-        conf['btnf_c'] = false;
-        conf['btnf_s'] = false;
-        conf['title'] = window.SYS.dic.waittitle[window.SYS.lang] + '...';
-        conf['cont'] = cont;
-        window.genModal(conf).then((result) => {
-            resolve(true);
-        });
+        let count = $('#OM-waitmodal').length;
+        if (count > 0) {
+            let c_modals = $('.modal').length;
+            let index = 2050 + (c_modals * 10);
+            var modal = {
+                'target': '#OM-waitmodal',
+                'backdrop': 'static',
+                'keyboard': false,
+                'focus': true,
+                'show': true,
+                'index': index
+            };
+            window.showModal(modal).then((result) => {
+                resolve(true);
+            });
+        } else {
+            let cont = '<div class="d-flex align-items-center"><p>' + window.SYS.dic.waitcont[window.SYS.lang] + '</p><br><img src="assets/img/logos/loader.gif"></div>';
+            let conf = window.initModal();
+            conf['target'] = 'waitmodal';
+            conf['type'] = 8;
+            conf['size'] = 'xs';
+            conf['btnt_c'] = false;
+            conf['btnf_c'] = false;
+            conf['btnf_s'] = false;
+            conf['title'] = window.SYS.dic.waittitle[window.SYS.lang] + '...';
+            conf['cont'] = cont;
+            window.genModal(conf).then((result) => {
+                resolve(true);
+            });
+        }
     });
 }
 
@@ -395,5 +412,29 @@ function toggleElement(elem, method = '') {
         } else {
             elem.style.display = "none";
         }
+    }
+}
+
+function cleanJsonString(string) {
+    var map = {
+        '&amp;': '&',
+        '&#038;': "&",
+        '&lt;': '<',
+        '&gt;': '>',
+        '&quot;': '"',
+        '&#039;': "'",
+        '&#8217;': "’",
+        '&#8216;': "‘",
+        '&#8211;': "–",
+        '&#8212;': "—",
+        '&#8230;': "…",
+        '&#8221;': '”'
+    };
+    if (typeof string !== 'undefined') {
+        return string.replace(/\&[\w\d\#]{2,5}\;/g, function(m) {
+            return map[m];
+        });
+    } else {
+        return string;
     }
 }

@@ -79,6 +79,40 @@ class ClassProcessManager
     */
     public function runProcess()
     {
-        echo 'Entre a runProcess<br>';
+        try {
+            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 3;
+            throw new Exception("Example Error throw.");
+
+            /*
+            CORE::$ObjVar['SIS'] = array_merge(
+                CORE::$ObjVar['SIS'],
+                [
+                    'PROCESS'      => $_POST['idprocess'],
+                    'IDFORM'       => $_POST['idform'],
+                    'FORMNAME'     => (!isset($_POST['form_name'])) ? UNKNOWN : $_POST['form_name'],
+                    'StrucForm'    => explode('-', $_POST['idform']),
+                    'StrucProcess' => explode('-', $_POST['idprocess'])
+                ]
+            );
+            $ObjClass['DIR']  = [];
+            $ObjClass['FORM'] = [];
+            $this->ClassCore();
+            if (null != CORE::$ObjClass['FORM']) {
+                if ('f' == CORE::$ObjVar['SIS']['StrucForm'][0]) {
+                    CORE::$ObjClass['FORM']['PRO']->Events();
+                } elseif ('c' == CORE::$ObjVar['SIS']['StrucForm'][0]) {
+                    CORE::$ObjClass['FORM']['CRON']->Task();
+                } elseif ('ws' == CORE::$ObjVar['SIS']['StrucForm'][0]) {
+                    CORE::$ObjClass['FORM']['SERV']->Service();
+                }
+            } else {
+                CORE::$ObjVar['SIS']['ERROR']['TYPE'] = 0;
+                throw new Exception("El sistema no pudo procesar los datos enviados, al parecer el proceso: ".$_POST['idform']." y el evento: ".$_POST['idprocess']." no se encuentra.");
+            }
+            */
+        } catch (Exception $e) {
+            CoreApp::$ovars['SYS']['ERROR']['ARRAY'] = $e;
+            CoreApp::$oclass['MVC']['ERROR']->getError();
+        }
     }
 }

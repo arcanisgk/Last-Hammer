@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/assets/css/adds/bootstrap.css">
     <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/adds/animate.css">
-    <link rel="stylesheet" href="/assets/css/error.css">
+    <link rel="stylesheet" href="/assets/css/lh-error.css">
 </head>
 
 <body>
@@ -22,10 +22,10 @@
         <div class="row" style="margin-top: 10%;">
             <div class="offset-lg-3 col-lg-6">
                 <div class="middle-box text-center animated fadeInDown">
-                    <h1 class="text-danger">
+                    <h1 class="text-danger blink">
                         <?=$code?>
                     </h1>
-                    <h3 class="font-bold">
+                    <h3 class="font-bold blink">
                         <?=$errortext?>
                     </h3>
                     <div class="error-desc">

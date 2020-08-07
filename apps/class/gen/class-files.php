@@ -61,6 +61,13 @@ class ClassFilesManager
         return (file_exists($filepath)) ? true : false;
     }
 
+    public function writeFile($cont, $path)
+    {
+        $file = fopen($path, "a+");
+        fwrite($file, $cont."\n") || die("Could not write to Archive!");
+        fclose($file);
+    }
+
     private function setPermission($filepath)
     {
         chmod($filepath, 0777);

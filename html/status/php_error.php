@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/assets/css/adds/bootstrap.css">
     <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/adds/animate.css">
-    <link rel="stylesheet" href="/assets/css/error.css">
+    <link rel="stylesheet" href="/assets/css/lh-error.css">
 </head>
 
 <body>
@@ -22,8 +22,9 @@
         <div class="row" style="margin-top: 10%;">
             <div class="offset-lg-3 col-lg-6">
                 <div class="middle-box text-center animated fadeInDown">
-                    <h2 class="text-danger"><b><?=$errortype?></b></h2>
+                    <h2 class="text-danger blink"><b><?=$errortype?></b></h2>
                     <div class="error-desc error-php">
+                        <b>POST:</b><?=$data?><br>
                         <b>File:</b><?=$errorfile?><br>
                         <b>Line:</b><?=$errorline?><br>
                         <b>Description:</b><?=$errordesc?><br>

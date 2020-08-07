@@ -1,5 +1,6 @@
 <?php
-    $enable_registry = (CONF_DATA['SETUP']['USER_ACC_REGISTRY'] == 'true' ?: 'style="display: none;"');
+    $enable_registry  = (CONF_DATA['SETUP']['USER_ACC_REGISTRY'] == 'true' ?: 'style="display: none;"');
+    $enable_anonymous = (CONF_DATA['SETUP']['USER_ANONYMOUS'] == 'true' ?: 'style="display: none;"');
 ?>
 <div class="container">
     <form id="formarea" name="d-sys-login" autocomplete="off">
@@ -24,7 +25,7 @@
                                 <i class="fa fa-user text-danger"></i>
                             </span>
                         </div>
-                        <input type="text" name="firstname" placeholder="{firstname}" class="form-control bg-white border-left-0">
+                        <input type="text" name="i-firstname" placeholder="{firstname}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Last Name -->
                     <div class="input-group col-lg-6 mb-4">
@@ -33,7 +34,7 @@
                                 <i class="fa fa-user text-danger"></i>
                             </span>
                         </div>
-                        <input type="text" name="lastname" placeholder="{lastname}" class="form-control bg-white border-left-0">
+                        <input type="text" name="i-lastname" placeholder="{lastname}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Email Address -->
                     <div class="input-group col-lg-12 mb-4">
@@ -42,7 +43,7 @@
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0 ">
+                        <input type="email" name="i-signup_email" placeholder="{email}" class="form-control bg-white border-left-0 ">
                     </div>
                     <!-- Phone Number -->
                     <div class="input-group col-lg-12 mb-4">
@@ -51,10 +52,10 @@
                                 <i class="fa fa-phone-square text-danger"></i>
                             </span>
                         </div>
-                        <select name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 h-100 font-weight-bold text-danger">
+                        <select name="i-country_code" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 h-100 font-weight-bold text-danger">
                             <option value="">+507</option>
                         </select>
-                        <input type="tel" name="phone" placeholder="{phone}" class="form-control bg-white border-left-0 pl-3">
+                        <input type="tel" name="i-phone" placeholder="{phone}" class="form-control bg-white border-left-0 pl-3">
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
@@ -120,7 +121,7 @@
                                 <i class="fa fa-envelope text-danger"></i>
                             </span>
                         </div>
-                        <input type="email" name="email" placeholder="{email}" class="form-control bg-white border-left-0">
+                        <input type="email" name="i-signin_email" placeholder="{email}" class="form-control bg-white border-left-0">
                     </div>
                     <!-- Password -->
                     <div class="input-group col-lg-12 mb-4">
@@ -153,6 +154,12 @@
                         <a href="#" class="btn btn-silver btn-block py-2" name="e-signin-google">
                             <i class="fab fa-google mr-2"></i>
                             <span class="font-weight-bold">{signingooglebtn}</span>
+                        </a>
+                    </div>
+                    <div class="form-group col-lg-12 mx-auto" <?=$enable_anonymous?>>
+                        <a href="#" class="btn btn-silver btn-block py-2" name="e-signin-anonymous">
+                            <i class="fas fa-user-visor mr-2"></i>
+                            <span class="font-weight-bold">{signinanonymous}</span>
                         </a>
                     </div>
                 </div>

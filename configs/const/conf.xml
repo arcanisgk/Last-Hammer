@@ -12,5 +12,6 @@
         <user_acc_change_pass>true</user_acc_change_pass>
         <user_acc_registry>true</user_acc_registry>
         <user_acc_registry_by_mod>true</user_acc_registry_by_mod>
+        <user_anonymous>false</user_anonymous>
     </setup>
 </data>

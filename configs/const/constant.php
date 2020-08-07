@@ -48,6 +48,7 @@ $paths = [
     'TPLSTATIC' => FILEROOT.'/html/static/',
     'TPLDASH'   => FILEROOT.'/html/dash/',
     'TPLSITE'   => FILEROOT.'/html/site/',
+    'TPLSTATUS' => FILEROOT.'/html/status/',
     'TPLSTORE'  => FILEROOT.'/html/store/',
 
     'PRINT'     => FILEROOT.'/print/',

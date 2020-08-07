@@ -7,13 +7,16 @@ class ClassTemplateManager
 
     public $mvc;
 
+    private $dicfiles = [
+        'login_dic' => PATHS['CLASSCORE'].'sys/d-login/dic/dic.csv'
+    ];
+
     private static $instance = null;
 
     private $tplfiles = [
         'header'     => PATHS['TPLSTATIC'].'header.php',
         'b_start'    => PATHS['TPLSTATIC'].'b-start.php',
         'login'      => PATHS['CLASSCORE'].'sys/d-login/tpl/login.php',
-        'login_dic'  => PATHS['CLASSCORE'].'sys/d-login/dic/dic.csv',
         'm_area'     => PATHS['TPLSTATIC'].'m-area.php',
         'js_area'    => PATHS['TPLSTATIC'].'js-area.php',
         'b_close'    => PATHS['TPLSTATIC'].'b-close.php',
@@ -120,7 +123,7 @@ class ClassTemplateManager
 
     private function getHtmlLoginContent()
     {
-        CoreApp::$oclass['MVC']['LANG']->loadLang($this->tplfiles['login_dic']);
+        CoreApp::$oclass['MVC']['LANG']->loadLang($this->dicfiles['login_dic']);
         $this->display['LOGIN'] = $this->file_mgr->getFileContent($this->tplfiles['login']);
     }
 

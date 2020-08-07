@@ -30,9 +30,8 @@
     <link rel="stylesheet" href="assets/css/adds/animate.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/adds/pace.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/c-reset.css?<?=$date?>">
-    <link rel="stylesheet" href="assets/css/error.css?<?=$date?>">
+    <link rel="stylesheet" href="assets/css/lh-error.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/lh.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/lh-sa.css?<?=$date?>">
     <link rel="stylesheet" href="assets/css/lh-themes.css?<?=$date?>">
-
 </head>
