@@ -24,7 +24,7 @@ class ClassErrorManager
 
     public function getError()
     {
-        /*Vairable Usage*/
+        // Vairable Usage
         CoreApp::$oclass['MVC']['LANG']->loadLang(PATHS['DIC'].'error/dic.csv');
         (isset($_SESSION['Username']) ? list($username, $id_user) = [$_SESSION['username'], $_SESSION['id_user']] : list($username, $id_user) = ['Unknown', 'Unknown']);
         $sis_obj                       = &CoreApp::$ovars;
@@ -47,7 +47,7 @@ class ClassErrorManager
         $user_comment                  = '<div class="form-group row"><div class="col-lg-12"><div class="summernote sumertextarea" name="i-t-comment"></div></div></div>';
         $this->display['ERROR']['SMG'] = 'Unknown!';
         $this->display['ERROR']['LOG'] = '<tr><td>'.$c_date.'</td><td>'.$c_hour.'</td><td>'.$username.'</td><td>'.$id_user.'</td><td>'.$form.'</td><td>'.$event.'</td><td>'.$file_log.'</td><td>'.$line.'</td><td>'.$description.'</td></tr>';
-        /*Error Analysis:*/
+        //Error Analysis:
         if (in_array($error_type, [1, 2, 3, 4, 'email', 'db'])) {
             # ! (1): Cross System Error
             # ! (2): System error
@@ -61,6 +61,9 @@ class ClassErrorManager
                 case 'c': # ! CRON Execution
                     $this->display['ERROR']['SMG'] = $this->file_mgr->getFileContent($this->tplerror['error-c'], ['form' => $form, 'event' => $event, 'description' => $description, 'user_comment' => $user_comment, 'line' => $line, 'file' => $file]);
                     break;
+                case 'k': # ! Keeper Execution
+                    $this->display['ERROR']['SMG'] = $this->file_mgr->getFileContent($this->tplerror['error-c'], ['form' => $form, 'event' => $event, 'description' => $description, 'user_comment' => $user_comment, 'line' => $line, 'file' => $file]);
+                    break;
                 case 'ws': # ! Web Service Execution
                     $this->display['ERROR']['SMG'] = $this->file_mgr->getFileContent($this->tplerror['error-ws'], ['form' => $form, 'event' => $event, 'description' => $description, 'user_comment' => $user_comment, 'line' => $line, 'file' => $file]);
                     break;
@@ -69,9 +72,9 @@ class ClassErrorManager
                     break;
             }
         }
-        /*Error Log:*/
+        //Error Log:
         CoreApp::$oclass['GEN']['LOGS']->setLogReg($this->display['ERROR']['LOG'], 'error');
-        /*Error Output:*/
+        //Error Output:
 
         if ('email' == $error_type) {
             //if email fail try to send error email report.
@@ -79,10 +82,12 @@ class ClassErrorManager
         } else {
             if ('c' == $error_type) {
                 $this->sendCronJobError($this->display['ERROR']['SMG']);
+            } elseif ('k' == $error_type) {
+                $this->sendKeeperJobError($this->display['ERROR']['SMG']);
             } elseif ('ws' == $error_type) {
                 CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON'] = true;
             }
-            $error_output_like                         = (in_array($error_type, [1, 2, 3, 4]) ? $error_type : 2/*db*/);
+            $error_output_like                         = (in_array($error_type, [1, 2, 3, 4]) ? $error_type : 2);
             CoreApp::$ovars['EVENT']['SHOW']           = true;
             CoreApp::$ovars['EVENT']['IN']             = $error_output_like;
             CoreApp::$ovars['EVENT']['REFRESH']        = (null == CoreApp::$ovars['EVENT']['REFRESH'] ? false : true);
@@ -94,7 +99,8 @@ class ClassErrorManager
 
     private function sendCronJobError($smg)
     {
-        $DataMail          = [];
+        $DataMail = [];
+        /*
         $DataMail          = CORE::$ObjClass['GEN']['MAILMANAGER']->InitMail();
         $DataMail['SEND']  = true;
         $DataMail['2Mail'] = MSUPPORT;
@@ -103,12 +109,14 @@ class ClassErrorManager
         $DataMail['cont']  = $ErrorSMG;
         $DataMail['type']  = 3;
         $DataMail['track'] = CORE::$ObjClass['GEN']['MAILMANAGER']->SendMail($DataMail);
+        */
         die;
     }
 
     private function sendEMailError($smg)
     {
-        $DataMail          = [];
+        $DataMail = [];
+        /*
         $DataMail          = CORE::$ObjClass['GEN']['MAILMANAGER']->InitMail();
         $DataMail['SEND']  = true;
         $DataMail['2Mail'] = MSUPPORT;
@@ -117,5 +125,22 @@ class ClassErrorManager
         $DataMail['cont']  = $ErrorSMG;
         $DataMail['type']  = 3;
         $DataMail['track'] = CORE::$ObjClass['GEN']['MAILMANAGER']->SendMail($DataMail);
+        */
+    }
+
+    private function sendKeeperJobError($smg)
+    {
+        $DataMail = [];
+        /*
+        $DataMail          = CORE::$ObjClass['GEN']['MAILMANAGER']->InitMail();
+        $DataMail['SEND']  = true;
+        $DataMail['2Mail'] = MSUPPORT;
+        $DataMail['prio']  = true;
+        $DataMail['subj']  = 'Error de Sistema Keeper.';
+        $DataMail['cont']  = $ErrorSMG;
+        $DataMail['type']  = 3;
+        $DataMail['track'] = CORE::$ObjClass['GEN']['MAILMANAGER']->SendMail($DataMail);
+        */
+        die;
     }
 }

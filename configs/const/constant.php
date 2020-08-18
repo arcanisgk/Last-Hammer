@@ -66,6 +66,10 @@ if (!defined('LOG_TYPES')) {
         'system' => true
     ]);
 }
+if (!defined('DOMAIN')) {
+    #date
+    define('DOMAIN', CLIENT_DATA['SOFTWARE']['DOMAIN']);
+}
 if (!defined('DEFAULT_SYSTEM_NAME')) {
     define('DEFAULT_SYSTEM_NAME', CLIENT_DATA['SOFTWARE']['SYSNAMEC']);
 }

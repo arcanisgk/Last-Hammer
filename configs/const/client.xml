@@ -27,6 +27,7 @@
         <zone>America/Panama</zone>
         <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
         <lang>en_US</lang>
+        <domain>test2.me</domain>
         <appandroid>#############################</appandroid>
         <appios>#############################</appios>
     </software>

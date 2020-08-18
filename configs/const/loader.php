@@ -4,18 +4,20 @@
  * Work environment:
  * Local-> 0, Development-> 1, Testing-> 3, Quality-> 5, Production -> 7
  */
+
 $ver = '';
 if (php_sapi_name() == 'cli') {
     $ver = 'cli';
     if (!isset($_SERVER['PWD'])) {
         $path = dirname(__DIR__).'\\';
     } else {
-        $path = dirname($_SERVER['PWD']);
+        $path = dirname($_SERVER['PWD']).'\\';
     }
 } else {
     $ver  = 'web';
     $path = $_SERVER['DOCUMENT_ROOT'];
 }
+$path = (defined('FILEROOT_MASTER') ? FILEROOT_MASTER : $path);
 
 if (!defined('VERSYSTEM')) {
     define('VERSYSTEM', $ver);
@@ -24,7 +26,7 @@ if (!defined('FILEROOT')) {
     define('FILEROOT', $path);
 }
 if (!defined('CONST_PATH')) {
-    define('CONST_PATH', '/configs/const/');
+    define('CONST_PATH', 'configs/const/');
 }
 function ArrayChangeKeyCaseRecursive($clien_data)
 {
@@ -39,10 +41,12 @@ function ArrayChangeKeyCaseRecursive($clien_data)
         return $data;
     }, array_change_key_case($clien_data, CASE_UPPER));
 }
+
 $client_xml = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'client.xml'));
 $clien_data = json_decode(json_encode($client_xml), true);
 $conf_xml   = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'conf.xml'));
 $conf_data  = json_decode(json_encode($conf_xml), true);
+
 if (!defined('ENVIRONMENT')) {
     define('ENVIRONMENT', 0);
 }
@@ -101,11 +105,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 if (!defined('REQUEST_TYPE')) {
     define('REQUEST_TYPE', (isset($_SERVER["CONTENT_TYPE"])) ? trim($_SERVER["CONTENT_TYPE"]) : '');
 }
-/*
-if (!defined('RQCONTTYPE')) {
-    define('RQCONTTYPE', isset($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : '');
-}
-*/
+
 if (!defined('MSGINTERFACE')) {
     define('MSGTOUNIX', 'The system is linked to interface data, some delay may occur at start or end.');
 }
