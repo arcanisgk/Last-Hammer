@@ -1,4 +1,5 @@
 <?php
+
 class ClassFilesManager
 {
     private static $instance = null;
@@ -6,10 +7,10 @@ class ClassFilesManager
     public static function _getInstance()
     {
 
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
+        if (!self ::$instance instanceof self) {
+            self ::$instance = new self;
         }
-        return self::$instance;
+        return self ::$instance;
     }
 
     public function crateLocalFile($filepath)
@@ -17,7 +18,12 @@ class ClassFilesManager
         $file = fopen($filepath, 'w');
         fwrite($file, '');
         fclose($file);
-        $this->setPermission($filepath);
+        $this -> setPermission($filepath);
+    }
+
+    private function setPermission($filepath)
+    {
+        chmod($filepath, 0777);
     }
 
     public function createLocalDirectory($directory)
@@ -25,7 +31,7 @@ class ClassFilesManager
         if (!file_exists($directory)) {
             mkdir($directory, 0777, true);
         }
-        $this->setPermission($directory);
+        $this -> setPermission($directory);
     }
 
     public function fileRead($filepath)
@@ -64,12 +70,7 @@ class ClassFilesManager
     public function writeFile($cont, $path)
     {
         $file = fopen($path, "a+");
-        fwrite($file, $cont."\n") || die("Could not write to Archive!");
+        fwrite($file, $cont . "\n") || die("Could not write to Archive!");
         fclose($file);
-    }
-
-    private function setPermission($filepath)
-    {
-        chmod($filepath, 0777);
     }
 }

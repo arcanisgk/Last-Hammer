@@ -1,4 +1,5 @@
 <?php
+
 class ClassDeviceManager
 {
     private static $instance = null;
@@ -6,16 +7,16 @@ class ClassDeviceManager
     public static function _getInstance()
     {
 
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
+        if (!self ::$instance instanceof self) {
+            self ::$instance = new self;
         }
-        return self::$instance;
+        return self ::$instance;
     }
 
     public function detectDevice()
     {
         $detect = new Mobile_Detect;
-        $device = &CoreApp::$ovars['SYS']['DEVICE']['MOBILE'];
-        $device = ($detect->isMobile()) ? true : false;
+        $device = &CoreApp ::$ovars['SYS']['DEVICE']['MOBILE'];
+        $device = ($detect -> isMobile()) ? true : false;
     }
 }

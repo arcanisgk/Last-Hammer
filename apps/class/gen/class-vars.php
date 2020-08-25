@@ -1,4 +1,5 @@
 <?php
+
 class ClassVarsManager
 {
     private static $instance = null;
@@ -6,10 +7,10 @@ class ClassVarsManager
     public static function _getInstance()
     {
 
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
+        if (!self ::$instance instanceof self) {
+            self ::$instance = new self;
         }
-        return self::$instance;
+        return self ::$instance;
     }
 
     public function destVars()
@@ -20,8 +21,8 @@ class ClassVarsManager
             unset(${"$var"});
         }
         unset($vars);
-        CoreApp::$oclass = null;
-        CoreApp::$ovars  = null;
+        CoreApp ::$oclass = null;
+        CoreApp ::$ovars = null;
         foreach (get_class_vars(__CLASS__) as $clsVar) {
             unset($clsVar);
         }
@@ -39,17 +40,17 @@ class ClassVarsManager
             if (true == $return && true == $end) {
                 throw new Exception('You cannot request a data return and exit at execution time.');
             } elseif (true == $return && true == $ouput) {
-                throw new Exception('You cannot request a data '.
+                throw new Exception('You cannot request a data ' .
                     'return and output at execution time.');
             } else {
-                $result = PRES.implode(
-                    EOL_SYS,
-                    array_map(
-                        [$this, 'varExportFormat'],
-                        $var,
-                        array_fill(0, count($var), $highlight)
-                    )
-                ).PREE;
+                $result = PRES . implode(
+                        EOL_SYS,
+                        array_map(
+                            [$this, 'varExportFormat'],
+                            $var,
+                            array_fill(0, count($var), $highlight)
+                        )
+                    ) . PREE;
                 if ($ouput) {
                     echo $result;
                 } else {
@@ -60,64 +61,64 @@ class ClassVarsManager
                 exit;
             }
         } catch (Exception $e) {
-            echo $e->getMessage();
+            echo $e -> getMessage();
         }
     }
 
     public function initVar()
     {
-        $initVar = &CoreApp::$ovars;
+        $initVar = &CoreApp ::$ovars;
         $initVar = [
-            'VARS'        => [],
+            'VARS' => [],
             'TRANSLATION' => [],
-            'SYS'         => [
-                'EXECTIME'   => [
+            'SYS' => [
+                'EXECTIME' => [
                     'INIT' => null
                 ],
                 'EXECMEMORY' => [
                     'INIT' => null
                 ],
-                'HTTP'       => [
+                'HTTP' => [
                     'PROTOCOL' => null,
-                    'SSL'      => null,
-                    'METHOD'   => null,
-                    'STATE'    => null,
-                    'JSON'     => null
+                    'SSL' => null,
+                    'METHOD' => null,
+                    'STATE' => null,
+                    'JSON' => null
                 ],
-                'DEVICE'     => [
+                'DEVICE' => [
                     'MOBILE' => null
                 ],
-                'SERVICE'    => [
-                    'CRON'   => null,
+                'SERVICE' => [
+                    'CRON' => null,
                     'WEBSER' => null
                 ],
-                'CONF'       => [],
-                'FORM'       => null,
-                'PROCESS'    => null,
-                'ERROR'      => [
-                    'TYPE'  => null,
+                'CONF' => [],
+                'FORM' => null,
+                'PROCESS' => null,
+                'ERROR' => [
+                    'TYPE' => null,
                     'ARRAY' => []
                 ]
 
             ],
-            'USER'        => [
+            'USER' => [
                 'LOGGED' => null
             ],
-            'EVENT'       => [
-                'SHOW'    => null,
-                'IN'      => null,
+            'EVENT' => [
+                'SHOW' => null,
+                'IN' => null,
                 'REFRESH' => null,
-                'NAV'     => null
+                'NAV' => null
             ],
-            'DISPLAY'     => [
-                'HTML'      => [
+            'DISPLAY' => [
+                'HTML' => [
                     'OUTJSON' => null
                 ],
                 'TOBROWSER' => [],
-                'DIC'       => [
-                    'DEFULT'     => DEFAULTLANG,
+                'DIC' => [
+                    'DEFULT' => DEFAULTLANG,
                     'DEVICELANG' => null,
-                    'USERSES'    => null
+                    'USERSES' => null
                 ]
             ]
         ];
@@ -155,57 +156,6 @@ class ClassVarsManager
         }
     }
 
-    private function GetType($var)
-    {
-        if (in_array($var, ['null', 'NULL', null], true)) {
-            return '(Type of NULL)';
-        }
-        if (in_array($var, ['TRUE', 'FALSE', 'true', 'false', true, false], true)) {
-            return 'boolean';
-        }
-        if (is_array($var)) {
-            return 'array';
-        }
-        if (is_object($var)) {
-            return 'object';
-        }
-        if ((int) $var == $var && is_numeric($var)) {
-            return 'integer';
-        }
-        if ((float) $var == $var && is_numeric($var)) {
-            return 'float';
-        }
-        if (strpos($var, '/') !== false) {
-            if (in_array($var, timezone_identifiers_list())) {
-                return 'time-zone';
-            }
-        }
-        if (strpos($var, ' ') !== false && strpos($var, ':') !== false) {
-            $testdate = explode(' ', $var);
-            if (
-                $this->ValidateDate($testdate[0]) &&
-                $this->ValidateDate($testdate[1]) &&
-                strpos($testdate[1], ':') !== false
-            ) {
-                return 'datetime';
-            }
-        }
-        if ($this->ValidateDate($var) && strpos($var, ':') !== false) {
-            return 'time';
-        }
-        if ($this->ValidateDate($var) && strlen($var) >= 8) {
-            return 'date';
-        }
-        if (is_string($var)) {
-            return 'string('.strlen($var).')';
-        }
-    }
-
-    private function ValidateDate($date)
-    {
-        return strtotime($date) != false;
-    }
-
     private function varExportFormat($var, $highlight)
     {
         ob_start();
@@ -236,14 +186,14 @@ class ClassVarsManager
         $var_dump = preg_replace_callback(
             '/(\s*=>\s*)(NULL)/',
             function ($m) {
-                return $m[1].$this->GetType($m[2]).": {$m[2]},";
+                return $m[1] . $this -> GetType($m[2]) . ": {$m[2]},";
             },
             $var_dump
         );
         $var_dump = preg_replace_callback(
             '/(\w+\W\d\W)\s*"([^"]+)"$/',
             function ($m) {
-                return $this->GetType(str_replace("'", '', $m[2])).
+                return $this -> GetType(str_replace("'", '', $m[2])) .
                     ": {$m[2]},";
             },
             $var_dump
@@ -251,7 +201,7 @@ class ClassVarsManager
         $var_dump = preg_replace_callback(
             '/\w+\((\D+)\)$/',
             function ($m) {
-                return $this->GetType(str_replace("'", '', $m[1])).
+                return $this -> GetType(str_replace("'", '', $m[1])) .
                     ": {$m[1]},";
             },
             $var_dump
@@ -259,7 +209,7 @@ class ClassVarsManager
         $var_dump = preg_replace_callback(
             '/\w+\((\d+)\)$/',
             function ($m) {
-                return $this->GetType(str_replace("'", '', $m[1])).
+                return $this -> GetType(str_replace("'", '', $m[1])) .
                     ": {$m[1]},";
             },
             $var_dump
@@ -267,7 +217,7 @@ class ClassVarsManager
         $var_dump = preg_replace_callback(
             '/\w+\((\d*\.\d*)\)$/',
             function ($m) {
-                return $this->GetType(str_replace("'", '', $m[1])).
+                return $this -> GetType(str_replace("'", '', $m[1])) .
                     ": {$m[1]},";
             },
             $var_dump
@@ -275,8 +225,8 @@ class ClassVarsManager
         $var_dump = preg_replace_callback(
             '/\w+\(\d+\)(\s*)"([^"]*)"$/',
             function ($m) {
-                return $m[1].$this->GetType(str_replace("'", '', $m[2])).
-                    ': "'.$m[2].'",';
+                return $m[1] . $this -> GetType(str_replace("'", '', $m[2])) .
+                    ': "' . $m[2] . '",';
             },
             $var_dump
         );
@@ -293,14 +243,65 @@ class ClassVarsManager
         $var_dump = str_replace('":"', "'::'", $var_dump);
         $var_dump = str_replace('":"', "'::'", $var_dump);
         $var_dump = str_replace('":', "'::", $var_dump);
-        $textvar  = $var_dump;
+        $textvar = $var_dump;
         if ($highlight && VERSYSTEM !== 'cli') {
-            $textvar = highlight_string('<?php '.PHP_EOL.
-                '/*****  Output of Data *****/'.PHP_EOL.$var_dump.';'.
-                PHP_EOL.
-                '/*****  Output of Data *****/'.PHP_EOL.'?>', true);
+            $textvar = highlight_string('<?php ' . PHP_EOL .
+                '/*****  Output of Data *****/' . PHP_EOL . $var_dump . ';' .
+                PHP_EOL .
+                '/*****  Output of Data *****/' . PHP_EOL . '?>', true);
             $textvar = preg_replace("/\R|<br>/", "", $textvar);
         }
         return $textvar;
+    }
+
+    private function GetType($var)
+    {
+        if (in_array($var, ['null', 'NULL', null], true)) {
+            return '(Type of NULL)';
+        }
+        if (in_array($var, ['TRUE', 'FALSE', 'true', 'false', true, false], true)) {
+            return 'boolean';
+        }
+        if (is_array($var)) {
+            return 'array';
+        }
+        if (is_object($var)) {
+            return 'object';
+        }
+        if ((int)$var == $var && is_numeric($var)) {
+            return 'integer';
+        }
+        if ((float)$var == $var && is_numeric($var)) {
+            return 'float';
+        }
+        if (strpos($var, '/') !== false) {
+            if (in_array($var, timezone_identifiers_list())) {
+                return 'time-zone';
+            }
+        }
+        if (strpos($var, ' ') !== false && strpos($var, ':') !== false) {
+            $testdate = explode(' ', $var);
+            if (
+                $this -> ValidateDate($testdate[0]) &&
+                $this -> ValidateDate($testdate[1]) &&
+                strpos($testdate[1], ':') !== false
+            ) {
+                return 'datetime';
+            }
+        }
+        if ($this -> ValidateDate($var) && strpos($var, ':') !== false) {
+            return 'time';
+        }
+        if ($this -> ValidateDate($var) && strlen($var) >= 8) {
+            return 'date';
+        }
+        if (is_string($var)) {
+            return 'string(' . strlen($var) . ')';
+        }
+    }
+
+    private function ValidateDate($date)
+    {
+        return strtotime($date) != false;
     }
 }

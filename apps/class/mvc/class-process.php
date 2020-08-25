@@ -1,7 +1,7 @@
 <?php
 class ClassProcessManager
 {
-    private static $instance = null;
+    private static ?ClassProcessManager $instance = null;
 
     public static function _getInstance()
     {
@@ -92,11 +92,15 @@ class ClassProcessManager
             );
             CoreApp::$oclass['DIR']  = [];
             CoreApp::$oclass['FORM'] = [];
-
+            CoreApp::$oclass['GEN']['MEMORY']->getMemoryUsage();
+            echo CoreApp::$ovars['SYS']['EXECMEMORY']['USAGEOUPUT'];
+            CoreApp::$oclass['GEN']['MEMORY']->getMemoryUsagePeak();
+            echo '-'.CoreApp::$ovars['SYS']['EXECMEMORY']['PEAKOUPUT'];
+            foo()
             //echo var_dump($_POST);
-            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 'k';
-            throw new Exception("Example Error throw.");
-            die;
+            //CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 'k';
+            //throw new Exception("Example Error throw.");
+            //die;
             //CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 3;
             //throw new Exception("Example Error throw.");
             //echo 'Hello World';
