@@ -1,10 +1,11 @@
-## `Last-Hammer` project
+## `Last-Hammer` Project
 
+[![License](https://img.shields.io/static/v1?label=license&message=GPL-3&color=yellowgreen)](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)
 [![State](https://img.shields.io/static/v1?label=alpha&message=0.1.3&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/v0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
 ![Updated](https://img.shields.io/static/v1?label=upated&message=2020-08-26+18:31:07&color=lightgray 'Latest known update date') <!-- __SEMANTIC_UPDATED_LINE__ -->
 [![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.2.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_2_0.php)
 
-Last Hamer is a pre-built platform for creating applications, as if you were working with a framework; but particularly it has a graphical interface that allows starting in the following way:
+Last Hammer is a pre-built platform for creating applications, as if you were working with a framework; but particularly it has a graphical interface that allows starting in the following way:
 -   Configure the System data.
 -   Configure the Client / User / Company data.
 -   Raise the system structure, based on form screens:
@@ -23,11 +24,11 @@ Note: It also has support for the Execution of Crons Jobs; but requires access t
 
 ## PSR version:
 
-Last-Hammer does not use a specific version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.
+Last-Hammer does use a lastest version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.Last-Hammer does use the latest versions of PSR or code style, we can really consider that it uses a fusion of design patterns to improve the reading of the code and the development learning curve, the whole system is embedded in the objects and constants defined, this will be better explained in the definition of classes, functions, variables and constants.
 
-#### (The architecture proposed)
+#### The architecture proposed
 
--   to be defined
+- Common development conventions by the Author and Contributors
 
 ## Contributing:
 
@@ -43,6 +44,14 @@ The Last Hammer project is open-source software licensed under the MIT license.
 ## Installation from GitHub:
 
 Please clone `master` branch to required directory
+
+Via SSH
+
+```
+git clone git@github.com:arcanisgk/Last-Hammer.git
+```
+
+or HTTP
 
 ```
 git clone https://github.com/arcanisgk/Last-Hammer.git
@@ -226,4 +235,8 @@ Set your Client configuration:
     </software>
 </data>
 ```
+
+### Contributors
+- (c) 2020 Walter Francisco Núñez Cruz icarosnet@gmail.com [![Donate](https://img.shields.io/static/v1?label=Donate&message=PayPal.me/wnunez86&color=brightgreen)](https://www.paypal.me/wnunez86/4.99USD)
+- (c) 2020 Marcus Biesioroff biesior@gmail.com [![Donate](https://img.shields.io/static/v1?label=Donate&message=PayPal.me/biesior&color=brightgreen)](https://www.paypal.me/biesior/4.99EUR)
 
