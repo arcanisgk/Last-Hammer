@@ -1,5 +1,10 @@
 <?php
-class ClassVarsManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+use Exception;
+
+class Vars
 {
     private static $instance = null;
 

@@ -1,5 +1,9 @@
 <?php
-class ClassSessionManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+
+class Session
 {
     private static $instance = null;
 
@@ -15,8 +19,8 @@ class ClassSessionManager
     public function destUserSession($why)
     {
         session_destroy();
-        CoreApp::$oclass['GEN']['COOKIES']->destCookies();
-        CoreApp::$oclass['GEN']['EXECTIME']->execRefresh(['time' => 0, 'why' => $why]);
+        \IcarosNet\LastHammer\Gen\Cookie::_getInstance()->destCookies();
+        \IcarosNet\LastHammer\Gen\ExecTime::_getInstance()->execRefresh(['time' => 0, 'why' => $why]);
         exit;
     }
 
@@ -37,7 +41,7 @@ class ClassSessionManager
             $_SESSION['ACTIVITY'] = SESSION_TIME_EXPIRE;
             $_SESSION['LANG']     = DEFAULTLANG;
             $_SESSION['HOME']     = HOME;
-            CoreApp::$oclass['GEN']['COOKIES']->initCookies();
+            \IcarosNet\LastHammer\Gen\Cookie::_getInstance()->initCookies();
         } else {
             if (SESSION_EXPIRATION == true) {
                 if ($_SESSION['TIMEOUT'] < time()) {

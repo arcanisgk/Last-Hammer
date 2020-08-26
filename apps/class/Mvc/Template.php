@@ -1,5 +1,9 @@
 <?php
-class ClassTemplateManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+
+class Template
 {
     public $display;
 
@@ -49,7 +53,7 @@ class ClassTemplateManager
 
     public function getView($template)
     {
-        $valsoftware    = CoreApp::$oclass['GEN']['APP']->checkInstall();
+        $valsoftware    = \IcarosNet\LastHammer\Gen\App::_getInstance()->checkInstall();
         $this->display  = &CoreApp::$ovars['DISPLAY']['HTML'];
         $this->file_mgr = &CoreApp::$oclass['GEN']['FILES'];
         //CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, false, $valsoftware);

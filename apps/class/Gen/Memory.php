@@ -1,5 +1,9 @@
 <?php
-class ClassMemoryManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+
+class Memory
 {
     private static $instance = null;
 

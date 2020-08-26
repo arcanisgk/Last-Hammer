@@ -1,5 +1,9 @@
 <?php
-class ClassLogsManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+
+class Log
 {
     private static $instance = null;
 
@@ -21,16 +25,16 @@ class ClassLogsManager
     public function initLog()
     {
         $logsname = LOG_TYPES;
-        $logdate  = CoreApp::$oclass['GEN']['DATE']->genDate('E');
+        $logdate  = \IcarosNet\LastHammer\Gen\Date::_getInstance()->genDate('E');
         foreach ($logsname as $logname => $availability) {
             if ($availability) {
                 $pathlog     = PATHS['LOGS'].$logname.'/';
                 $fullpathlog = PATHS['LOGS'].$logname.'/'.$logdate.'.log';
-                if (!CoreApp::$oclass['GEN']['FILES']->validateLocalDirectory($pathlog)) {
-                    CoreApp::$oclass['GEN']['FILES']->createLocalDirectory($pathlog);
+                if (!\IcarosNet\LastHammer\Gen\File::_getInstance()->validateLocalDirectory($pathlog)) {
+                    \IcarosNet\LastHammer\Gen\File::_getInstance()->createLocalDirectory($pathlog);
                 }
-                if (!CoreApp::$oclass['GEN']['FILES']->validateLocalFile($fullpathlog)) {
-                    CoreApp::$oclass['GEN']['FILES']->crateLocalFile($fullpathlog);
+                if (!\IcarosNet\LastHammer\Gen\File::_getInstance()->validateLocalFile($fullpathlog)) {
+                    \IcarosNet\LastHammer\Gen\File::_getInstance()->crateLocalFile($fullpathlog);
                 }
             }
         }
@@ -39,8 +43,8 @@ class ClassLogsManager
     public function setLogReg($cont, $log)
     {
         //echo var_dump(CoreApp::$oclass);
-        $date = CoreApp::$oclass['GEN']['DATE']->genDate('E');
+        $date = \IcarosNet\LastHammer\Gen\Date::_getInstance() ->genDate('E');
         $path = PATHS['LOGS'].$log.'/'.$date.'.log';
-        CoreApp::$oclass['GEN']['FILES']->writeFile($cont, $path);
+        \IcarosNet\LastHammer\Gen\File::_getInstance()->writeFile($cont, $path);
     }
 }

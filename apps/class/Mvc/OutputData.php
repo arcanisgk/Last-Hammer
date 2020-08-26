@@ -1,5 +1,9 @@
 <?php
-class ClassOutputdataManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+
+class OutputData
 {
     private static $instance = null;
 
@@ -92,10 +96,10 @@ class ClassOutputdataManager
             $json = (true !== CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON'] ? false : CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']);
             $data = CoreApp::$oclass['MVC']['LANG']->getTranslation($data);
             if (!$json) {
-                $data = CoreApp::$oclass['GEN']['VARS']->scapeQuote2Json($data);
+                $data = \IcarosNet\LastHammer\Gen\Vars::_getInstance()->scapeQuote2Json($data);
             }
             $to_client   = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
-            $is_formated = CoreApp::$oclass['GEN']['VARS']->evalArray2JSON($to_client);
+            $is_formated = \IcarosNet\LastHammer\Gen\Vars::_getInstance()->evalArray2JSON($to_client);
             $last_terror = error_get_last();
             $any_header  = headers_sent();
             if (true == $is_formated && null == $last_terror && !$any_header) {
@@ -156,7 +160,7 @@ class ClassOutputdataManager
             if (null == $lasterror && !$anyHeader) {
                 echo $htmlOutput;
             } else {
-                CoreApp::$oclass['GEN']['VARS']->VarExport_C($lasterror);
+                \IcarosNet\LastHammer\Gen\Vars::_getInstance()->VarExport_C($lasterror);
             }
         }
     }

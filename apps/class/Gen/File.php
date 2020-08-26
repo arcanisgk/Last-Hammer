@@ -1,5 +1,7 @@
 <?php
-class ClassFilesManager
+
+namespace IcarosNet\LastHammer\Gen;
+class File
 {
     private static $instance = null;
 

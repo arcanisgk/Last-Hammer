@@ -1,5 +1,10 @@
 <?php
-class ClassAppManager
+
+namespace IcarosNet\LastHammer\Gen;
+
+use CoreApp;
+
+class App
 {
     private static $instance = null;
 
@@ -14,8 +19,8 @@ class ClassAppManager
 
     public function checkInstall()
     {
-        $file_mgr   = &CoreApp::$oclass['GEN']['FILES'];
-        $confinc    = PATHS['SOFTWARE'].'config-inc.php';
+        $file_mgr = &CoreApp::$oclass['GEN']['FILES'];
+        $confinc = PATHS['SOFTWARE'] . 'config-inc.php';
         $valInstall = $file_mgr->validateLocalFile($confinc);
         if (!$valInstall) {
             return 3;
@@ -38,8 +43,8 @@ class ClassAppManager
     public function checkUpdate()
     {
         $installver = &CoreApp::$ovars['SYS']['CONF']['SOFTWARE']['SOFT_VERSION'];
-        $userver    = CLIENT_DATA['SOFTWARE']['VERSION'];
-        $remotever  = $this->getRemoteVersion();
+        $userver = CLIENT_DATA['SOFTWARE']['VERSION'];
+        $remotever = $this->getRemoteVersion();
         return ($installver == $userver && $installver == $remotever ? false : true);
     }
 
@@ -51,19 +56,21 @@ class ClassAppManager
     public function runClose()
     {
         $gen = &CoreApp::$oclass['GEN'];
+        $log = \IcarosNet\LastHammer\Gen\Log::_getInstance();
+        $vars = Vars::_getInstance();
         if (!isset($_SESSION)) {
-            $cont = $gen['LOGS']->buildLogEvent();
-            $gen['LOGS']->setLogReg($cont, 'user');
+            $cont = $log->buildLogEvent();
+            $log->setLogReg($cont, 'user');
         } else {
             if (true === CoreApp::$ovars['SYS']['SERVICE']['CRON']) {
-                $cont = $gen['LOGS']->buildLogCron();
-                $gen['LOGS']->setLogReg($cont, 'system');
+                $cont = $log->buildLogCron();
+                $log->setLogReg($cont, 'system');
             } elseif (true === CoreApp::$ovars['SYS']['SERVICE']['WEBSER']) {
-                $cont = $gen['LOGS']->buildLogWebServ();
-                $gen['LOGS']->setLogReg($cont, 'system');
+                $cont = $log->buildLogWebServ();
+                $log->setLogReg($cont, 'system');
             }
         }
-        $gen['VARS']->destVars();
+        $vars->destVars();
     }
 
     public function runInit()
@@ -71,14 +78,15 @@ class ClassAppManager
 
         $gen = &CoreApp::$oclass['GEN'];
 
-        $gen['VARS']->initVar();
-        $gen['LOGS']->initLog();
-        $gen['EXECTIME']->initTimeExec();
-        $gen['MEMORY']->initMemoryUsage();
-        $gen['SESSION']->initSession();
-        $gen['HTTP']->initClientCommunication();
-        $gen['DEVICE']->detectDevice();
-        $gen['USER']->getUserStatus();
+
+        Vars::_getInstance()->initVar();
+        Log::_getInstance()->initLog();
+        ExecTime::_getInstance()->initTimeExec();
+        Memory::_getInstance()->initMemoryUsage();
+        Session::_getInstance()->initSession();
+        Http::_getInstance()->initClientCommunication();
+        Device::_getInstance()->detectDevice();
+        Log::_getInstance()->getUserStatus();
 
     }
 }

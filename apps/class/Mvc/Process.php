@@ -1,5 +1,10 @@
 <?php
-class ClassProcessManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+use Exception;
+
+class Process
 {
     private static $instance = null;
 

@@ -1,5 +1,7 @@
 <?php
-class ClassControllerManager
+
+namespace IcarosNet\LastHammer\Mvc;
+class Controller
 {
     private static $instance = null;
 
@@ -18,12 +20,12 @@ class ClassControllerManager
         $output     = 1;
         $process    = null;
         $template   = null;
-        $mvc        = &CoreApp::$oclass['MVC'];
-        $stuser     = CoreApp::$ovars['USER']['LOGGED'];
-        $isdata     = CoreApp::$ovars['SYS']['HTTP']['STATE'];
-        $isdatatype = CoreApp::$ovars['SYS']['HTTP']['METHOD'];
-        $iscron     = CoreApp::$ovars['SYS']['SERVICE']['CRON'];
-        $iswser     = CoreApp::$ovars['SYS']['SERVICE']['WEBSER'];
+        $mvc        = &\CoreApp::$oclass['MVC'];
+        $stuser     = \CoreApp::$ovars['USER']['LOGGED'];
+        $isdata     = \CoreApp::$ovars['SYS']['HTTP']['STATE'];
+        $isdatatype = \CoreApp::$ovars['SYS']['HTTP']['METHOD'];
+        $iscron     = \CoreApp::$ovars['SYS']['SERVICE']['CRON'];
+        $iswser     = \CoreApp::$ovars['SYS']['SERVICE']['WEBSER'];
         $mvc['LANG']->routeLang();
         ($stuser ? ($isdata ? ('GET' == $isdatatype ? $template = 3 : $process = 1) : $template = 1) :
             ($isdata && 'POST' == $isdatatype ? ($iscron ? list($process, $output) = [1, null] :
@@ -38,7 +40,7 @@ class ClassControllerManager
 
         (null === $process) ?: $mvc['PROCESS']->runProcess();                                                                                                                                                     //Model
         (null === $template) ?: $mvc['TEMPLATE']->getView($template);                                                                                                                                             //View
-        (null === $output) ? CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, true, CoreApp::$ovars, [$stuser, $isdata, $isdatatype, $iscron, $iswser]) : $mvc['OUTPUTDATA']->showOutput($output); //Output
+        (null === $output) ? \IcarosNet\LastHammer\Gen\Vars::_getInstance()->expVariable(true, true, false, true, \CoreApp::$ovars, [$stuser, $isdata, $isdatatype, $iscron, $iswser]) : $mvc['OUTPUTDATA']->showOutput($output); //Output
 
         # ! ::::::::WARNING:::::::: Do not touch this section ::::::::WARNING::::::::
     }

@@ -1,5 +1,7 @@
 <?php
-class ClassCookiesManager
+
+namespace IcarosNet\LastHammer\Gen;
+class Cookie
 {
     private static $instance = null;
 

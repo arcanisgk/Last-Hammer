@@ -1,5 +1,7 @@
 <?php
-class ClassDrawboxManager
+
+namespace IcarosNet\LastHammer\Gen;
+class Drawbox
 {
     private static $instance = null;
 

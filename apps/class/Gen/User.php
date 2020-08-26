@@ -1,5 +1,9 @@
 <?php
-class ClassUserManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+
+class User
 {
     private static $instance = null;
 

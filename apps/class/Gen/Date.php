@@ -1,5 +1,10 @@
 <?php
-class ClassDateManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+use Exception;
+
+class Date
 {
     private static $instance = null;
 

@@ -1,5 +1,10 @@
 <?php
-class ClassDeviceManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+use Mobile_Detect;
+
+class Device
 {
     private static $instance = null;
 

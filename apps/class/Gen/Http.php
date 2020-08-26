@@ -1,5 +1,9 @@
 <?php
-class ClassHttpManager
+
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+
+class Http
 {
     private static $instance = null;
 
@@ -45,7 +49,7 @@ class ClassHttpManager
         }
         $_vars                              = (REQUEST_METHOD == 'POST') ? $_POST : $_GET;
         $_vars                              = $this->buildVirtualData($_vars);
-        $_vars                              = CoreApp::$oclass['GEN']['VARS']->reduArray($_vars);
+        $_vars                              = \IcarosNet\LastHammer\Gen\Vars::_getInstance()->reduArray($_vars);
         (REQUEST_METHOD == 'POST') ? $_POST = [] : $_GET = [];
         (REQUEST_METHOD == 'POST') ? $_POST = $_vars : $_GET = $_vars;
         if (REQUEST_METHOD == 'POST') {
