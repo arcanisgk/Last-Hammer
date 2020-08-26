@@ -80,7 +80,12 @@ class ClassProcessManager
     public function runProcess()
     {
         try {
+            //CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, true, $_POST);
 
+            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = '2';
+            throw new Exception("Example Error throw.");
+
+            /*
             CoreApp::$ovars['SYS'] = array_merge(
                 CoreApp::$ovars['SYS'],
                 [
@@ -93,7 +98,6 @@ class ClassProcessManager
             CoreApp::$oclass['DIR']  = [];
             CoreApp::$oclass['FORM'] = [];
 
-            CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, true, $_POST);
             //echo var_dump($_POST);
             //CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 'k';
             //throw new Exception("Example Error throw.");
