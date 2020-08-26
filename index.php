@@ -1,7 +1,4 @@
 <?php
-if (!version_compare(phpversion(), '7.4', '>=')) {
-    die('This project requires PHP ver. 7.4 or higher');
-}
 require_once 'configs/const/loader.php';
 
 class CoreApp

@@ -366,7 +366,9 @@ function responseAnalysis(data) {
 function checkErrorOnResponse(data) {
     var error = false;
     if (typeof data == 'string') {
+        console.log('join0');
         if (data.startsWith("<!DOCTYPE html>")) {
+            console.log('join1');
             error = true;
             let html = $(data);
             let found = html.find("div.middle-box");
@@ -377,6 +379,17 @@ function checkErrorOnResponse(data) {
             conf['size'] = 'lg';
             conf['title'] = window.SYS.dic.unknown_error[window.SYS.lang] + '...';
             conf['cont'] = cont;
+            window.genModal(conf);
+        } else if (data.startsWith("<pre ")){
+            console.log('join2');
+            error = true;
+            let conf = window.initModal();
+            conf['target'] = 'Data-Output-' + conf['index'];
+            conf['type'] = 2;
+            conf['size'] = 'lg';
+            conf['title'] = window.SYS.dic.unknown_error[window.SYS.lang] + '...';
+            conf['cont'] = data;
+            console.log(conf);
             window.genModal(conf);
         }
     } else if (typeof data == 'object') {
