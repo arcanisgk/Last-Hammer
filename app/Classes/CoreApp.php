@@ -13,11 +13,9 @@ class CoreApp
 
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): CoreApp
     {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -26,8 +24,8 @@ class CoreApp
 
 
         $this->popClass();
-        $app = App::_getInstance();
-        $controller = Controller::_getInstance();
+        $app = App::getInstance();
+        $controller = Controller::getInstance();
 
         $app->runInit();
         $controller->runController();
@@ -36,6 +34,6 @@ class CoreApp
 
     private function popClass()
     {
-        Manager::_getInstance()->LoadClass();
+        Manager::getInstance()->LoadClass();
     }
 }

@@ -1,16 +1,14 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
+
 class Drawbox
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Drawbox
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 

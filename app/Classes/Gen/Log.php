@@ -1,18 +1,14 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
-use IcarosNet\LastHammer\CoreApp;
 
 class Log
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Log
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -25,16 +21,16 @@ class Log
     public function initLog()
     {
         $logsname = LOG_TYPES;
-        $logdate  = Date::_getInstance()->genDate('E');
+        $logdate  = Date::getInstance()->genDate('E');
         foreach ($logsname as $logname => $availability) {
             if ($availability) {
                 $pathlog     = PATHS['LOGS'].$logname.'/';
                 $fullpathlog = PATHS['LOGS'].$logname.'/'.$logdate.'.log';
-                if (!File::_getInstance()->validateLocalDirectory($pathlog)) {
-                    File::_getInstance()->createLocalDirectory($pathlog);
+                if (!File::getInstance()->validateLocalDirectory($pathlog)) {
+                    File::getInstance()->createLocalDirectory($pathlog);
                 }
-                if (!File::_getInstance()->validateLocalFile($fullpathlog)) {
-                    File::_getInstance()->crateLocalFile($fullpathlog);
+                if (!File::getInstance()->validateLocalFile($fullpathlog)) {
+                    File::getInstance()->crateLocalFile($fullpathlog);
                 }
             }
         }
@@ -43,8 +39,8 @@ class Log
     public function setLogReg($cont, $log)
     {
         //echo var_dump(CoreApp::$oclass);
-        $date = Date::_getInstance() ->genDate('E');
+        $date = Date::getInstance() ->genDate('E');
         $path = PATHS['LOGS'].$log.'/'.$date.'.log';
-        File::_getInstance()->writeFile($cont, $path);
+        File::getInstance()->writeFile($cont, $path);
     }
 }

@@ -1,20 +1,17 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+
 use IcarosNet\LastHammer\CoreApp;
-use IcarosNet\LastHammer\Gen\File;
-use IcarosNet\LastHammer\Gen\Session;
+use IcarosNet\LastHammer\Gen\{File, Session};
 
 class Lang
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Lang
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -32,7 +29,7 @@ class Lang
     {
         $langIndex = substr(CoreApp::$ovars['DISPLAY']['DIC']['LANG'], 0, 2);
         $dicpath   = (null !== $dir) ? $dir : PATHS['DIC'].'dic.csv';
-        $fileread  = File::_getInstance()->fileRead($dicpath);
+        $fileread  = File::getInstance()->fileRead($dicpath);
         $fileindex = fgetcsv($fileread, 4096, ';', '"');
         foreach ($fileindex as $key => $value) {
             if ($langIndex == $value) {
@@ -59,7 +56,7 @@ class Lang
     {
         $dic = &CoreApp::$ovars['DISPLAY']['DIC'];
         $this->detectDefaultLang();
-        Session::_getInstance()->getSessionLang();
+        Session::getInstance()->getSessionLang();
         if (null !== $dic['USERSES']) {
             $dic['LANG'] = $dic['USERSES'];
         } else {

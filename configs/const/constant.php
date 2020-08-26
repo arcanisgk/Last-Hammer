@@ -34,16 +34,16 @@ try {
 $paths = [
     'SOFTWARE'  => FILEROOT.'/build/setup/',
 
-    'CLASSEXT'  => FILEROOT.'/apps/Classes/ext/',
-    'CLASSMVC'  => FILEROOT.'/apps/Classes/mvc/',
-    'CLASSGEN'  => FILEROOT.'/apps/Classes/gen/',
-    'CLASSCORE' => FILEROOT.'/apps/core/',
+    'CLASSGEN'  => FILEROOT.'/app/Classes/gen/',
+    'CLASSMVC'  => FILEROOT.'/app/Classes/mvc/',
+    'CLASSEXT'  => FILEROOT.'/app/ext/',
+    'CLASSCORE' => FILEROOT.'/app/core/',
 
-    'ABSDATA'   => FILEROOT.'/apps/core/abs/data/',
-    'ABSLIST'   => FILEROOT.'/apps/core/abs/elem/',
-    'ABSDOCS'   => FILEROOT.'/apps/core/abs/docs/',
+    'ABSDATA'   => FILEROOT.'/app/core/abs/data/',
+    'ABSLIST'   => FILEROOT.'/app/core/abs/elem/',
+    'ABSDOCS'   => FILEROOT.'/app/core/abs/docs/',
 
-    'WORKSPACE' => FILEROOT.'/apps/core/',
+    'WORKSPACE' => FILEROOT.'/app/core/',
 
     'TPLSTATIC' => FILEROOT.'/html/static/',
     'TPLDASH'   => FILEROOT.'/html/dash/',

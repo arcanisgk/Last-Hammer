@@ -1,6 +1,7 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
+
 use IcarosNet\LastHammer\CoreApp;
 use Mobile_Detect;
 
@@ -8,12 +9,9 @@ class Device
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Device
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 

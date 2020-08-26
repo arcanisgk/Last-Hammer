@@ -1,6 +1,7 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+
 use IcarosNet\LastHammer\CoreApp;
 use Exception;
 
@@ -8,12 +9,9 @@ class Process
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Process
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -134,7 +132,7 @@ class Process
             */
         } catch (Exception $e) {
             CoreApp::$ovars['SYS']['ERROR']['ARRAY'] = $e;
-            Error::_getInstance()->getError();
+            Error::getInstance()->getError();
         }
     }
 }

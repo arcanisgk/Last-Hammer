@@ -1,9 +1,9 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+
 use IcarosNet\LastHammer\CoreApp;
-use IcarosNet\LastHammer\Gen\App;
-use IcarosNet\LastHammer\Gen\File;
+use IcarosNet\LastHammer\Gen\{App, File, Vars};
 
 class Template
 {
@@ -18,6 +18,12 @@ class Template
     ];
 
     private static $instance = null;
+
+    public static function getInstance(): Template
+    {
+        if (!self::$instance instanceof self) self::$instance = new self;
+        return self::$instance;
+    }
 
     private $tplfiles = [
         'header'     => PATHS['TPLSTATIC'].'header.php',
@@ -45,20 +51,12 @@ class Template
         'footer'     => '/sources/tpl/struct/footer.php'
     ];
 
-    public static function _getInstance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
-
     public function getView($template)
     {
-        $valsoftware    = App::_getInstance()->checkInstall();
+        $valsoftware    = App::getInstance()->checkInstall();
         $this->display  = &CoreApp::$ovars['DISPLAY']['HTML'];
-        $this->file_mgr = File::_getInstance();
-//        Vars::_getInstance()->expVariable(true, true, false, false, $valsoftware);
+        $this->file_mgr = File::getInstance();
+//        Vars::getInstance()->expVariable(true, true, false, false, $valsoftware);
         if (false !== $valsoftware) {
             (1 === $valsoftware ? $this->getLicenseForm() : '');
             (2 === $valsoftware ? $this->getUpdateForm() : '');
@@ -129,7 +127,7 @@ class Template
 
     private function getHtmlLoginContent()
     {
-        Lang::_getInstance()->loadLang($this->dicfiles['login_dic']);
+        Lang::getInstance()->loadLang($this->dicfiles['login_dic']);
         $this->display['LOGIN'] = $this->file_mgr->getFileContent($this->tplfiles['login']);
     }
 

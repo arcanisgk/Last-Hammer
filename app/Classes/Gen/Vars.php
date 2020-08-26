@@ -1,19 +1,17 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
-use Exception;
+
 use IcarosNet\LastHammer\CoreApp;
+use Exception;
 
 class Vars
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Vars
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 

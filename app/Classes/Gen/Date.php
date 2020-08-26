@@ -1,6 +1,7 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
+
 use IcarosNet\LastHammer\CoreApp;
 use Exception;
 
@@ -8,18 +9,15 @@ class Date
 {
     private static $instance = null;
 
+    public static function getInstance(): Date
+    {
+        if (!self::$instance instanceof self) self::$instance = new self;
+        return self::$instance;
+    }
+
     public function ValidateDate($date)
     {
         return strtotime($date) != false;
-    }
-
-    public static function _getInstance()
-    {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
-        return self::$instance;
     }
 
     public function calcRunTime($inputSeconds = 0)

@@ -1,10 +1,9 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+
 use IcarosNet\LastHammer\CoreApp;
-use IcarosNet\LastHammer\Gen\Date;
-use IcarosNet\LastHammer\Gen\File;
-use IcarosNet\LastHammer\Gen\Log;
+use IcarosNet\LastHammer\Gen\{Date, File, Log};
 
 class Error
 {
@@ -14,33 +13,30 @@ class Error
 
     private static $instance = null;
 
+    public static function getInstance(): Error
+    {
+        if (!self::$instance instanceof self) self::$instance = new self;
+        return self::$instance;
+    }
+
     private $tplerror = [
         'error'    => PATHS['TPLSTATUS'].'/errors/error.php',
         'error-c'  => PATHS['TPLSTATUS'].'/errors/error-c.php',
         'error-ws' => PATHS['TPLSTATUS'].'/errors/error-ws.php'
     ];
 
-    public static function _getInstance()
-    {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
-
     public function getError()
     {
         // Vairable Usage
-        Lang::_getInstance()->loadLang(PATHS['DIC'].'error/dic.csv');
+        Lang::getInstance()->loadLang(PATHS['DIC'].'error/dic.csv');
         (isset($_SESSION['Username']) ? list($username, $id_user) = [$_SESSION['username'], $_SESSION['id_user']] : list($username, $id_user) = ['Unknown', 'Unknown']);
         $sis_obj                       = &CoreApp::$ovars;
-        $this->file_mgr                = File::_getInstance();
+        $this->file_mgr                = File::getInstance();
         $this->display                 = &CoreApp::$ovars['DISPLAY']['HTML'];
         $error_smg                     = '';
         $error_log                     = '';
-        $c_date                        = Date::_getInstance()->genDate('H', 'es');
-        $c_hour                        = Date::_getInstance()->genDate('C');
+        $c_date                        = Date::getInstance()->genDate('H', 'es');
+        $c_hour                        = Date::getInstance()->genDate('C');
         $form                          = (null != $sis_obj['SYS']['FORM']) ? $sis_obj['SYS']['FORM'] : 'Form Unknown';
         $event                         = (null != $sis_obj['SYS']['PROCESS']) ? $sis_obj['SYS']['PROCESS'] : 'Not Detected';
         $error_type                    = (null != $sis_obj['SYS']['ERROR']['TYPE']) ? $sis_obj['SYS']['ERROR']['TYPE'] : null;
@@ -80,7 +76,7 @@ class Error
             }
         }
         //Error Log:
-        Log::_getInstance()->setLogReg($this->display['ERROR']['LOG'], 'error');
+        Log::getInstance()->setLogReg($this->display['ERROR']['LOG'], 'error');
         //Error Output:
 
         if ('email' == $error_type) {
@@ -100,7 +96,7 @@ class Error
             CoreApp::$ovars['EVENT']['REFRESH']        = (null == CoreApp::$ovars['EVENT']['REFRESH'] ? false : true);
             CoreApp::$ovars['EVENT']['NAV']            = (null == CoreApp::$ovars['EVENT']['NAV'] ? false : true);
             CoreApp::$ovars['DISPLAY']['HTML']['DATA'] = $this->display['ERROR']['SMG'];
-            OutputData::_getInstance()->showEvent(1);
+            OutputData::getInstance()->showEvent(1);
         }
     }
 

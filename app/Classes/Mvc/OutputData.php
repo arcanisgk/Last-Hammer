@@ -1,18 +1,17 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+
 use IcarosNet\LastHammer\CoreApp;
-use IcarosNet\LastHammer\Gen\Vars;
+use IcarosNet\LastHammer\Gen\{Vars};
 
 class OutputData
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): OutputData
     {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -95,12 +94,12 @@ class OutputData
             $nav  = (true !== CoreApp::$ovars['EVENT']['NAV'] ? false : CoreApp::$ovars['EVENT']['NAV']);
             $data = (null == CoreApp::$ovars['DISPLAY']['HTML']['DATA'] ? 'No data to display' : CoreApp::$ovars['DISPLAY']['HTML']['DATA']);
             $json = (true !== CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON'] ? false : CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']);
-            $data = Lang::_getInstance()->getTranslation($data);
+            $data = Lang::getInstance()->getTranslation($data);
             if (!$json) {
-                $data = Vars::_getInstance()->scapeQuote2Json($data);
+                $data = Vars::getInstance()->scapeQuote2Json($data);
             }
             $to_client   = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
-            $is_formated = Vars::_getInstance()->evalArray2JSON($to_client);
+            $is_formated = Vars::getInstance()->evalArray2JSON($to_client);
             $last_terror = error_get_last();
             $any_header  = headers_sent();
             if (true == $is_formated && null == $last_terror && !$any_header) {
@@ -147,7 +146,7 @@ class OutputData
         if (1 == $output) {
             $html = [];
             foreach (CoreApp::$ovars['DISPLAY']['TOBROWSER'] as $key => $value) {
-                $html[] = Lang::_getInstance()->getTranslation($value);
+                $html[] = Lang::getInstance()->getTranslation($value);
             }
             $htmlOutput = '';
             if (true == CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']) {
@@ -161,7 +160,7 @@ class OutputData
             if (null == $lasterror && !$anyHeader) {
                 echo $htmlOutput;
             } else {
-                Vars::_getInstance()->VarExport_C($lasterror);
+                Vars::getInstance()->VarExport_C($lasterror);
             }
         }
     }

@@ -1,18 +1,16 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
+
 use IcarosNet\LastHammer\CoreApp;
 
 class Http
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Http
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
@@ -49,7 +47,7 @@ class Http
         }
         $_vars                              = (REQUEST_METHOD == 'POST') ? $_POST : $_GET;
         $_vars                              = $this->buildVirtualData($_vars);
-        $_vars                              = Vars::_getInstance()->reduArray($_vars);
+        $_vars                              = Vars::getInstance()->reduArray($_vars);
         (REQUEST_METHOD == 'POST') ? $_POST = [] : $_GET = [];
         (REQUEST_METHOD == 'POST') ? $_POST = $_vars : $_GET = $_vars;
         if (REQUEST_METHOD == 'POST') {
@@ -65,7 +63,7 @@ class Http
 
     private function buildVirtualData($data)
     {
-        $var_mgr = Vars::_getInstance();
+        $var_mgr = Vars::getInstance();
         if (is_array($data)) {
             $temp = [];
             foreach ($data as $key => $value) {

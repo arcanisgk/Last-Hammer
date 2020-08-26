@@ -1,26 +1,24 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
+
 use IcarosNet\LastHammer\CoreApp;
 
 class Session
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): Session
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
     public function destUserSession($why)
     {
         session_destroy();
-        Cookie::_getInstance()->destCookies();
-        ExecTime::_getInstance()->execRefresh(['time' => 0, 'why' => $why]);
+        Cookie::getInstance()->destCookies();
+        ExecTime::getInstance()->execRefresh(['time' => 0, 'why' => $why]);
         exit;
     }
 
@@ -41,7 +39,7 @@ class Session
             $_SESSION['ACTIVITY'] = SESSION_TIME_EXPIRE;
             $_SESSION['LANG']     = DEFAULTLANG;
             $_SESSION['HOME']     = HOME;
-            Cookie::_getInstance()->initCookies();
+            Cookie::getInstance()->initCookies();
         } else {
             if (SESSION_EXPIRATION == true) {
                 if ($_SESSION['TIMEOUT'] < time()) {

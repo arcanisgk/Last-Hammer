@@ -1,4 +1,5 @@
 <?php
+
 namespace IcarosNet\LastHammer;
 
 class Manager
@@ -15,11 +16,9 @@ class Manager
         $this->ClassLoader($classPaths);
     }
 
-    public static function _getInstance()
+    public static function getInstance(): Manager
     {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 

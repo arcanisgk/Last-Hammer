@@ -8,18 +8,15 @@ class App
 {
     private static $instance = null;
 
-    public static function _getInstance()
+    public static function getInstance(): App
     {
-
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
+        if (!self::$instance instanceof self) self::$instance = new self;
         return self::$instance;
     }
 
     public function checkInstall()
     {
-        $file_mgr =  File::_getInstance();
+        $file_mgr =  File::getInstance();
         $confinc = PATHS['SOFTWARE'] . 'config-inc.php';
         $valInstall = $file_mgr->validateLocalFile($confinc);
         if (!$valInstall) {
@@ -55,7 +52,7 @@ class App
 
     public function runClose()
     {
-        $log = Log::_getInstance();
+        $log = Log::getInstance();
         if (!isset($_SESSION)) {
             $cont = $log->buildLogEvent();
             $log->setLogReg($cont, 'user');
@@ -68,19 +65,19 @@ class App
                 $log->setLogReg($cont, 'system');
             }
         }
-        Vars::_getInstance()->destVars();
+        Vars::getInstance()->destVars();
     }
 
     public function runInit()
     {
-        Vars::_getInstance()->initVar();
-        Log::_getInstance()->initLog();
-        ExecTime::_getInstance()->initTimeExec();
-        Memory::_getInstance()->initMemoryUsage();
-        Session::_getInstance()->initSession();
-        Http::_getInstance()->initClientCommunication();
-        Device::_getInstance()->detectDevice();
-        User::_getInstance()->getUserStatus();
+        Vars::getInstance()->initVar();
+        Log::getInstance()->initLog();
+        ExecTime::getInstance()->initTimeExec();
+        Memory::getInstance()->initMemoryUsage();
+        Session::getInstance()->initSession();
+        Http::getInstance()->initClientCommunication();
+        Device::getInstance()->detectDevice();
+        User::getInstance()->getUserStatus();
 
     }
 }

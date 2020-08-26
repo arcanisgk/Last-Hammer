@@ -1,8 +1,8 @@
 <?php
 
 // you can define only one of!
-define('BASE_PATH', realpath(dirname(__DIR__, 2))); // Use this if you move autoloader 2 directories deeper from index.php
-//define('BASE_PATH', realpath(dirname(__DIR__, 1))); // Use this if you move autoloader 1 directory deeper from index.php
+//define('BASE_PATH', realpath(dirname(__DIR__, 2))); // Use this if you move autoloader 2 directories deeper from index.php
+define('BASE_PATH', realpath(dirname(__DIR__, 1))); // Use this if you move autoloader 1 directory deeper from index.php
 //define('BASE_PATH', realpath(dirname(__FILE__))); // use this if on the same level as index.php
 
 function last_hammer_autoloader($class)
@@ -14,7 +14,7 @@ function last_hammer_autoloader($class)
     }
     unset($parts[0]);
     unset($parts[1]);
-    $filename = BASE_PATH . '/apps/Classes/' . implode('/', $parts) . '.php';
+    $filename = BASE_PATH . '/app/Classes/' . implode('/', $parts) . '.php';
     /** @noinspection PhpIncludeInspection */
     require_once($filename);
 }
