@@ -1,4 +1,8 @@
-# Last Hammer
+## `Last-Hammer` project
+
+[![State](https://img.shields.io/static/v1?label=alpha&message=0.1.3&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/v0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
+![Updated](https://img.shields.io/static/v1?label=upated&message=2020-08-26+18:31:07&color=lightgray 'Latest known update date') <!-- __SEMANTIC_UPDATED_LINE__ -->
+[![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.2.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_2_0.php)
 
 Last Hamer is a pre-built platform for creating applications, as if you were working with a framework; but particularly it has a graphical interface that allows starting in the following way:
 -   Configure the System data.
@@ -13,13 +17,13 @@ Note: It also has support for the Execution of Crons Jobs; but requires access t
 
 ## What you need to know when starting development:
 
-Mainly used PHP in its latest version 7.4
-HTML5 and a custom version of Bootstrap will also be used simply to enrich the color palette (Bootstrap 4.5).
-Also CSS3 is used and in the Extensions area you will find the additional libraries and their versions.
+- Mainly used PHP in its latest version 7.2
+- HTML5 and a custom version of Bootstrap will also be used simply to enrich the color palette (Bootstrap 4.5).
+- Also CSS3 is used and in the Extensions area you will find the additional libraries and their versions.
 
 ## PSR version:
 
-Last-Hammer does use a lastest version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.Last-Hammer does use the latest versions of PSR or code style, we can really consider that it uses a fusion of design patterns to improve the reading of the code and the development learning curve, the whole system is embedded in the objects and constants defined, this will be better explained in the definition of classes, functions, variables and constants.
+Last-Hammer does not use a specific version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.
 
 #### (The architecture proposed)
 
@@ -29,16 +33,19 @@ Last-Hammer does use a lastest version of PSR or code style, we can really consi
 
 Thank you for considering contributing to the Last Hammer project! The contribution guide can be found in the Last Hammer documentation.
 
-Security Vulnerabilities
-If you discover a security vulnerability within Last Hammer, please open and ISSUES TICKET.
+### Security Vulnerabilities  
+If you discover a security vulnerability within Last Hammer, please DO NOT create issue, please contact the author and/or security team instead.
 
-License
+## License 
+
 The Last Hammer project is open-source software licensed under the MIT license.
 
 ## Installation from GitHub:
 
+Please clone `master` branch to required directory
+
 ```
-https://github.com/arcanisgk/Last-Hammer.git
+git clone https://github.com/arcanisgk/Last-Hammer.git
 ```
 
 Or download and unzip
@@ -47,13 +54,16 @@ Or download and unzip
 https://github.com/arcanisgk/Last-Hammer/archive/master.zip
 ```
 
-## First step: Setup .htaccess
+## Initial configuration
 
-set correct path to error handler:
+#### Step 1.: Setup .htaccess
+
+set correct path to error handler with pattern `<DocumentRoot>/configs/error/error.php`  
+Where `<DocumentRoot>` is equal to your vhost's `DocumentRoot` directive, samples:
 
 ```
-    #php_value auto_prepend_file "/var/www/html/configs/error/error.php"
-    php_value auto_prepend_file "C:/xampp/htdocs/configs/error/error.php"
+#php_value auto_prepend_file "/var/www/html/configs/error/error.php"
+php_value auto_prepend_file "C:/xampp/htdocs/configs/error/error.php"
 ```
 
 And Remove Error not supported from the list:
@@ -119,7 +129,7 @@ And Remove Error not supported from the list:
     ErrorDocument 511 /configs/error/errorstatus.php
 ```
 
-## Second step: Setup DB Connection
+#### Step 2.: Setup DB Connection
 
 go to and Edit: `/build/setup/config-inc.php`
 
@@ -150,7 +160,7 @@ CoreApp::$ovars['SYS']['CONF'] = [
 ];
 ```
 
-## Third step: Setup Software Configuration
+#### Step 3.: Setup Software Configuration
 
 go to and Edit: `/configs/const /conf.xml`
 
@@ -175,7 +185,7 @@ Set your software configuration:
 </data>
 ```
 
-## Step Four: Setup Client Configuration
+#### Step 4.: Setup Client Configuration
 
 go to and Edit: `/configs/const/client.xml`
 
@@ -216,3 +226,4 @@ Set your Client configuration:
     </software>
 </data>
 ```
+

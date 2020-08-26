@@ -1,47 +1,14 @@
 <?php
 
-use IcarosNet\LastHammer\Gen\App;
-use IcarosNet\LastHammer\Mvc\Controller;
-
-require_once 'configs/const/loader.php';
-require_once 'autoloader.php';
-
-class CoreApp
-{
-    public static $oclass = null;
-
-    public static $ovars = null;
-
-    private static $instance = null;
-
-    public static function _getInstance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
-
-    public function goCoreApp()
-    {
-
-
-        $this->popClass();
-        $app = App::_getInstance();
-        $controller = Controller::_getInstance();
-
-        //$app->runInit();
-        //$controller->runController();
-        //$app->runClose();
-    }
-
-    private function popClass()
-    {
-        require_once FILEROOT . '/apps/class-manager.php';
-        ClassManager::_getInstance()->LoadClass();
-    }
+$requiredVersion = '7.2';
+if (!version_compare(phpversion(), $requiredVersion, '>=')) {
+    die(sprintf("This project requires PHP ver. %s or higher", $requiredVersion));
 }
 
-ob_start();
+use IcarosNet\LastHammer\CoreApp;
 
-CoreApp::_getInstance()->goCoreApp();
+require_once 'configs/const/loader.php';
+require_once 'app/autoloader.php';
+
+ob_start();
+CoreApp::getInstance()->goCoreApp();

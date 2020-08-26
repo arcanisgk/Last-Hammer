@@ -6,21 +6,17 @@
  */
 
 $ver = '';
-
 if (php_sapi_name() == 'cli') {
     $ver = 'cli';
     if (!isset($_SERVER['PWD'])) {
-        $path = dirname(__DIR__) . '\\';
+        $path = dirname(__DIR__).'\\';
     } else {
-        $path = dirname($_SERVER['PWD']) . '\\';
+        $path = dirname($_SERVER['PWD']).'\\';
     }
 } else {
-    $ver = 'web';
-    $dir = basename($_SERVER['DOCUMENT_ROOT']);
-    $path = dirname(__FILE__);
-    $path = substr($path, 0, strpos($path, $dir)) . $dir . '\\';
+    $ver  = 'web';
+    $path = $_SERVER['DOCUMENT_ROOT'];
 }
-
 $path = (defined('FILEROOT_MASTER') ? FILEROOT_MASTER : $path);
 
 if (!defined('VERSYSTEM')) {
@@ -32,10 +28,9 @@ if (!defined('FILEROOT')) {
 if (!defined('CONST_PATH')) {
     define('CONST_PATH', 'configs/const/');
 }
-
-function ArrayChangeKeyCaseRecursive($client_data)
+function ArrayChangeKeyCaseRecursive($clien_data)
 {
-    return array_map(function($data) {
+    return array_map(function ($data) {
         if (is_array($data)) {
             $data = ArrayChangeKeyCaseRecursive($data);
         } else {
@@ -44,13 +39,13 @@ function ArrayChangeKeyCaseRecursive($client_data)
             }
         }
         return $data;
-    }, array_change_key_case($client_data, CASE_UPPER));
+    }, array_change_key_case($clien_data, CASE_UPPER));
 }
 
-$client_xml = simplexml_load_string(file_get_contents(FILEROOT . CONST_PATH . 'client.xml'));
-$client_data = json_decode(json_encode($client_xml), true);
-$conf_xml = simplexml_load_string(file_get_contents(FILEROOT . CONST_PATH . 'conf.xml'));
-$conf_data = json_decode(json_encode($conf_xml), true);
+$client_xml = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'client.xml'));
+$clien_data = json_decode(json_encode($client_xml), true);
+$conf_xml   = simplexml_load_string(file_get_contents(FILEROOT.CONST_PATH.'conf.xml'));
+$conf_data  = json_decode(json_encode($conf_xml), true);
 
 if (!defined('ENVIRONMENT')) {
     define('ENVIRONMENT', 0);
@@ -62,35 +57,32 @@ if ('cli' == $ver) {
     if (!defined('PRES')) {
         define('PRES', '');
     }
-    if (!defined('PREE')) {
-        define('PREE', '');
+    if (!defined('PRES')) {
+        define('PRES', '');
     }
 } else {
     if (!defined('EOL_SYS')) {
         define('EOL_SYS', '<br>');
     }
     if (!defined('PRES')) {
-        define('PRES', '<pre style="font-size:12px; margin: 0;">');
+        define('PRES', '<pre style="font-size:12px; margin: 0px;">');
     }
     if (!defined('PREE')) {
         define('PREE', '</pre>');
     }
 }
 if (!defined('CLIENT_DATA')) {
-    define('CLIENT_DATA', ArrayChangeKeyCaseRecursive($client_data));
+    define('CLIENT_DATA', ArrayChangeKeyCaseRecursive($clien_data));
 }
 if (!defined('CONF_DATA')) {
     define('CONF_DATA', ArrayChangeKeyCaseRecursive($conf_data));
 }
 date_default_timezone_set(CLIENT_DATA['SOFTWARE']['ZONE']);
-/** @noinspection PhpIncludeInspection */
-require_once FILEROOT . CONST_PATH . 'security.php';
-/** @noinspection PhpIncludeInspection */
-require_once FILEROOT . CONST_PATH . 'constant.php';
+require_once FILEROOT.CONST_PATH.'security.php';
+require_once FILEROOT.CONST_PATH.'constant.php';
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
     $data = trim(file_get_contents('php://input'));
-    $to_set = null;
     if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') == 0) {
         $to_set = 'POST';
     } elseif (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') == 0) {
@@ -115,7 +107,7 @@ if (!defined('REQUEST_TYPE')) {
 }
 
 if (!defined('MSGINTERFACE')) {
-    define('MSGINTERFACE', 'The system is linked to interface data, some delay may occur at start or end.');
+    define('MSGTOUNIX', 'The system is linked to interface data, some delay may occur at start or end.');
 }
 if (!defined('APPANDROID')) {
     define('APPANDROID', CLIENT_DATA['SOFTWARE']['APPANDROID']);
