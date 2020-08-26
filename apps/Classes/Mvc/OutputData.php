@@ -1,5 +1,10 @@
 <?php
-class ClassOutputdataManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+use IcarosNet\LastHammer\Gen\Vars;
+
+class OutputData
 {
     private static $instance = null;
 
@@ -90,12 +95,12 @@ class ClassOutputdataManager
             $nav  = (true !== CoreApp::$ovars['EVENT']['NAV'] ? false : CoreApp::$ovars['EVENT']['NAV']);
             $data = (null == CoreApp::$ovars['DISPLAY']['HTML']['DATA'] ? 'No data to display' : CoreApp::$ovars['DISPLAY']['HTML']['DATA']);
             $json = (true !== CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON'] ? false : CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']);
-            $data = CoreApp::$oclass['MVC']['LANG']->getTranslation($data);
+            $data = Lang::_getInstance()->getTranslation($data);
             if (!$json) {
-                $data = CoreApp::$oclass['GEN']['VARS']->scapeQuote2Json($data);
+                $data = Vars::_getInstance()->scapeQuote2Json($data);
             }
             $to_client   = ['show' => $show, 'in' => $in, 'data' => $data, 'ref' => $ref, 'nav' => $nav];
-            $is_formated = CoreApp::$oclass['GEN']['VARS']->evalArray2JSON($to_client);
+            $is_formated = Vars::_getInstance()->evalArray2JSON($to_client);
             $last_terror = error_get_last();
             $any_header  = headers_sent();
             if (true == $is_formated && null == $last_terror && !$any_header) {
@@ -142,7 +147,7 @@ class ClassOutputdataManager
         if (1 == $output) {
             $html = [];
             foreach (CoreApp::$ovars['DISPLAY']['TOBROWSER'] as $key => $value) {
-                $html[] = CoreApp::$oclass['MVC']['LANG']->getTranslation($value);
+                $html[] = Lang::_getInstance()->getTranslation($value);
             }
             $htmlOutput = '';
             if (true == CoreApp::$ovars['DISPLAY']['HTML']['OUTJSON']) {
@@ -156,7 +161,7 @@ class ClassOutputdataManager
             if (null == $lasterror && !$anyHeader) {
                 echo $htmlOutput;
             } else {
-                CoreApp::$oclass['GEN']['VARS']->VarExport_C($lasterror);
+                Vars::_getInstance()->VarExport_C($lasterror);
             }
         }
     }

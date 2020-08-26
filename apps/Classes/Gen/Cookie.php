@@ -1,16 +1,17 @@
 <?php
 
-class ClassCookiesManager
+namespace IcarosNet\LastHammer\Gen;
+class Cookie
 {
     private static $instance = null;
 
     public static function _getInstance()
     {
 
-        if (!self ::$instance instanceof self) {
-            self ::$instance = new self;
+        if (!self::$instance instanceof self) {
+            self::$instance = new self;
         }
-        return self ::$instance;
+        return self::$instance;
     }
 
     public function destCookies()

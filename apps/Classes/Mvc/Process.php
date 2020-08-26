@@ -1,7 +1,12 @@
 <?php
-class ClassProcessManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+use Exception;
+
+class Process
 {
-    static $instance = null;
+    private static $instance = null;
 
     public static function _getInstance()
     {
@@ -80,12 +85,7 @@ class ClassProcessManager
     public function runProcess()
     {
         try {
-            //CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, true, $_POST);
 
-            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = '2';
-            throw new Exception("Example Error throw.");
-
-            /*
             CoreApp::$ovars['SYS'] = array_merge(
                 CoreApp::$ovars['SYS'],
                 [
@@ -99,9 +99,9 @@ class ClassProcessManager
             CoreApp::$oclass['FORM'] = [];
 
             //echo var_dump($_POST);
-            //CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 'k';
-            //throw new Exception("Example Error throw.");
-            //die;
+            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 'k';
+            throw new Exception("Example Error throw.");
+            die;
             //CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 3;
             //throw new Exception("Example Error throw.");
             //echo 'Hello World';
@@ -134,7 +134,7 @@ class ClassProcessManager
             */
         } catch (Exception $e) {
             CoreApp::$ovars['SYS']['ERROR']['ARRAY'] = $e;
-            CoreApp::$oclass['MVC']['ERROR']->getError();
+            Error::_getInstance()->getError();
         }
     }
 }

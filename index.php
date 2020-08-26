@@ -1,5 +1,10 @@
 <?php
+
+use IcarosNet\LastHammer\Gen\App;
+use IcarosNet\LastHammer\Mvc\Controller;
+
 require_once 'configs/const/loader.php';
+require_once 'autoloader.php';
 
 class CoreApp
 {
@@ -11,27 +16,32 @@ class CoreApp
 
     public static function _getInstance()
     {
-        if (!self ::$instance instanceof self) {
-            self ::$instance = new self;
+        if (!self::$instance instanceof self) {
+            self::$instance = new self;
         }
-        return self ::$instance;
+        return self::$instance;
     }
 
     public function goCoreApp()
     {
-        $this -> popClass();
-        self ::$oclass['GEN']['APP'] -> runInit();
-        self ::$oclass['MVC']['CONTROLLER'] -> runController();
-        self ::$oclass['GEN']['APP'] -> runClose();
 
+
+        $this->popClass();
+        $app = App::_getInstance();
+        $controller = Controller::_getInstance();
+
+        $app->runInit();
+        $controller->runController();
+        $app->runClose();
     }
 
     private function popClass()
     {
         require_once FILEROOT . '/apps/class-manager.php';
-        ClassManager ::_getInstance() -> LoadClass();
+        ClassManager::_getInstance()->LoadClass();
     }
 }
 
 ob_start();
-CoreApp ::_getInstance() -> goCoreApp();
+
+CoreApp::_getInstance()->goCoreApp();

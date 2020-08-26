@@ -1,5 +1,12 @@
 <?php
-class ClassTemplateManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+use IcarosNet\LastHammer\Gen\App;
+use IcarosNet\LastHammer\Gen\File;
+use IcarosNet\LastHammer\Gen\Vars;
+
+class Template
 {
     public $display;
 
@@ -49,10 +56,10 @@ class ClassTemplateManager
 
     public function getView($template)
     {
-        $valsoftware    = CoreApp::$oclass['GEN']['APP']->checkInstall();
+        $valsoftware    = App::_getInstance()->checkInstall();
         $this->display  = &CoreApp::$ovars['DISPLAY']['HTML'];
-        $this->file_mgr = &CoreApp::$oclass['GEN']['FILES'];
-        //CoreApp::$oclass['GEN']['VARS']->expVariable(true, true, false, false, $valsoftware);
+        $this->file_mgr = File::_getInstance();
+//        Vars::_getInstance()->expVariable(true, true, false, false, $valsoftware);
         if (false !== $valsoftware) {
             (1 === $valsoftware ? $this->getLicenseForm() : '');
             (2 === $valsoftware ? $this->getUpdateForm() : '');
@@ -123,7 +130,7 @@ class ClassTemplateManager
 
     private function getHtmlLoginContent()
     {
-        CoreApp::$oclass['MVC']['LANG']->loadLang($this->dicfiles['login_dic']);
+        Lang::_getInstance()->loadLang($this->dicfiles['login_dic']);
         $this->display['LOGIN'] = $this->file_mgr->getFileContent($this->tplfiles['login']);
     }
 

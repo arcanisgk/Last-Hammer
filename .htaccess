@@ -1,5 +1,6 @@
 # Personaliced control Error
 #php_value auto_prepend_file "/var/www/html/configs/error/error.php"
+#php_value auto_prepend_file "/www/githubprojects.loc/Last-Hammer/configs/error/error.php"
 php_value auto_prepend_file "C:/xampp/htdocs/dev/t2/Last-Hammer/configs/error/error.php"
 # Disable directory browsing
 Options -Indexes

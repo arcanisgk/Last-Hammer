@@ -1,45 +1,49 @@
 <?php
 
-class ClassDateManager
+namespace IcarosNet\LastHammer\Gen;
+use CoreApp;
+use Exception;
+
+class Date
 {
     private static $instance = null;
-
-    public static function _getInstance()
-    {
-
-        if (!self ::$instance instanceof self) {
-            self ::$instance = new self;
-        }
-        return self ::$instance;
-    }
 
     public function ValidateDate($date)
     {
         return strtotime($date) != false;
     }
 
+    public static function _getInstance()
+    {
+
+        if (!self::$instance instanceof self) {
+            self::$instance = new self;
+        }
+        return self::$instance;
+    }
+
     public function calcRunTime($inputSeconds = 0)
     {
         $secondsInAMinute = 60;
-        $secondsInAnHour = 60 * $secondsInAMinute;
-        $secondsInADay = 24 * $secondsInAnHour;
-        $days = floor($inputSeconds / $secondsInADay);
-        $hourSeconds = $inputSeconds % $secondsInADay;
-        $hours = floor($hourSeconds / $secondsInAnHour);
-        $minuteSeconds = $hourSeconds % $secondsInAnHour;
-        $minutes = floor($minuteSeconds / $secondsInAMinute);
+        $secondsInAnHour  = 60 * $secondsInAMinute;
+        $secondsInADay    = 24 * $secondsInAnHour;
+        $days             = floor($inputSeconds / $secondsInADay);
+        $hourSeconds      = $inputSeconds % $secondsInADay;
+        $hours            = floor($hourSeconds / $secondsInAnHour);
+        $minuteSeconds    = $hourSeconds % $secondsInAnHour;
+        $minutes          = floor($minuteSeconds / $secondsInAMinute);
         $remainingSeconds = $minuteSeconds % $secondsInAMinute;
-        $seconds = ceil($remainingSeconds);
-        $sections = [
-            'Day' => (int)$days,
-            'Hour' => (int)$hours,
-            'Minute' => (int)$minutes,
-            'Second' => (int)$seconds
+        $seconds          = ceil($remainingSeconds);
+        $sections         = [
+            'Day'    => (int) $days,
+            'Hour'   => (int) $hours,
+            'Minute' => (int) $minutes,
+            'Second' => (int) $seconds
         ];
         $timeParts = [];
         foreach ($sections as $name => $value) {
             if ($value > 0) {
-                $timeParts[] = $value . ' ' . $name . (1 == $value ? '' : 's');
+                $timeParts[] = $value.' '.$name.(1 == $value ? '' : 's');
             }
         }
         $result = implode(', ', $timeParts);
@@ -84,22 +88,22 @@ class ClassDateManager
             }
             if (false !== $lang) {
                 if ('en' == $lang) {
-                    CoreApp ::$ovars['SYS']['ERROR']['TYPE'] = 0;
+                    CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 0;
                     throw new Exception("The default date generation is in English, you cannot convert it to English.");
                 } else {
                     if ('G' == $format || 'H' == $format) {
-                        return $this -> translateDate($gendate, $lang);
+                        return $this->translateDate($gendate, $lang);
                     } else {
-                        CoreApp ::$ovars['SYS']['ERROR']['TYPE'] = 0;
-                        throw new Exception("Hello, a date manipulation error was detected, attempt to translate to (" . $lang . ") with the format: (" . $format . ") it's not possible!");
+                        CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 0;
+                        throw new Exception("Hello, a date manipulation error was detected, attempt to translate to (".$lang.") with the format: (".$format.") it's not possible!");
                     }
                 }
             } else {
                 return $gendate;
             }
         } catch (Exception $e) {
-            CoreApp ::$ovars['SYS']['ERROR']['TYPE'] = 0;
-            echo $e -> getMessage();
+            CoreApp::$ovars['SYS']['ERROR']['TYPE'] = 0;
+            echo $e->getMessage();
             //exit;
             /*
         CoreApp::$ObjSiS['SYS']['ERROR']['ARR'] = $e;

@@ -1,5 +1,12 @@
 <?php
-class ClassErrorManager
+
+namespace IcarosNet\LastHammer\Mvc;
+use CoreApp;
+use IcarosNet\LastHammer\Gen\Date;
+use IcarosNet\LastHammer\Gen\File;
+use IcarosNet\LastHammer\Gen\Log;
+
+class Error
 {
     public $display;
 
@@ -25,15 +32,15 @@ class ClassErrorManager
     public function getError()
     {
         // Vairable Usage
-        CoreApp::$oclass['MVC']['LANG']->loadLang(PATHS['DIC'].'error/dic.csv');
+        Lang::_getInstance()->loadLang(PATHS['DIC'].'error/dic.csv');
         (isset($_SESSION['Username']) ? list($username, $id_user) = [$_SESSION['username'], $_SESSION['id_user']] : list($username, $id_user) = ['Unknown', 'Unknown']);
         $sis_obj                       = &CoreApp::$ovars;
-        $this->file_mgr                = &CoreApp::$oclass['GEN']['FILES'];
+        $this->file_mgr                = File::_getInstance();
         $this->display                 = &CoreApp::$ovars['DISPLAY']['HTML'];
         $error_smg                     = '';
         $error_log                     = '';
-        $c_date                        = CoreApp::$oclass['GEN']['DATE']->genDate('H', 'es');
-        $c_hour                        = CoreApp::$oclass['GEN']['DATE']->genDate('C');
+        $c_date                        = Date::_getInstance()->genDate('H', 'es');
+        $c_hour                        = Date::_getInstance()->genDate('C');
         $form                          = (null != $sis_obj['SYS']['FORM']) ? $sis_obj['SYS']['FORM'] : 'Form Unknown';
         $event                         = (null != $sis_obj['SYS']['PROCESS']) ? $sis_obj['SYS']['PROCESS'] : 'Not Detected';
         $error_type                    = (null != $sis_obj['SYS']['ERROR']['TYPE']) ? $sis_obj['SYS']['ERROR']['TYPE'] : null;
@@ -73,7 +80,7 @@ class ClassErrorManager
             }
         }
         //Error Log:
-        CoreApp::$oclass['GEN']['LOGS']->setLogReg($this->display['ERROR']['LOG'], 'error');
+        Log::_getInstance()->setLogReg($this->display['ERROR']['LOG'], 'error');
         //Error Output:
 
         if ('email' == $error_type) {
@@ -93,7 +100,7 @@ class ClassErrorManager
             CoreApp::$ovars['EVENT']['REFRESH']        = (null == CoreApp::$ovars['EVENT']['REFRESH'] ? false : true);
             CoreApp::$ovars['EVENT']['NAV']            = (null == CoreApp::$ovars['EVENT']['NAV'] ? false : true);
             CoreApp::$ovars['DISPLAY']['HTML']['DATA'] = $this->display['ERROR']['SMG'];
-            CoreApp::$oclass['MVC']['OUTPUTDATA']->showEvent(1);
+            OutputData::_getInstance()->showEvent(1);
         }
     }
 
