@@ -19,8 +19,8 @@ class Session
     public function destUserSession($why)
     {
         session_destroy();
-        \IcarosNet\LastHammer\Gen\Cookie::_getInstance()->destCookies();
-        \IcarosNet\LastHammer\Gen\ExecTime::_getInstance()->execRefresh(['time' => 0, 'why' => $why]);
+        Cookie::_getInstance()->destCookies();
+        ExecTime::_getInstance()->execRefresh(['time' => 0, 'why' => $why]);
         exit;
     }
 
@@ -41,7 +41,7 @@ class Session
             $_SESSION['ACTIVITY'] = SESSION_TIME_EXPIRE;
             $_SESSION['LANG']     = DEFAULTLANG;
             $_SESSION['HOME']     = HOME;
-            \IcarosNet\LastHammer\Gen\Cookie::_getInstance()->initCookies();
+            Cookie::_getInstance()->initCookies();
         } else {
             if (SESSION_EXPIRATION == true) {
                 if ($_SESSION['TIMEOUT'] < time()) {

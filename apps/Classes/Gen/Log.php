@@ -25,16 +25,16 @@ class Log
     public function initLog()
     {
         $logsname = LOG_TYPES;
-        $logdate  = \IcarosNet\LastHammer\Gen\Date::_getInstance()->genDate('E');
+        $logdate  = Date::_getInstance()->genDate('E');
         foreach ($logsname as $logname => $availability) {
             if ($availability) {
                 $pathlog     = PATHS['LOGS'].$logname.'/';
                 $fullpathlog = PATHS['LOGS'].$logname.'/'.$logdate.'.log';
-                if (!\IcarosNet\LastHammer\Gen\File::_getInstance()->validateLocalDirectory($pathlog)) {
-                    \IcarosNet\LastHammer\Gen\File::_getInstance()->createLocalDirectory($pathlog);
+                if (!File::_getInstance()->validateLocalDirectory($pathlog)) {
+                    File::_getInstance()->createLocalDirectory($pathlog);
                 }
-                if (!\IcarosNet\LastHammer\Gen\File::_getInstance()->validateLocalFile($fullpathlog)) {
-                    \IcarosNet\LastHammer\Gen\File::_getInstance()->crateLocalFile($fullpathlog);
+                if (!File::_getInstance()->validateLocalFile($fullpathlog)) {
+                    File::_getInstance()->crateLocalFile($fullpathlog);
                 }
             }
         }
@@ -43,8 +43,8 @@ class Log
     public function setLogReg($cont, $log)
     {
         //echo var_dump(CoreApp::$oclass);
-        $date = \IcarosNet\LastHammer\Gen\Date::_getInstance() ->genDate('E');
+        $date = Date::_getInstance() ->genDate('E');
         $path = PATHS['LOGS'].$log.'/'.$date.'.log';
-        \IcarosNet\LastHammer\Gen\File::_getInstance()->writeFile($cont, $path);
+        File::_getInstance()->writeFile($cont, $path);
     }
 }

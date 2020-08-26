@@ -2,7 +2,9 @@
 
 namespace IcarosNet\LastHammer\Mvc;
 use CoreApp;
+use IcarosNet\LastHammer\Gen\Date;
 use IcarosNet\LastHammer\Gen\File;
+use IcarosNet\LastHammer\Gen\Log;
 
 class Error
 {
@@ -37,8 +39,8 @@ class Error
         $this->display                 = &CoreApp::$ovars['DISPLAY']['HTML'];
         $error_smg                     = '';
         $error_log                     = '';
-        $c_date                        = \IcarosNet\LastHammer\Gen\Date::_getInstance()->genDate('H', 'es');
-        $c_hour                        = \IcarosNet\LastHammer\Gen\Date::_getInstance()->genDate('C');
+        $c_date                        = Date::_getInstance()->genDate('H', 'es');
+        $c_hour                        = Date::_getInstance()->genDate('C');
         $form                          = (null != $sis_obj['SYS']['FORM']) ? $sis_obj['SYS']['FORM'] : 'Form Unknown';
         $event                         = (null != $sis_obj['SYS']['PROCESS']) ? $sis_obj['SYS']['PROCESS'] : 'Not Detected';
         $error_type                    = (null != $sis_obj['SYS']['ERROR']['TYPE']) ? $sis_obj['SYS']['ERROR']['TYPE'] : null;
@@ -78,7 +80,7 @@ class Error
             }
         }
         //Error Log:
-        \IcarosNet\LastHammer\Gen\Log::_getInstance()->setLogReg($this->display['ERROR']['LOG'], 'error');
+        Log::_getInstance()->setLogReg($this->display['ERROR']['LOG'], 'error');
         //Error Output:
 
         if ('email' == $error_type) {
@@ -98,7 +100,7 @@ class Error
             CoreApp::$ovars['EVENT']['REFRESH']        = (null == CoreApp::$ovars['EVENT']['REFRESH'] ? false : true);
             CoreApp::$ovars['EVENT']['NAV']            = (null == CoreApp::$ovars['EVENT']['NAV'] ? false : true);
             CoreApp::$ovars['DISPLAY']['HTML']['DATA'] = $this->display['ERROR']['SMG'];
-            \IcarosNet\LastHammer\Mvc\OutputData::_getInstance()->showEvent(1);
+            OutputData::_getInstance()->showEvent(1);
         }
     }
 

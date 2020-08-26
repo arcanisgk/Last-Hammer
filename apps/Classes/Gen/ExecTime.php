@@ -18,7 +18,7 @@ class ExecTime
 
     public function execRefresh($hey)
     {
-        \IcarosNet\LastHammer\Gen\Vars::_getInstance()->destVars();
+        Vars::_getInstance()->destVars();
         echo '<meta http-equiv="refresh" content="'.$hey['time'].'"><script data-logout type="text/javascript">alert("'.$hey['why'].'");window.location.reload();</script>';
     }
 
@@ -26,7 +26,7 @@ class ExecTime
     {
         $this->endTimeExec();
         $time                                           = number_format(CoreApp::$ovars['SYS']['EXECTIME']['END'] - CoreApp::$ovars['SYS']['EXECTIME']['INIT'], 10);
-        CoreApp::$ovars['SYS']['EXECTIME']['ENDOUTPUT'] = \IcarosNet\LastHammer\Gen\Date::_getInstance()->calcRunTime($time);
+        CoreApp::$ovars['SYS']['EXECTIME']['ENDOUTPUT'] = Date::_getInstance()->calcRunTime($time);
     }
 
     public function initTimeExec()
