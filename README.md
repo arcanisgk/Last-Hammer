@@ -19,7 +19,7 @@ Also CSS3 is used and in the Extensions area you will find the additional librar
 
 ## PSR version:
 
-Last-Hammer does not use a specific version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.
+Last-Hammer does use a lastest version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.Last-Hammer does use the latest versions of PSR or code style, we can really consider that it uses a fusion of design patterns to improve the reading of the code and the development learning curve, the whole system is embedded in the objects and constants defined, this will be better explained in the definition of classes, functions, variables and constants.
 
 #### (The architecture proposed)
 
@@ -216,4 +216,3 @@ Set your Client configuration:
     </software>
 </data>
 ```
-

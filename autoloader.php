@@ -1,18 +1,21 @@
 <?php
-define('BASE_PATH', realpath(dirname(__FILE__)));
-function my_autoloader($class)
+//you can define only one of!
+//define('BASE_PATH', realpath(dirname(__DIR__, 2))); // Use this if you move autoloader 2 directories deeper from index.php
+//define('BASE_PATH', realpath(dirname(__DIR__, 1))); // Use this if you move autoloader 1 directory deeper from index.php
+define('BASE_PATH', realpath(dirname(__FILE__))); // use this if on the same level as index.php
+
+function lh_autoloader($class)
 {
-
     $parts = explode('\\', $class);
-
     $partsGiven = count($parts);
     if ($partsGiven < 3) {
-        throw new Exception(sprintf("This autoloder supports minimum 3 parts in namespace, %s given", $partsGiven), time());
+        throw new Exception(sprintf("This autoloader supports minimum 3 parts in namespace, %s given", $partsGiven), time());
     }
     unset($parts[0]);
     unset($parts[1]);
-    $filename = BASE_PATH . '/apps/Classes/' . implode('/', $parts) . '.php';
+    $filename = BASE_PATH . '/apps/class/' . implode('/', $parts) . '.php';
+    /** @noinspection PhpIncludeInspection */
     require_once($filename);
 }
 
-spl_autoload_register('my_autoloader');
+spl_autoload_register('lh_autoloader');

@@ -30,9 +30,9 @@ class CoreApp
         $app = App::_getInstance();
         $controller = Controller::_getInstance();
 
-        $app->runInit();
-        $controller->runController();
-        $app->runClose();
+        //$app->runInit();
+        //$controller->runController();
+        //$app->runClose();
     }
 
     private function popClass()

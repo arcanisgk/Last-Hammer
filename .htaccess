@@ -56,7 +56,7 @@ RedirectMatch 403 /\..*$
     Allow from all
 </Files>
 
-# Error And Status Handlers
+# Error And Status Handlers, get support from hostin to Remove if you get error 500
 ErrorDocument 100 /configs/error/errorstatus.php
 ErrorDocument 101 /configs/error/errorstatus.php
 ErrorDocument 102 /configs/error/errorstatus.php
