@@ -2,6 +2,7 @@
 
 namespace IcarosNet\LastHammer\Mvc;
 use CoreApp;
+use IcarosNet\LastHammer\Gen\File;
 
 class Error
 {
@@ -29,10 +30,10 @@ class Error
     public function getError()
     {
         // Vairable Usage
-        CoreApp::$oclass['MVC']['LANG']->loadLang(PATHS['DIC'].'error/dic.csv');
+        Lang::_getInstance()->loadLang(PATHS['DIC'].'error/dic.csv');
         (isset($_SESSION['Username']) ? list($username, $id_user) = [$_SESSION['username'], $_SESSION['id_user']] : list($username, $id_user) = ['Unknown', 'Unknown']);
         $sis_obj                       = &CoreApp::$ovars;
-        $this->file_mgr                = &CoreApp::$oclass['GEN']['FILES'];
+        $this->file_mgr                = File::_getInstance();
         $this->display                 = &CoreApp::$ovars['DISPLAY']['HTML'];
         $error_smg                     = '';
         $error_log                     = '';

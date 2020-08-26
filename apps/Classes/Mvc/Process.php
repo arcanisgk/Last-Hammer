@@ -134,7 +134,7 @@ class Process
             */
         } catch (Exception $e) {
             CoreApp::$ovars['SYS']['ERROR']['ARRAY'] = $e;
-            CoreApp::$oclass['MVC']['ERROR']->getError();
+            Error::_getInstance()->getError();
         }
     }
 }

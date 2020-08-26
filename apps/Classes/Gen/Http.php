@@ -65,7 +65,7 @@ class Http
 
     private function buildVirtualData($data)
     {
-        $var_mgr = &CoreApp::$oclass['GEN']['VARS'];
+        $var_mgr = Vars::_getInstance();
         if (is_array($data)) {
             $temp = [];
             foreach ($data as $key => $value) {

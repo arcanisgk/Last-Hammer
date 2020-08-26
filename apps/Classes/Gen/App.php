@@ -19,7 +19,7 @@ class App
 
     public function checkInstall()
     {
-        $file_mgr = &CoreApp::$oclass['GEN']['FILES'];
+        $file_mgr =  File::_getInstance();
         $confinc = PATHS['SOFTWARE'] . 'config-inc.php';
         $valInstall = $file_mgr->validateLocalFile($confinc);
         if (!$valInstall) {
@@ -55,9 +55,7 @@ class App
 
     public function runClose()
     {
-        $gen = &CoreApp::$oclass['GEN'];
-        $log = \IcarosNet\LastHammer\Gen\Log::_getInstance();
-        $vars = Vars::_getInstance();
+        $log = Log::_getInstance();
         if (!isset($_SESSION)) {
             $cont = $log->buildLogEvent();
             $log->setLogReg($cont, 'user');
@@ -70,15 +68,11 @@ class App
                 $log->setLogReg($cont, 'system');
             }
         }
-        $vars->destVars();
+        Vars::_getInstance()->destVars();
     }
 
     public function runInit()
     {
-
-        $gen = &CoreApp::$oclass['GEN'];
-
-
         Vars::_getInstance()->initVar();
         Log::_getInstance()->initLog();
         ExecTime::_getInstance()->initTimeExec();
@@ -86,7 +80,7 @@ class App
         Session::_getInstance()->initSession();
         Http::_getInstance()->initClientCommunication();
         Device::_getInstance()->detectDevice();
-        Log::_getInstance()->getUserStatus();
+        User::_getInstance()->getUserStatus();
 
     }
 }

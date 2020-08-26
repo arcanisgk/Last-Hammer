@@ -1,5 +1,10 @@
 <?php
+
+use IcarosNet\LastHammer\Gen\App;
+use IcarosNet\LastHammer\Mvc\Controller;
+
 require_once 'configs/const/loader.php';
+require_once 'autoloader.php';
 
 class CoreApp
 {
@@ -19,9 +24,11 @@ class CoreApp
 
     public function goCoreApp()
     {
+
+
         $this->popClass();
-        $app = \IcarosNet\LastHammer\Gen\App::_getInstance();
-        $controller = \IcarosNet\LastHammer\Mvc\Controller::_getInstance();
+        $app = App::_getInstance();
+        $controller = Controller::_getInstance();
 
         $app->runInit();
         $controller->runController();
@@ -36,4 +43,5 @@ class CoreApp
 }
 
 ob_start();
+
 CoreApp::_getInstance()->goCoreApp();
