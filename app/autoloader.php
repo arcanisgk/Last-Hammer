@@ -14,7 +14,7 @@ function last_hammer_autoloader($class)
     }
     unset($parts[0]);
     unset($parts[1]);
-    $filename = BASE_PATH . '/app/Classes/' . implode('/', $parts) . '.php';
+    $filename = BASE_PATH . '/app/src/' . implode('/', $parts) . '.php';
     /** @noinspection PhpIncludeInspection */
     require_once($filename);
 }

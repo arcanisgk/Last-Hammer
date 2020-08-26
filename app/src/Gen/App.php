@@ -16,7 +16,7 @@ class App
 
     public function checkInstall()
     {
-        $file_mgr =  File::getInstance();
+        $file_mgr = File::getInstance();
         $confinc = PATHS['SOFTWARE'] . 'config-inc.php';
         $valInstall = $file_mgr->validateLocalFile($confinc);
         if (!$valInstall) {

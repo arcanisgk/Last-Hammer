@@ -34,8 +34,9 @@ try {
 $paths = [
     'SOFTWARE'  => FILEROOT.'/build/setup/',
 
-    'CLASSGEN'  => FILEROOT.'/app/Classes/gen/',
-    'CLASSMVC'  => FILEROOT.'/app/Classes/mvc/',
+    'CLASSES'   => FILEROOT.'/app/src',
+    'CLASSGEN'  => FILEROOT.'/app/src/gen/',
+    'CLASSMVC'  => FILEROOT.'/app/src/mvc/',
     'CLASSEXT'  => FILEROOT.'/app/ext/',
     'CLASSCORE' => FILEROOT.'/app/core/',
 
