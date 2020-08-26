@@ -1,7 +1,7 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
-use CoreApp;
+use IcarosNet\LastHammer\CoreApp;
 use IcarosNet\LastHammer\Gen\Date;
 use IcarosNet\LastHammer\Gen\File;
 use IcarosNet\LastHammer\Gen\Log;

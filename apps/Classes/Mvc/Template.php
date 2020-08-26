@@ -1,10 +1,9 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
-use CoreApp;
+use IcarosNet\LastHammer\CoreApp;
 use IcarosNet\LastHammer\Gen\App;
 use IcarosNet\LastHammer\Gen\File;
-use IcarosNet\LastHammer\Gen\Vars;
 
 class Template
 {

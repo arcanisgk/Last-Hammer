@@ -1,47 +1,10 @@
 <?php
 
-use IcarosNet\LastHammer\Gen\App;
-use IcarosNet\LastHammer\Mvc\Controller;
+use IcarosNet\LastHammer\CoreApp;
 
 require_once 'configs/const/loader.php';
-require_once 'autoloader.php';
-
-class CoreApp
-{
-    public static $oclass = null;
-
-    public static $ovars = null;
-
-    private static $instance = null;
-
-    public static function _getInstance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self;
-        }
-        return self::$instance;
-    }
-
-    public function goCoreApp()
-    {
-
-
-        $this->popClass();
-        $app = App::_getInstance();
-        $controller = Controller::_getInstance();
-
-        $app->runInit();
-        $controller->runController();
-        $app->runClose();
-    }
-
-    private function popClass()
-    {
-        require_once FILEROOT . '/apps/class-manager.php';
-        ClassManager::_getInstance()->LoadClass();
-    }
-}
+require_once 'apps/core/autoloader.php';
 
 ob_start();
-
 CoreApp::_getInstance()->goCoreApp();
+

@@ -1,6 +1,7 @@
 <?php
 
 namespace IcarosNet\LastHammer\Mvc;
+use IcarosNet\LastHammer\CoreApp;
 use IcarosNet\LastHammer\Gen\Vars;
 
 class Controller
@@ -22,11 +23,11 @@ class Controller
         $output     = 1;
         $process    = null;
         $template   = null;
-        $stuser     = \CoreApp::$ovars['USER']['LOGGED'];
-        $isdata     = \CoreApp::$ovars['SYS']['HTTP']['STATE'];
-        $isdatatype = \CoreApp::$ovars['SYS']['HTTP']['METHOD'];
-        $iscron     = \CoreApp::$ovars['SYS']['SERVICE']['CRON'];
-        $iswser     = \CoreApp::$ovars['SYS']['SERVICE']['WEBSER'];
+        $stuser     = CoreApp::$ovars['USER']['LOGGED'];
+        $isdata     = CoreApp::$ovars['SYS']['HTTP']['STATE'];
+        $isdatatype = CoreApp::$ovars['SYS']['HTTP']['METHOD'];
+        $iscron     = CoreApp::$ovars['SYS']['SERVICE']['CRON'];
+        $iswser     = CoreApp::$ovars['SYS']['SERVICE']['WEBSER'];
         Lang::_getInstance()->routeLang();
         ($stuser ? ($isdata ? ('GET' == $isdatatype ? $template = 3 : $process = 1) : $template = 1) :
             ($isdata && 'POST' == $isdatatype ? ($iscron ? list($process, $output) = [1, null] :

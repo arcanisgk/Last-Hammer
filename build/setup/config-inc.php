@@ -2,6 +2,8 @@
 
 # ! Warning do not change DBDEFAULT_NAME, DBSOFT_NAME, DBSOFT_SUBSYSTEM
 
+use IcarosNet\LastHammer\CoreApp;
+
 CoreApp::$ovars['SYS']['CONF'] = [
     'SOFTWARE' => [
         'SOFT_VERSION'     => '1.0',

@@ -1,5 +1,7 @@
 <?php
-class ClassManager
+namespace IcarosNet\LastHammer;
+
+class Manager
 {
     private static $instance = null;
 

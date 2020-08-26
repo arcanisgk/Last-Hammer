@@ -1,8 +1,8 @@
 <?php
 
 namespace IcarosNet\LastHammer\Gen;
-use CoreApp;
 use Exception;
+use IcarosNet\LastHammer\CoreApp;
 
 class Vars
 {

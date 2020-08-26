@@ -2,7 +2,7 @@
 
 namespace IcarosNet\LastHammer\Gen;
 
-use CoreApp;
+use IcarosNet\LastHammer\CoreApp;
 
 class App
 {
