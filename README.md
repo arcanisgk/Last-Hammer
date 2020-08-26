@@ -1,7 +1,7 @@
 ## `Last-Hammer` project
 
-[![State](https://img.shields.io/static/v1?label=alpha&message=0.1.3&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
-![Updated](https://img.shields.io/static/v1?label=upated&message=2020-08-26+18:04:54&color=lightgray 'Latest known update date') <!-- __SEMANTIC_UPDATED_LINE__ -->
+[![State](https://img.shields.io/static/v1?label=alpha&message=0.1.3&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/v0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
+![Updated](https://img.shields.io/static/v1?label=upated&message=2020-08-26+18:31:07&color=lightgray 'Latest known update date') <!-- __SEMANTIC_UPDATED_LINE__ -->
 [![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.2.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_2_0.php)
 
 Last Hamer is a pre-built platform for creating applications, as if you were working with a framework; but particularly it has a graphical interface that allows starting in the following way:
