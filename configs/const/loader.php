@@ -26,8 +26,7 @@ if (!defined('FILEROOT')) {
     define('FILEROOT', $path);
 }
 if (!defined('CONST_PATH')) {
-    // TODO revert before final commit
-    define('CONST_PATH', '/configs/const/');
+    define('CONST_PATH', 'configs/const/');
 }
 function ArrayChangeKeyCaseRecursive($clien_data)
 {
