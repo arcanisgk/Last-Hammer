@@ -1,14 +1,13 @@
 <?php
 
-$requiredVersion = '7.2';
-if (!version_compare(phpversion(), $requiredVersion, '>=')) {
-    die(sprintf("This project requires PHP ver. %s or higher", $requiredVersion));
+namespace IcarosNet\LastHammer;
+if (!version_compare(phpversion(), '7.4', '>=')) {
+    die(sprintf("This project requires PHP ver. %s or higher", '7.4'));
 }
 
-use IcarosNet\LastHammer\CoreApp;
-
-require_once 'configs/const/loader.php';
-require_once 'app/autoloader.php';
+use IcarosNet\LastHammer\App\Core;
 
 ob_start();
-CoreApp::getInstance()->goCoreApp();
+require_once 'Autoloader.php';
+Autoloader::getInstance();
+Core::getInstance()->goCoreApp();

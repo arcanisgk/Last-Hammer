@@ -1,117 +1,39 @@
-# Personaliced control Error
-#php_value auto_prepend_file "/var/www/html/configs/error/error.php"
-#php_value auto_prepend_file "/www/githubprojects.loc/Last-Hammer/configs/error/error.php"
-php_value auto_prepend_file "C:/xampp/htdocs/dev/t2/Last-Hammer/configs/error/error.php"
-# Disable directory browsing
-Options -Indexes
-# Hide the contents of directories
-IndexIgnore *
-# Hide files of type .png, .zip, .jpg, .gif and .doc from listing
-IndexIgnore *.png *.zip *.jpg *.gif *.doc *.pdf *.txt *.jpeg *.log *.xml
-# Redirect file name with dot at begining
-RedirectMatch 403 /\..*$
-# Allow access to php files
-<Files *.log>
-    Deny from all
+<Files .user.ini>
+    deny from all
 </Files>
-<Files *.xml>
-    Deny from all
+<Files *error.php>
+    deny from all
 </Files>
-<Files *.php>
+#<Files index.php>
+#    deny from all
+#</Files>
+<Files server_error.php>
     Order Deny,Allow
-    Deny from all
-</Files>
-<Files index.php>
-    Order Allow,Deny
     Allow from all
 </Files>
-<Files index1.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-<Files signal.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-<Files phpinfo.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-# for testing
-<Files cron_dev.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-<Files ws_dev.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-# for testing
-<Files errorstatus.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-<Files test.php>
-    Order Allow,Deny
-    Allow from all
-</Files>
-
-# Error And Status Handlers
-ErrorDocument 100 /configs/error/errorstatus.php
-ErrorDocument 101 /configs/error/errorstatus.php
-ErrorDocument 102 /configs/error/errorstatus.php
-ErrorDocument 201 /configs/error/errorstatus.php
-ErrorDocument 202 /configs/error/errorstatus.php
-ErrorDocument 203 /configs/error/errorstatus.php
-ErrorDocument 204 /configs/error/errorstatus.php
-ErrorDocument 205 /configs/error/errorstatus.php
-ErrorDocument 206 /configs/error/errorstatus.php
-ErrorDocument 207 /configs/error/errorstatus.php
-ErrorDocument 208 /configs/error/errorstatus.php
-ErrorDocument 226 /configs/error/errorstatus.php
-ErrorDocument 300 /configs/error/errorstatus.php
-ErrorDocument 301 /configs/error/errorstatus.php
-ErrorDocument 302 /configs/error/errorstatus.php
-ErrorDocument 303 /configs/error/errorstatus.php
-ErrorDocument 304 /configs/error/errorstatus.php
-ErrorDocument 305 /configs/error/errorstatus.php
-ErrorDocument 307 /configs/error/errorstatus.php
-ErrorDocument 308 /configs/error/errorstatus.php
-ErrorDocument 400 /configs/error/errorstatus.php
-ErrorDocument 401 /configs/error/errorstatus.php
-ErrorDocument 402 /configs/error/errorstatus.php
-ErrorDocument 403 /configs/error/errorstatus.php
-ErrorDocument 404 /configs/error/errorstatus.php
-ErrorDocument 405 /configs/error/errorstatus.php
-ErrorDocument 406 /configs/error/errorstatus.php
-ErrorDocument 407 /configs/error/errorstatus.php
-ErrorDocument 408 /configs/error/errorstatus.php
-ErrorDocument 409 /configs/error/errorstatus.php
-ErrorDocument 410 /configs/error/errorstatus.php
-ErrorDocument 411 /configs/error/errorstatus.php
-ErrorDocument 412 /configs/error/errorstatus.php
-ErrorDocument 413 /configs/error/errorstatus.php
-ErrorDocument 414 /configs/error/errorstatus.php
-ErrorDocument 415 /configs/error/errorstatus.php
-ErrorDocument 416 /configs/error/errorstatus.php
-ErrorDocument 417 /configs/error/errorstatus.php
-ErrorDocument 421 /configs/error/errorstatus.php
-ErrorDocument 422 /configs/error/errorstatus.php
-ErrorDocument 423 /configs/error/errorstatus.php
-ErrorDocument 424 /configs/error/errorstatus.php
-ErrorDocument 426 /configs/error/errorstatus.php
-ErrorDocument 428 /configs/error/errorstatus.php
-ErrorDocument 429 /configs/error/errorstatus.php
-ErrorDocument 431 /configs/error/errorstatus.php
-ErrorDocument 451 /configs/error/errorstatus.php
-ErrorDocument 500 /configs/error/errorstatus.php
-ErrorDocument 501 /configs/error/errorstatus.php
-ErrorDocument 502 /configs/error/errorstatus.php
-ErrorDocument 503 /configs/error/errorstatus.php
-ErrorDocument 504 /configs/error/errorstatus.php
-ErrorDocument 505 /configs/error/errorstatus.php
-ErrorDocument 506 /configs/error/errorstatus.php
-ErrorDocument 507 /configs/error/errorstatus.php
-ErrorDocument 508 /configs/error/errorstatus.php
-ErrorDocument 510 /configs/error/errorstatus.php
-ErrorDocument 511 /configs/error/errorstatus.php
+<IfModule mod_php7.c>
+    #php_value auto_prepend_file "/var/www/html/test1/error/init_error.php"
+    php_value auto_prepend_file "C:/xampp/htdocs/dev/t1/error/init_error.php"
+</IfModule>
+ErrorDocument 400 /error/server_error.php
+ErrorDocument 401 /error/server_error.php
+ErrorDocument 402 /error/server_error.php
+ErrorDocument 403 /error/server_error.php
+ErrorDocument 404 /error/server_error.php
+ErrorDocument 405 /error/server_error.php
+ErrorDocument 406 /error/server_error.php
+ErrorDocument 407 /error/server_error.php
+ErrorDocument 408 /error/server_error.php
+ErrorDocument 409 /error/server_error.php
+ErrorDocument 410 /error/server_error.php
+ErrorDocument 411 /error/server_error.php
+ErrorDocument 412 /error/server_error.php
+ErrorDocument 413 /error/server_error.php
+ErrorDocument 414 /error/server_error.php
+ErrorDocument 415 /error/server_error.php
+ErrorDocument 500 /error/server_error.php
+ErrorDocument 501 /error/server_error.php
+ErrorDocument 502 /error/server_error.php
+ErrorDocument 503 /error/server_error.php
+ErrorDocument 504 /error/server_error.php
+ErrorDocument 505 /error/server_error.php
