@@ -219,7 +219,7 @@ Last-Hammer
 
 We recommend that all separate projects be configured first. before starting LH.
 
-[Implementation of other Side Projects]: https://github.com/arcanisgk/Last-Hammer/README.md#implementation-of-other-side-projects
+[Implementation of other Side Projects]: https://github.com/arcanisgk/Last-Hammer#implementation-of-other-side-projects
 
 ### Step 2.: go to installation URL:
 
