@@ -102,9 +102,7 @@ class handler_error
         require_once $_SERVER['DOCUMENT_ROOT'] . '/error/conf_error.php';
         $out_type = $this->GetRQType($conf['error']);
         if ($out_type == 'plain') {
-            /** @var array $conf */
             $error_skin = $_SERVER['DOCUMENT_ROOT'] . '/error/skin/sk_' . $conf['skin'] . '_handler_error.php';
-            //header('content-type: text/plain');
             if (file_exists($error_skin)) {
                 /** @noinspection PhpIncludeInspection */
                 require_once $error_skin;
