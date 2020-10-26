@@ -1,144 +1,238 @@
-## `Last-Hammer` Project
+# [LH] Last-Hammer Project PHP.
 
-[![License](https://img.shields.io/static/v1?label=license&message=GPL-3&color=yellowgreen)](https://en.wikipedia.org/wiki/GNU_General_Public_License#Version_3)
+[![GitHub license](https://img.shields.io/github/license/arcanisgk/Last-Hammer)](https://github.com/arcanisgk/Last-Hammer/blob/main/LICENSE)
 [![State](https://img.shields.io/static/v1?label=alpha&message=0.1.3&color=blue 'Latest known version')](https://github.com/arcanisgk/Last-Hammer/tree/v0.1.3-alpha) <!-- __SEMANTIC_VERSION_LINE__ -->
-![Updated](https://img.shields.io/static/v1?label=upated&message=2020-08-26+18:31:07&color=lightgray 'Latest known update date') <!-- __SEMANTIC_UPDATED_LINE__ -->
-[![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.2.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_2_0.php)
+[![GitHub issues](https://img.shields.io/github/issues/arcanisgk/Last-Hammer)](https://github.com/arcanisgk/Last-Hammer/issues)
+[![Minimum PHP version](https://img.shields.io/static/v1?label=PHP&message=7.4.0+or+higher&color=blue "Minimum PHP version")](https://www.php.net/releases/7_4_0.php)
 
-Last Hammer is a pre-built platform for creating applications, as if you were working with a framework; but particularly it has a graphical interface that allows starting in the following way:
--   Configure the System data.
--   Configure the Client / User / Company data.
--   Raise the system structure, based on form screens:
-    -   Maintenance.
-    -   Process stages screens.
-    -   Approvals.
-    -   Reports and Lists.
+Acronym: [LH].
 
-Note: It also has support for the Execution of Crons Jobs; but requires access to the System Cron Task Manager
+Name: Last-Hammer.
 
-## What you need to know when starting development:
+Dependencies: Stand Alone / PHP v7.4.
 
-- Mainly used PHP in its latest version 7.2
-- HTML5 and a custom version of Bootstrap will also be used simply to enrich the color palette (Bootstrap 4.5).
-- Also CSS3 is used and in the Extensions area you will find the additional libraries and their versions.
+## What is *[LH]* and what does it do?
 
-## PSR version:
+*[LH]* is a seed of projects prepared to create them from the middle ground.
 
-Last-Hammer does use a lastest version of PSR or code style, we can really consider that an anti-pattern is used, and all the system is embedded in the defined objects and constants, this will be better explained in the definition of classes, functions, variables and constants.Last-Hammer does use the latest versions of PSR or code style, we can really consider that it uses a fusion of design patterns to improve the reading of the code and the development learning curve, the whole system is embedded in the objects and constants defined, this will be better explained in the definition of classes, functions, variables and constants.
+After installation using the graphical interface you can:
+- Create and Manage Users.
+- Manage Permissions.
+- Create Development Environments from a Dynamic Template Manager.
 
-#### The architecture proposed
+## Why use *[LH]*?
 
-- Common development conventions by the Author and Contributors
+Today's developers need tools that improve response time to the growing demand for post-pandemic projects.
+At this point we know of the existence of multiple frameworks and even Web-based CRM or ERP, but many of these are not very intuitive and require a long learning and development curve to have a final and acceptable product.
 
-## Contributing:
+*[LH]* is the intermediate point between a Framework, and a CRM / ERP; that allows developers after installation to start project development from a middle ground; entering directly on the objectives of the project and not requiring extensive adaptations or starting from scratch.
 
-Thank you for considering contributing to the Last Hammer project! The contribution guide can be found in the Last Hammer documentation.
+## Where to start with *[LH]*?
 
-### Security Vulnerabilities  
-If you discover a security vulnerability within Last Hammer, please DO NOT create issue, please contact the author and/or security team instead.
+### Previous requirements:
 
-## License 
+you'll need:
+- Be able to connect via FTP.
+- Change the permissions of some files.
+- Ability to run .sh files and add them to crontab / jobs.
+- knowledge about: `html5`, `css3`, `javascript`, `php`, `bootstrap`, `jquery`, third party `plugin` implementation.
 
-The Last Hammer project is open-source software licensed under the MIT license.
+### Implementation of other Side Projects:
+
+*[LH]* implements other parallel projects such as:
+
+- *[BEH]* [Basic Error Handler (SA) for PHP]
+
+*Note: If you want to use them you must configure these projects first.*
+
+[Basic Error Handler (SA) for PHP]: https://github.com/arcanisgk/BEH-Basic-Error-Handler
+
+### PSR version:
+
+*[LH]* uses the latest version of PSR or code style, we can consider that an anti-pattern of coercion is used, all to push the System to comply with a development environment and good practices that facilitate development. But this will be explained more fully in the paradigm definition and in the explanation of the LH skeleton. Although some people do not like the use of magic methods, we can also see a lot of code around them, to facilitate the implementation of dynamic development environments.
+
+*Common development conventions by the Author and Contributors*
+
 
 ## Installation from GitHub:
 
-Please clone `master` branch to required directory
+Please clone `master` branch to require directory
 
 Via SSH
 
-```
+```cmd
 git clone git@github.com:arcanisgk/Last-Hammer.git
 ```
 
 or HTTP
 
-```
+```cmd
 git clone https://github.com/arcanisgk/Last-Hammer.git
 ```
 
 Or download and unzip
 
-```
+```cmd
 https://github.com/arcanisgk/Last-Hammer/archive/master.zip
 ```
 
-## Initial configuration
+## The Architecture and Skeleton Proposed:
 
-#### Step 1.: Setup .htaccess
+LH has a couple of built-in architectures:
+1. Core *[LH]*: In this Area you can find all the code related to *[LH]*, mainly the nucleus and its functionality; It is also suggested not to modify it; since the automatic update system manages this part as well as the support from the *[LH]* team.
+2. Dynamic Development Area: By using the LH Core, the Dynamic Development Areas found in a subdirectory of *[LH]* are managed; This is or are the areas where the developers will make their private implementations.
 
-set correct path to error handler with pattern `<DocumentRoot>/configs/error/error.php`  
-Where `<DocumentRoot>` is equal to your vhost's `DocumentRoot` directive, samples:
-
-```
-#php_value auto_prepend_file "/var/www/html/configs/error/error.php"
-php_value auto_prepend_file "C:/xampp/htdocs/configs/error/error.php"
-```
-
-And Remove Error not supported from the list:
+- Basic Example:
 
 ```
-    ErrorDocument 100 /configs/error/errorstatus.php
-    ErrorDocument 101 /configs/error/errorstatus.php
-    ErrorDocument 102 /configs/error/errorstatus.php
-    ErrorDocument 201 /configs/error/errorstatus.php
-    ErrorDocument 202 /configs/error/errorstatus.php
-    ErrorDocument 203 /configs/error/errorstatus.php
-    ErrorDocument 204 /configs/error/errorstatus.php
-    ErrorDocument 205 /configs/error/errorstatus.php
-    ErrorDocument 206 /configs/error/errorstatus.php
-    ErrorDocument 207 /configs/error/errorstatus.php
-    ErrorDocument 208 /configs/error/errorstatus.php
-    ErrorDocument 226 /configs/error/errorstatus.php
-    ErrorDocument 300 /configs/error/errorstatus.php
-    ErrorDocument 301 /configs/error/errorstatus.php
-    ErrorDocument 302 /configs/error/errorstatus.php
-    ErrorDocument 303 /configs/error/errorstatus.php
-    ErrorDocument 304 /configs/error/errorstatus.php
-    ErrorDocument 305 /configs/error/errorstatus.php
-    ErrorDocument 307 /configs/error/errorstatus.php
-    ErrorDocument 308 /configs/error/errorstatus.php
-    ErrorDocument 400 /configs/error/errorstatus.php
-    ErrorDocument 401 /configs/error/errorstatus.php
-    ErrorDocument 402 /configs/error/errorstatus.php
-    ErrorDocument 403 /configs/error/errorstatus.php
-    ErrorDocument 404 /configs/error/errorstatus.php
-    ErrorDocument 405 /configs/error/errorstatus.php
-    ErrorDocument 406 /configs/error/errorstatus.php
-    ErrorDocument 407 /configs/error/errorstatus.php
-    ErrorDocument 408 /configs/error/errorstatus.php
-    ErrorDocument 409 /configs/error/errorstatus.php
-    ErrorDocument 410 /configs/error/errorstatus.php
-    ErrorDocument 411 /configs/error/errorstatus.php
-    ErrorDocument 412 /configs/error/errorstatus.php
-    ErrorDocument 413 /configs/error/errorstatus.php
-    ErrorDocument 414 /configs/error/errorstatus.php
-    ErrorDocument 415 /configs/error/errorstatus.php
-    ErrorDocument 416 /configs/error/errorstatus.php
-    ErrorDocument 417 /configs/error/errorstatus.php
-    ErrorDocument 421 /configs/error/errorstatus.php
-    ErrorDocument 422 /configs/error/errorstatus.php
-    ErrorDocument 423 /configs/error/errorstatus.php
-    ErrorDocument 424 /configs/error/errorstatus.php
-    ErrorDocument 426 /configs/error/errorstatus.php
-    ErrorDocument 428 /configs/error/errorstatus.php
-    ErrorDocument 429 /configs/error/errorstatus.php
-    ErrorDocument 431 /configs/error/errorstatus.php
-    ErrorDocument 451 /configs/error/errorstatus.php
-    ErrorDocument 500 /configs/error/errorstatus.php
-    ErrorDocument 501 /configs/error/errorstatus.php
-    ErrorDocument 502 /configs/error/errorstatus.php
-    ErrorDocument 503 /configs/error/errorstatus.php
-    ErrorDocument 504 /configs/error/errorstatus.php
-    ErrorDocument 505 /configs/error/errorstatus.php
-    ErrorDocument 506 /configs/error/errorstatus.php
-    ErrorDocument 507 /configs/error/errorstatus.php
-    ErrorDocument 508 /configs/error/errorstatus.php
-    ErrorDocument 510 /configs/error/errorstatus.php
-    ErrorDocument 511 /configs/error/errorstatus.php
+Core
+└─ Dinamic Area
 ```
 
-#### Step 2.: Setup DB Connection
+- Skeleton Example of *[LH]* with Basic Content Project:
+
+```
+Last-Hammer
+│   <-------------------------------------- START Core *[LH]* -------------------------------------------->
+├─.htaccess
+├─.user.ini
+├─index.php
+├─install.php
+├─Autoload.php
+├─favicon.ico
+├─log
+├─asset
+│ ├─css
+│ ├─font
+│ ├─img
+│ ├─html
+│ ├─dic
+│ └─js
+├─stand-alone
+├─config
+│ ├─enviroment
+│ │ └─default.php
+│ ├─client.xml
+│ └─server.php
+└─App
+  ├─Ext
+  ├─Core
+  │ ├─Generic
+  │ │ ├─Cookie.php
+  │ │ ├─Date.php
+  │ │ ├─Device.php
+  │ │ ├─ExecTime.php
+  │ │ ├─File.php
+  │ │ ├─Http.php
+  │ │ ├─Log.php
+  │ │ ├─Mail.php
+  │ │ ├─Memory.php
+  │ │ ├─Session.php
+  │ │ ├─User.php
+  │ │ └─Vars.php 
+  │ ├─Controllers
+  │ │ ├─Controller.php
+  │ │ ├─Error.php
+  │ │ ├─Lang.php
+  │ │ ├─Output.php
+  │ │ ├─Process.php
+  │ │ └─View.php
+  │ ├─Data
+  │ │ ├─Data
+  │ │ ├─Doc
+  │ │ └─List
+  │ ├─rep-tpl
+  │ │ ├─c
+  │ │ │ └─c_0000.php
+  │ │ ├─k
+  │ │ │ └─k_0000.php
+  │ │ ├─w
+  │ │ │ └─w_0000.php
+  │ │ └─d
+  │ │   ├─dic
+  │ │   │ └─dic.xml
+  │ │   ├─script
+  │ │   │ ├─jsc.js
+  │ │   │ ├─event.php
+  │ │   │ └─list.php
+  │ │   └─tpl
+  │ │     ├─form.php
+  │ │     ├─form-s.php
+  │ │     ├─form-m.php
+  │ │     ├─form-ms.php
+  │ │     └─form-h.php
+  │ └─Sys
+  │   └─D_example
+  │     ├─dic
+  │     │ └─dic.xml
+  │     ├─Script
+  │     │ ├─Jsc.js
+  │     │ ├─Event.php
+  │     │ └─List.php
+  │     └─tpl
+  │       ├─form.php
+  │       ├─form-s.php
+  │       ├─form-m.php
+  │       ├─form-ms.php
+  │       └─form-h.php
+  │ <-------------------------------------- END Core *[LH]* -------------------------------------------->
+  │ <----------------------------- START Dynamic Development Area -------------------------------------->
+  └─Workspace
+    ├─Generic
+    │ ├─Data
+    │ │ └─Chain.php
+    │ ├─Docs
+    │ │ └─Factures.php
+    │ └─List
+    │   └─Vehicles.php
+    ├─Cron
+    │ ├─List.php
+    │ └─C_0001.php
+    ├─Kepeer
+    │ ├─List.php
+    │ └─K_0001.php
+    ├─Web-Service
+    │ ├─Api.php
+    │ └─W_0001.php
+    └─Modules
+      └─D_example_0001
+        ├─dic
+        │ └─dic.xml
+        ├─Script
+        │ ├─Jsc.js
+        │ ├─Event.php
+        │ └─List.php
+        └─tpl
+          ├─form.php
+          ├─form-s.php
+          ├─form-m.php
+          ├─form-ms.php
+          └─form-h.php
+    <----------------------------- END Dynamic Development Area -------------------------------------->
+```
+
+
+
+## Initial pre-configuration
+
+### Step 1.: [Implementation of other Side Projects]:
+
+We recommend that all separate projects be configured first. before starting LH.
+
+[Implementation of other Side Projects]: https://github.com/arcanisgk/Last-Hammer/README.md#implementation-of-other-side-projects
+
+### Step 2.: go to installation URL:
+
+
+https://project-url/install.php
+
+
+
+
+
+
+
+
 
 go to and Edit: `/build/setup/config-inc.php`
 
@@ -235,6 +329,22 @@ Set your Client configuration:
     </software>
 </data>
 ```
+
+
+
+### Contributing:
+
+Thank you for considering contributing to the Last Hammer project! The contribution guide can be found in the Last Hammer documentation.
+
+### Security Vulnerabilities  
+If you discover a security vulnerability within Last Hammer, please DO NOT create issue, please contact the author and/or security team instead.
+
+## License 
+
+The Last Hammer project is open-source software licensed under the MIT license.
+
+
+
 
 ### Contributors
 - (c) 2020 Walter Francisco Núñez Cruz icarosnet@gmail.com [![Donate](https://img.shields.io/static/v1?label=Donate&message=PayPal.me/wnunez86&color=brightgreen)](https://www.paypal.me/wnunez86/4.99USD)

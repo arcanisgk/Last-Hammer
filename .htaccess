@@ -1,13 +1,24 @@
+#<Files index.php>
+#    deny from all
+#</Files>
 <Files .user.ini>
     deny from all
 </Files>
 <Files *error.php>
     deny from all
 </Files>
-#<Files index.php>
-#    deny from all
-#</Files>
+<Files *.php>
+    deny from all
+</Files>
 <Files server_error.php>
+    Order Deny,Allow
+    Allow from all
+</Files>
+<Files install.php>
+    Order Deny,Allow
+    Allow from all
+</Files>
+<Files index.php>
     Order Deny,Allow
     Allow from all
 </Files>
