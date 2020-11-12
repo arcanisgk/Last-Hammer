@@ -11,4 +11,5 @@ if (!version_compare(phpversion(), '7.4', '>=')) {
 ob_start();
 require_once 'Autoloader.php';
 Autoloader::getInstance();
-Core::getInstance()->goCoreApp();
+
+//Core::getInstance()->goCoreApp();
