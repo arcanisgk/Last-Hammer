@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <company>
+        <cname>Cruz Roja Panameña</cname>
+        <cid>Cuerpo de Socorristas</cid>
+        <caddress>Panama</caddress>
+        <cphone>+507 236-56-56</cphone>
+        <cemail>soporteit@avipacinc.com</cemail>
+        <curlmain>www.test1.com</curlmain>
+    </company>
+    <contact>
+        <contname>Tecnología</contname>
+        <contlastname>y Desarrollo</contlastname>
+        <contmail>soporteit@avipacinc.com</contmail>
+        <contphone>+507 236-56-56</contphone>
+    </contact>
+    <software>
+        <sysname>xHero</sysname>
+        <license>#############################</license>
+        <token>#############################</token>
+        <version>1.0</version>
+        <build>2020.06</build>
+        <zone>America/Panama</zone>
+        <home help="1=Dashboard,2=Web Site,3=Web Store">1</home>
+        <lang>es_LA</lang>
+        <appandroid>#############################</appandroid>
+        <appios>#############################</appios>
+    </software>
+</xml>

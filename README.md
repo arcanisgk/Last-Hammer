@@ -118,6 +118,9 @@ Last-Hammer
   ├─Ext
   ├─Core
   │ ├─Generic
+  │ │ ├─Data
+  │ │ ├─Doc
+  │ │ ├─List
   │ │ ├─Cookie.php
   │ │ ├─Date.php
   │ │ ├─Device.php
@@ -137,10 +140,6 @@ Last-Hammer
   │ │ ├─Output.php
   │ │ ├─Process.php
   │ │ └─View.php
-  │ ├─Data
-  │ │ ├─Data
-  │ │ ├─Doc
-  │ │ └─List
   │ ├─rep-tpl
   │ │ ├─c
   │ │ │ └─c_0000.php
@@ -188,7 +187,7 @@ Last-Hammer
     ├─Cron
     │ ├─List.php
     │ └─C_0001.php
-    ├─Kepeer
+    ├─Keeper
     │ ├─List.php
     │ └─K_0001.php
     ├─Web-Service
@@ -219,7 +218,7 @@ Last-Hammer
 
 We recommend that all separate projects be configured first. before starting LH.
 
-[Implementation of other Side Projects]: https://github.com/arcanisgk/Last-Hammer/README.md#implementation-of-other-side-projects
+[Implementation of other Side Projects]: https://github.com/arcanisgk/Last-Hammer#implementation-of-other-side-projects
 
 ### Step 2.: go to installation URL:
 

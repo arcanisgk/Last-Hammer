@@ -18,6 +18,10 @@
     Order Deny,Allow
     Allow from all
 </Files>
+<Files update.php>
+    Order Deny,Allow
+    Allow from all
+</Files>
 <Files index.php>
     Order Deny,Allow
     Allow from all
